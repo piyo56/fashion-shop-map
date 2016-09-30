@@ -1,0 +1,17 @@
+
+<h1>all select-shops</h1>
+<% true_symbol = "✔" %>
+<table style="text-align: center;">
+  <thead>
+    <tr><th>name</th><th>mens</th><th>ladies</th></tr>
+  </thead>
+  <tbody>
+    <% @shops.each do |shop| %>
+      <tr>
+        <td><%= link_to(shop.name, shop_path(shop)) %></td>
+        <td><%= true_symbol if shop.mens %></td>
+        <td><%= true_symbol if shop.ladies %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

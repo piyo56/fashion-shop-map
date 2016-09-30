@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  branch_num: 1
+  mens: false
+  ladies: false
+
+two:
+  name: MyString
+  branch_num: 1
+  mens: false
+  ladies: false
