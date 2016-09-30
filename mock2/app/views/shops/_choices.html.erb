@@ -1,0 +1,7 @@
+<%= form_tag(shops_show_path, {method: :get}) %>
+<% @shops.each do |shop| %>
+  <%# <%= check_box(shop, [:id]) %>
+  <input type="checkbox" name="ids[]" value=<%= shop.id %>><%= shop.name %>
+<% end %>
+<%= submit_tag('検索') %>
+

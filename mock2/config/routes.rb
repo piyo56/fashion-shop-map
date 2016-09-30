@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  #resources :branches
+  #resources :shops, only: [:index, :show]
+  get "shops" => "shops#index"
+  get "shops/show" => "shops#show"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
