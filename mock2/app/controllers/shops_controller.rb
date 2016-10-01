@@ -3,7 +3,6 @@ class ShopsController < ApplicationController
   before_action :set_shops, only: [:index, :show]
 
   def index
-    #@all_shops  = all_shops.pluck(:id, :name, :branches_count)
   end
 
   def show
@@ -28,7 +27,7 @@ class ShopsController < ApplicationController
     respond_to do |format|
       if @shop.save
         format.html { redirect_to @shop, notice: 'Shop was successfully created.' }
-        format.json { render :show, status: :created, location: @shop }
+        format.json { render :show, status: :created, address: @shop }
       else
         format.html { render :new }
         format.json { render json: @shop.errors, status: :unprocessable_entity }
@@ -42,7 +41,7 @@ class ShopsController < ApplicationController
     respond_to do |format|
       if @shop.update(shop_params)
         format.html { redirect_to @shop, notice: 'Shop was successfully updated.' }
-        format.json { render :show, status: :ok, location: @shop }
+        format.json { render :show, status: :ok, address: @shop }
       else
         format.html { render :edit }
         format.json { render json: @shop.errors, status: :unprocessable_entity }
@@ -76,10 +75,11 @@ class ShopsController < ApplicationController
     end
 
     def fetch_branches(shop_ids)
-      shop_ids.map!{|id| id.to_i}
-      #shop_ids.each do |id|
-      #  all_branches <<  find(id).branches.pluck(:name, :location)
-      #end
-      shop_ids.map{|id| Shop.find(id.to_i).branches.select(:name, :location)}
+      all_branches = []
+      shop_ids.each do |id|
+        all_branches <<  Shop.find(id.to_i).branches.select(:name, :address, :latitude, :longitude)
+      end
+      all_branches.flatten!
+      #shop_ids.map{|id| Shop.find(id.to_i).branches.select(:name, :address, :latitude, :longitude)}[0]
     end
 end
