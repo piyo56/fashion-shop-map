@@ -1,15 +1,52 @@
+<div id="choices">
 <%= form_tag(shops_show_path, {method: :get}) do%>
-  <h2> shop names </h2>
-  <% @shops.each do |shop| %>
-    <%# <%= check_box(shop, [:id]) %>
-    <input type="checkbox" name="s_ids[]" value=<%= shop.id %>><%= shop.name %>
-  <% end %>
+  <table id="shop_choices">
+    <thead><th></th><th>shop names</th></thead>
+    <tbody>
+      <% @shops.each do |shop| %>
+        <tr>
+          <td> <input type="checkbox" name="s_ids[]" value=<%= shop.id %> ></td>
+          <td><%= shop.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-  <h2> prefecture names </h2>
-  <% @prefectures.each do |prefecture| %>
-    <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %>><%= prefecture.name %>
+  <div class="btn" id="shop_btn">▽</div>
+
+  <table id="prefecture_choices">
+    <thead><th></th><th>prefecture names</th></thead>
+    <tbody>
+      <% @prefectures.each do |prefecture| %>
+        <tr>
+          <td> <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %> ></td>
+          <td><%= prefecture.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="btn" id="prefecture_btn">▽</div>
+
+  <%= submit_tag('検索', {id:"search_btn", disabled:"disabled"}) %>
+
 <% end %>
-<br>
-  <%= submit_tag('検索') %>
-<% end %>
-<br>
+
+<script>
+enable_search = function(){
+  if ($('input[name="s_ids[]"]:checked').length != 0){
+    $("#search_btn").prop("disabled", false);
+  }
+  setTimeout(enable_search, 200)
+};
+$(document).ready(function(){
+  enable_search();
+});
+$("#shop_btn").click(function(){
+  $("#shop_choices tbody").toggle();
+});
+$("#prefecture_btn").click(function(){
+  $("#prefecture_choices tbody").toggle();
+});
+</script>
+</div>

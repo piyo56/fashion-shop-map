@@ -6,7 +6,6 @@
   <span style="color: red; font-weight: bold;"> Error: <%= @error_msg %> </span>
 <% else %>
   <div id="multi_markers"></div>
-
   <script>
   var handler = Gmaps.build('Google');
   handler.buildMap({ internal: {id: 'multi_markers'}}, function(){

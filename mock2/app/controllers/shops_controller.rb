@@ -68,10 +68,10 @@ class ShopsController < ApplicationController
   private
     class ErrorUtility
       def self.log_and_notify(e)
-        Rails.logger.error "----------------------------------[show error start]-----------------------------------------"
+        Rails.logger.error "----------------------------------[ start ]-----------------------------------------"
         Rails.logger.error e.message
         Rails.logger.error e.backtrace.join("\n")
-        Rails.logger.error "----------------------------------[ end ]-----------------------------------------"
+        Rails.logger.error "----------------------------------[  end  ]-----------------------------------------"
       end
     end
 
