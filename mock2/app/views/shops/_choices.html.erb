@@ -1,8 +1,15 @@
 <%= form_tag(shops_show_path, {method: :get}) do%>
+  <h2> shop names </h2>
   <% @shops.each do |shop| %>
     <%# <%= check_box(shop, [:id]) %>
-    <input type="checkbox" name="ids[]" value=<%= shop.id %>><%= shop.name %>
+    <input type="checkbox" name="s_ids[]" value=<%= shop.id %>><%= shop.name %>
   <% end %>
+
+  <h2> prefecture names </h2>
+  <% @prefectures.each do |prefecture| %>
+    <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %>><%= prefecture.name %>
+<% end %>
+<br>
   <%= submit_tag('検索') %>
 <% end %>
-
+<br>
