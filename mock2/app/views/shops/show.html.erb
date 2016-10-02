@@ -2,13 +2,7 @@
 
 <%= render 'choices'%>
 
-<div style='width: 800px;'>
-  <div id="multi_markers" style='width: 800px; height: 400px;'></div>
-</div>
-
-<% @branches.each do |b| %>
-  <%= b %>
-<% end %>
+<div id="multi_markers"></div>
 
 <script>
 var handler = Gmaps.build('Google');
