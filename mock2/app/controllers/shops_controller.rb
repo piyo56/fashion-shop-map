@@ -9,7 +9,9 @@ class ShopsController < ApplicationController
   def show
     #@branches = Shop.fetch_branches(params[:ids])
     begin
-      @branches = fetch_branches(params[:s_ids], params[:p_ids])
+      @selected_shop_ids       = params[:s_ids].map{|id| id.to_i}
+      @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i}
+      @branches = fetch_branches(@selected_shop_ids, @selected_prefecture_ids)
     rescue => e
       @error_msg = "GET Parameter is not valid"
       ErrorUtility.log_and_notify e
@@ -102,10 +104,10 @@ class ShopsController < ApplicationController
       end
 
       # 選択されたショップの店舗idの配列
-      branches_of_shops = shop_ids.map{|id| Shop.find(id.to_i).branches.pluck(:id)}.flatten!
+      branches_of_shops = shop_ids.map{|id| Shop.find(id).branches.pluck(:id)}.flatten!
       
       # 選択された県にある店舗idの配列
-      branches_in_prefectures = prefecture_ids.map{|id| Prefecture.find(id.to_i).branches.pluck(:id)}.flatten!
+      branches_in_prefectures = prefecture_ids.map{|id| Prefecture.find(id).branches.pluck(:id)}.flatten!
 
       # 上記両方を満たす店舗の配列
       if branches_in_prefectures

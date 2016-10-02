@@ -5,7 +5,7 @@
     <tbody>
       <% @shops.each do |shop| %>
         <tr>
-          <td> <input type="checkbox" name="s_ids[]" value=<%= shop.id %> ></td>
+          <td> <input type="checkbox" name="s_ids[]" value=<%= shop.id %> <%= 'checked="checked"' if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>></td>
           <td><%= shop.name %></td>
         </tr>
       <% end %>
@@ -19,7 +19,7 @@
     <tbody>
       <% @prefectures.each do |prefecture| %>
         <tr>
-          <td> <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %> ></td>
+          <td> <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %> <%= 'checked="checked"' if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>></td>
           <td><%= prefecture.name %></td>
         </tr>
       <% end %>
@@ -34,7 +34,9 @@
 
 <script>
 enable_search = function(){
-  if ($('input[name="s_ids[]"]:checked').length != 0){
+  if ($('input[name="s_ids[]"]:checked').length === 0){
+    $("#search_btn").prop("disabled", true);
+  }else{
     $("#search_btn").prop("disabled", false);
   }
   setTimeout(enable_search, 200)
