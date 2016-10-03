@@ -23,11 +23,11 @@ class ShopListScraper
       # htmlをパース(解析)してオブジェクトを生成
       fetch_page(@target_url).xpath("//a[@class='path']")[(@tmp_saved_num)..-1].each do |shop_div|
         shop = {name: "", zozo_url:"", official_url:""}
-        shop[:zozo_url] = @base_url + shop_div.attribute('href').value
+        shop[:zozo_url] = @base_url + shop_div.attribute('href').value.strip
         shop[:name] = shop_div.css('span').inner_text.strip
 
         official_url_div = fetch_page(shop[:zozo_url]).css("#officialSite")[0]
-        shop[:official_url] = official_url_div.children[0].attribute("href").value if official_url_div
+        shop[:official_url] = official_url_div.children[0].attribute("href").value.srtip if official_url_div
         
         log(shop)
         @shops << shop
@@ -36,8 +36,12 @@ class ShopListScraper
     end
   end
 
-  def save(filename)
-    write_as_csv(filename)
+  def save_to_csv(filename)
+    # CSV
+    File.open(filename, "w") do |file|
+    #File.open("#{__FILE__.split('.')[0]}.txt", "w") do |file|
+      file.write(hash_list_to_csv_array(@shops).map(&:to_csv).join)
+    end
   end
 
   private
@@ -74,15 +78,8 @@ class ShopListScraper
     arr.unshift(key_order)
   end
 
-  def write_as_csv(filename)
-    # CSV
-    File.open(filename, "w") do |file|
-    #File.open("#{__FILE__.split('.')[0]}.txt", "w") do |file|
-      file.write(hash_list_to_csv_array(@shops).map(&:to_csv).join)
-    end
-  end
 end
 
 shop_list = ShopListScraper.new("http://zozo.jp", "http://zozo.jp/shop/?c=SwitchType&ts=1&p_no=1")
 shop_list.scrape
-shop_list.save("all_shop_list.csv")
+shop_list.save_to_csv("all_shop_list.csv")
