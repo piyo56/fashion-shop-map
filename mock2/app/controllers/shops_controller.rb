@@ -9,13 +9,26 @@ class ShopsController < ApplicationController
   def show
     #@branches = Shop.fetch_branches(params[:ids])
     begin
-      @selected_shop_ids       = params[:s_ids].map{|id| id.to_i}
-      @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i}
-      @branches = fetch_branches(@selected_shop_ids, @selected_prefecture_ids)
+      @selected_shop_ids       = params[:s_ids].map{|id| id.to_i} if !params[:s_ids].nil?
+      @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i} if !params[:p_ids].nil?
+      @branches = fetch_branches(@selected_shop_ids, @selected_prefecture_ids) # 使わないけどエラー吐くのでとりあえずいれておく
+      @branch_markers = Gmaps4rails.build_markers(@branches) do |branch, marker|
+        marker.lat branch.latitude
+        marker.lng branch.longitude
+        marker.infowindow branch.name
+        marker.picture({
+          url: "http://brand-walker.jp/img/marker/brand2.png",
+          width:   45,
+          height:  40
+        })
+        marker.json({title: branch.name})
+      end
     rescue => e
       @error_msg = "GET Parameter is not valid"
       ErrorUtility.log_and_notify e
     end
+
+
   end
 
   # GET /shops/new
