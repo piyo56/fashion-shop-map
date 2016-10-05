@@ -11,24 +11,31 @@ class ShopsController < ApplicationController
     begin
       @selected_shop_ids       = params[:s_ids].map{|id| id.to_i} if !params[:s_ids].nil?
       @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i} if !params[:p_ids].nil?
-      @branches = fetch_branches(@selected_shop_ids, @selected_prefecture_ids) # 使わないけどエラー吐くのでとりあえずいれておく
-      @branch_markers = Gmaps4rails.build_markers(@branches) do |branch, marker|
-        marker.lat branch.latitude
-        marker.lng branch.longitude
-        marker.infowindow branch.name
-        marker.picture({
-          url: "http://brand-walker.jp/img/marker/brand2.png",
-          width:   45,
-          height:  40
-        })
-        marker.json({title: branch.name})
-      end
+      @branches = fetch_branches(@selected_shop_ids, @selected_prefecture_ids) 
     rescue => e
       @error_msg = "GET Parameter is not valid"
       ErrorUtility.log_and_notify e
     end
 
+    #@branches.each do |b|
+    #  name_check = b.name.split()
+    #  if name_check.length != 2 || !name_check[0].eql?("ビームス"))
+    #    @branches.delete(b)
+    #  end
+    #end
 
+    @branch_markers = Gmaps4rails.build_markers(@branches) do |branch, marker|
+      marker.lat branch.latitude
+      marker.lng branch.longitude
+      marker.infowindow branch.name
+      marker.picture({
+        url: "/assets/#{branch.shop_id}.png",
+        width:   32,
+        height:  32,
+        clickable: false
+      })
+      marker.json({title: branch.name})
+    end
   end
 
   # GET /shops/new
