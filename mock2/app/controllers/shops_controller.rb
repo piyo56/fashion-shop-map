@@ -40,7 +40,7 @@ class ShopsController < ApplicationController
 
   # GET /shops/new
   def new
-    @shop = Shop.new
+    @shop = Shop.order("name")
   end
 
   # GET /shops/1/edit
@@ -99,7 +99,7 @@ class ShopsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_shop
-      @shop = Shop.find(params[:id])
+      @shop = Shop.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -108,7 +108,7 @@ class ShopsController < ApplicationController
     end
     
     def set_shops
-      @shops = Shop.select(:id, :name, :branches_count)
+      @shops = Shop.order("name").select(:id, :name, :branches_count)
     end
     
     def set_prefectures
