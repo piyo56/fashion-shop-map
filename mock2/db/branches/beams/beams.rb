@@ -1,15 +1,19 @@
 require 'open-uri'
 require 'nokogiri'
 require 'csv'
+require 'kconv'
 
-def scrape(url)
-  sleep(3)
+def fetch_page(url)
+  sleep(1)
   charset = nil
   html = open(url) do |f|
+    raise "Got 404 error" if f.status[0] == "404"
+
     charset = f.charset # 文字種別を取得
     f.read # htmlを読み込んで変数htmlに渡す
   end
-  doc = Nokogiri::HTML.parse(html, nil, charset)
+
+  doc = Nokogiri::HTML.parse(html.toutf8, nil, 'utf-8')
   return doc
 end
 
@@ -22,43 +26,54 @@ def address2prefecture(address)
   end
 end
 
-
-File.open("../seeds.rb", "w") do |file|
-  # スクレイピング先のURL
-  base_url = "http://www.beams.co.jp"
-  target_url = 'https://www.beams.co.jp/shop/'
-
+# スクレイピング先の情報
+shop_name       = "BEAMS"
+short_shop_name = "BEAMS"
+target_url      = "https://www.beams.co.jp/shop/"
+base_url        = "http://www.beams.co.jp"
+name_variation  = []
+File.open("seeds.rb", "w") do |file|
   # リソースを取得
-  shop_list_page = scrape(target_url)
-  shops = []
+  branch_list_page = fetch_page(target_url)
+  branches = []
 
   # htmlをパース(解析)してオブジェクトを生成
-  shop_list_page.xpath('//li[@class="beams-list-image-item"]').each do |shop_about|
-    shop_name = shop_about.css('a > .shop-name').inner_text.strip
-    shop_url = shop_about.css('a').attribute('href').value
+  branch_list_page.xpath('//li[@class="beams-list-image-item"]').each do |s|
+    branch_url  = base_url + s.css("a").attribute("href").value 
+    branch_name = s.css(".shop-name").inner_text.strip
 
-    # 各店舗の情報ページを取得
-    puts "\t* #{shop_name}"
-    target_url = base_url + shop_url
-    #debug(target_url)
-
+    #各店舗の情報ページを取得
     begin
-      shop_info_page = scrape(target_url)
-    rescue 
-      puts "-----> [Error] failed to fetch the page ( #{shop_name}. #{shop_url} )"
+      branch_info_page = fetch_page(branch_url)
+    rescue
+      puts "-----> [Error] failed to fetch the page (#{branch_name})"
       next
     end
-    shop_detail = shop_info_page.xpath('//div[@class="shop-detail-header-left"]')[0]
-    shop_address = shop_detail.css('.address').inner_text.split[0]
+
+    address = branch_info_page.css(".address").inner_text.strip
+
+    begin
+      branch_address = /([^a-zA-Z0-9]{1,3}?[都道府県][^\s]*[0-9]([0-9-])+)/.match(address)[0].strip
+
+      if branch_name.split[0] != "ビームス"
+        next
+      end
+      puts "\t* #{branch_name} | #{branch_address}"
+      # name_variation.push(branch_name.split[0]).uniq!
+      # p name_variation
+    rescue
+      branch_address = address
+      puts "\t---> [Error] failed to extract address str (#{branch_url} | #{branch_name})"
+    end
 
     # 配列に保存
-    shops.push({name: shop_name, url: target_url, address: shop_address})
+    branches.push({name: branch_name, url: target_url, address: branch_address})
 
-    # seeds.rbへと書き出し
-    shop_prefecture = address2prefecture(shop_address)
-    if shop_prefecture
-      code = %(prefecture_id = Prefecture.find_by(name: "#{shop_prefecture}").id\n)
-      code += %(Shop.find_by(name: "BEAMS").branches.create(name: "#{shop_name}", address:"#{shop_address}", prefecture_id: prefecture_id)\n)
+    # seedsに書き出し
+    branch_prefecture = address2prefecture(branch_address)
+    if branch_prefecture
+      code = %(prefecture_id = Prefecture.find_by(name: "#{branch_prefecture}").id\n)
+      code += %(Shop.find_by(name: "#{shop_name}").branches.create(name: "#{shop_name.split[2]} #{branch_name}", address:"#{branch_address}", prefecture_id: prefecture_id)\n)
       file.write(code)
     end
   end

@@ -33,7 +33,6 @@ target_url      = "http://www.green-label-relaxing.jp/shop/index.html"
 base_url        = "http://www.green-label-relaxing.jp"
 
 File.open("seeds.rb", "w") do |file|
-
   # リソースを取得
   branch_list_page = fetch_page(target_url)
   branches = []
