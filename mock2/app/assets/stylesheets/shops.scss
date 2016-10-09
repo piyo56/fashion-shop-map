@@ -10,49 +10,31 @@
 
 main {
   width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
   text-align: center;
+}
+
+#logo {
+  border: 1px rgba(0,0,0,0.4) solid;
 }
 
 #choices {
   width: 800px;
-  height: 20px;
+  line-height: 30px;
   margin: 40px auto;
 }
 
-#shop_choices{
-  width: 200px;
-  float:left;
+#choices .container {
+  width: 800px;
 }
 
-#shop_choices tbody {
-  display: none;
-}
-
-#prefecture_choices{
-  width: 200px;
-  float:left;
-}
-
-#prefecture_choices tbody {
-  display: none;
-}
-
-#search_btn{
-  width: 100px;
-  height: 70px;
-  margin: auto;
-  float:left;
-}
-
-.btn {
-  width: 30px;
-  height: 30px;
-  float:left;
-}
-#choices > form > div:nth-child(5) {
-  margin-right: 20px;
-}
+// .btn {
+//   width: 30px;
+//   height: 30px;
+// }
+// #choices > form > div:nth-child(5) {
+//   margin-right: 20px;
+// }
 
 // google map search input
 #pac-input {

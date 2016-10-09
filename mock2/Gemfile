@@ -48,8 +48,9 @@ group :development do
   gem 'hirb-unicode'
   gem "gmaps4rails"
   gem "geocoder"
-  # Semantic UI
-  gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+
+  # view
+  gem 'bootstrap-sass'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
