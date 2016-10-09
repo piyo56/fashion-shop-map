@@ -17,9 +17,19 @@
     //   ]);
     //   handler.bounds.extendWith(markers);
     //   handler.fitMapToBounds();
-// });
+    // });
 
-  handler = Gmaps.build('Google');
+  handler = Gmaps.build(
+      'Google'
+      //, {
+      //   markers: {
+      //     clusterer: {
+      //       gridSize: 20,
+      //       maxZoom: 10
+      //     }
+      //   }
+      // }
+  );
   handler.buildMap({ internal: {id: 'map'}}, function(){
     markers = handler.addMarkers(<%=raw @branch_markers.to_json %>);
     handler.bounds.extendWith(markers);
