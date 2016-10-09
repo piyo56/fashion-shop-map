@@ -1,6 +1,12 @@
-<h1>Shop#show</h1>
-
 <%= render 'choices'%>
+
+<div id="labels">
+  <% @shops.each do |shop| %>
+    <% if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>
+      <button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= shop.branches_count %></span></button>
+    <% end %>
+  <% end %>
+</div>
 
 <% if @error_msg %>
   <span style="color: red; font-weight: bold;"> Error: <%= @error_msg %> </span>
