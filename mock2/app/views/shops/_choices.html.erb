@@ -11,7 +11,7 @@
           </button>
           <ul class="dropdown-menu">
             <% @shops.each do |shop| %>
-              <li><a href="#" class="small" data-value="option1" tabIndex="-1">
+              <li><a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
                 <input type="checkbox" name="s_ids[]" value=<%= shop.id %> <%= 'checked="checked"' if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>>&nbsp;<%= shop.name %>
               </a></li>
             <% end %>
@@ -27,7 +27,7 @@
           </button>
           <ul class="dropdown-menu">
             <% @prefectures.each do |prefecture| %>
-              <li><a href="#" class="small" data-value="option1" tabIndex="-1">
+              <li><a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
                   <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %> <%= 'checked="checked"' if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>>&nbsp;<%= prefecture.name %>
               </a> </li>
             <% end %>
@@ -53,25 +53,8 @@ $(document).ready(function(){
   enable_search();
 });
 
-var options = [];
-$('.dropdown-menu a').on( 'click', function( event ) {
-
-  var $target = $( event.currentTarget ),
-  val = $target.attr( 'data-value' ),
-  $inp = $target.find( 'input' ),
-  idx;
-
-  if ( ( idx = options.indexOf( val ) ) > -1 ) {
-    options.splice( idx, 1 );
-    setTimeout( function() { $inp.prop( 'checked', false ) }, 0);
-  } else {
-    options.push( val );
-    setTimeout( function() { $inp.prop( 'checked', true ) }, 0);
-  }
-
-  $( event.target ).blur();
-
-  console.log( options );
+$('.dropdown-menu a').on('click', function() {
+  $(this).find('input').prop("checked", !checkBoxes.prop("checked"));
   return false;
 });
 </script>
