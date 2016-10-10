@@ -9,7 +9,7 @@
             <span>ショップ選択&nbsp;</span><span class="glyphicon glyphicon-menu-down"></span>            <!-- <span class="glyphicon glyphicon&#45;cog"></span> -->
             <!-- <span class="caret"></span> -->
           </button>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu scrollable-menu">
             <% @shops.each do |shop| %>
               <li><a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
                 <input type="checkbox" name="s_ids[]" value=<%= shop.id %> <%= 'checked="checked"' if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>>&nbsp;<%= shop.name %>
@@ -25,7 +25,7 @@
             <!-- <span class="glyphicon glyphicon&#45;cog"></span> -->
             <!-- <span class="caret"></span> -->
           </button>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu scrollable-menu">
             <% @prefectures.each do |prefecture| %>
               <li><a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
                   <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %> <%= 'checked="checked"' if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>>&nbsp;<%= prefecture.name %>
@@ -54,7 +54,9 @@ $(document).ready(function(){
 });
 
 $('.dropdown-menu a').on('click', function() {
-  $(this).find('input').prop("checked", !checkBoxes.prop("checked"));
+  $(this).parent().toggleClass('open');
+  var checkbox = $(this).find('input')
+  checkbox.prop("checked", !checkbox.prop("checked"));
   return false;
 });
 </script>

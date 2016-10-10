@@ -6,6 +6,11 @@
       <button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= shop.branches_count %></span></button>
     <% end %>
   <% end %>
+  <% @prefectures.each do |prefecture| %>
+    <% if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>
+      <button type="button" class="btn btn-sm btn-primary"><%= prefecture.name %></button>
+    <% end %>
+  <% end %>
 </div>
 
 <% if @error_msg %>

@@ -32,6 +32,11 @@ main {
   width: 800px;
 }
 
+.scrollable-menu {
+  height: auto;
+  max-height: 150px;
+  overflow-x: hidden;
+}
 
 // .btn {
 //   width: 30px;
