@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #map {
-  width: 90%;
-  height: 70%;
+  width: 95%;
+  height: 80%;
   margin: 0 auto;
 }
 #labels {
@@ -24,8 +24,9 @@ main {
 
 #choices {
   width: 800px;
+  height: auto;
   line-height: 30px;
-  margin: 40px auto;
+  margin: 10px auto;
 }
 
 #choices .container {

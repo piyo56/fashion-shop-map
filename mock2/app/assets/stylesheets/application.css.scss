@@ -20,3 +20,23 @@ html, body {
   width: 100%;
   height: 100%;
 }
+
+header{
+  height: 50px;
+  width: 100%;
+  background: #e0e0e0;
+}
+header > p{
+  margin: 0 20px;
+  font-size: 28px;
+  line-height: 50px;
+}
+footer {
+  height: 20px;
+  width: 100%;
+  background: #e0e0e0;
+}
+footer > p{
+  margin: 0 50px;
+  float: right;
+}
