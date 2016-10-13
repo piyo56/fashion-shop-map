@@ -1,10 +1,10 @@
-<header>
-  <p>Select Shop Map</p>
-</header>
-
 <%= render 'choices'%>
 
 <div id="labels">
+  <span style="font-size: 14px;line-height: 32px;">選択された条件
+    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+    &nbsp;&nbsp;
+  </span>
   <% @shops.each do |shop| %>
     <% if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>
       <button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= shop.branches_count %></span></button>
@@ -88,6 +88,3 @@
   </script>
 <% end %>
 
-<footer>
-  <p>@ 2016 <a href="https://github.com/piyo56">piyo56</a> All rights reserved</p>
-</footer>
