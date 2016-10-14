@@ -1,0 +1,17 @@
+/*
+*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+main {
+  width: 100%;
+  height: -webkit-calc(100% - 70px);
+  background: #f2f4f6;
+  text-align: center;
+}
+
+  //padding-top: -webkit-calc(( 100% - 70px - 560px - 34px) / 2)
+#logo {
+  margin: 30px auto;
+  border: 1px rgba(0,0,0,0.4) solid;
+}

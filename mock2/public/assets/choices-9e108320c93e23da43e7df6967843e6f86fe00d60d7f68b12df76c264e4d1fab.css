@@ -1,0 +1,19 @@
+/* line 1, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/choices.scss */
+#choices {
+  width: 800px;
+  height: auto;
+  line-height: 30px;
+  margin: 0 auto;
+}
+
+/* line 8, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/choices.scss */
+#choices .container {
+  width: 800px;
+}
+
+/* line 12, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/choices.scss */
+.scrollable-menu {
+  height: auto;
+  max-height: 150px;
+  overflow-x: hidden;
+}

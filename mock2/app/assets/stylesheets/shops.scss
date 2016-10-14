@@ -20,35 +20,6 @@ main {
   background: #f2f4f6;
 }
 
-#logo {
-  border: 1px rgba(0,0,0,0.4) solid;
-}
-
-#choices {
-  width: 800px;
-  height: auto;
-  line-height: 30px;
-  margin: 0 auto;
-}
-
-#choices .container {
-  width: 800px;
-}
-
-.scrollable-menu {
-  height: auto;
-  max-height: 150px;
-  overflow-x: hidden;
-}
-
-// .btn {
-//   width: 30px;
-//   height: 30px;
-// }
-// #choices > form > div:nth-child(5) {
-//   margin-right: 20px;
-// }
-
 // google map search input
 #pac-input {
   background-color: #fff;

@@ -1,0 +1,11 @@
+/* line 1, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/index.scss */
+#top_iamge {
+  width: 500px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+/* line 6, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/index.scss */
+#logo {
+  border: 1px rgba(0, 0, 0, 0.4) solid;
+}
