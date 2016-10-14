@@ -21,8 +21,9 @@
 
 <% if @error_msg %>
   <span style="color: red; font-weight: bold;"> Error: <%= @error_msg %> </span>
-<% elsif @branch_markers.length == 0 %>
-  <p style="margin: 30px auto; text-align: center"><span style="font-size: 14px; font-weight: bold;">該当する店舗はありません。</span></p>
+<% elsif @branch_markers %>
+  <%= @branch_markers.length %>
+  <p style="text-align: center"><span style="font-size: 14px; font-weight: bold;">該当する店舗はありません。</span></p>
 <% else %>
   <input id="pac-input" class="controls" type="text" placeholder="Search Box">
   <div id="map"></div>
