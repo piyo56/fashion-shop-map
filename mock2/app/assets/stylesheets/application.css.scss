@@ -27,9 +27,10 @@ header{
   width: 100%;
   background: #4a8ef4;
 }
-header > p{
+header > a > span{
+  display: inline-block;
   float: left;
-  width: 400px;
+  width: auto;
   margin: 0 20px;
   color: white;
   font-size: 28px;
