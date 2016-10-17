@@ -5,7 +5,7 @@ Shop.find_by(name: "JOURNAL STANDARD").branches.create(name: "JOURNAL STANDARD �
 prefecture_id = Prefecture.find_by(name: "東京都").id
 Shop.find_by(name: "JOURNAL STANDARD").branches.create(name: "JOURNAL STANDARD 渋谷店", address:"東京都渋谷区神南1-5-6", prefecture_id: prefecture_id)
 prefecture_id = Prefecture.find_by(name: "東京都").id
-Shop.find_by(name: "JOURNAL STANDARD").branches.create(name: "JOURNAL STANDARD 表参道", address:"東京都渋谷区神宮前6-7-1", prefecture_id: prefecture_id)
+Shop.find_by(name: "JOURNAL STANDARD").branches.create(name: "JOURNAL STANDARD JOURNAL STANDARD 表参道", address:"東京都渋谷区神宮前6-7-1", prefecture_id: prefecture_id)
 prefecture_id = Prefecture.find_by(name: "東京都").id
 Shop.find_by(name: "JOURNAL STANDARD").branches.create(name: "JOURNAL STANDARD 二子玉川店", address:"東京都世田谷区玉川2−21", prefecture_id: prefecture_id)
 prefecture_id = Prefecture.find_by(name: "東京都").id
@@ -42,5 +42,3 @@ prefecture_id = Prefecture.find_by(name: "愛媛県").id
 Shop.find_by(name: "JOURNAL STANDARD").branches.create(name: "JOURNAL STANDARD 松山店", address:"愛媛県松山市一番町3-2-1", prefecture_id: prefecture_id)
 prefecture_id = Prefecture.find_by(name: "福岡県").id
 Shop.find_by(name: "JOURNAL STANDARD").branches.create(name: "JOURNAL STANDARD 福岡店", address:"福岡県福岡市中央区天神2-11-1", prefecture_id: prefecture_id)
-prefecture_id = Prefecture.find_by(name: "鹿児島").id
-Shop.find_by(name: "JOURNAL STANDARD").branches.create(name: "JOURNAL STANDARD 鹿児島店", address:"鹿児島県鹿児島市中央町1−1", prefecture_id: prefecture_id)
