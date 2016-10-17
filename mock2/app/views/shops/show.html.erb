@@ -9,7 +9,7 @@
   </span>
   <% @shops.each do |shop| %>
     <% if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>
-      <button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= shop.branches_count %></span></button>
+      <div class="bootstrap_btn_wrapper" ><button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= shop.branches_count %></span></button></div>
     <% end %>
   <% end %>
   <% @prefectures.each do |prefecture| %>
@@ -27,27 +27,24 @@
   <input id="pac-input" class="controls" type="text" placeholder="Search Box">
   <div id="map"></div>
   <script type="text/javascript">
-    // var handler = Gmaps.build('Google');
-    // handler.buildMap({ internal: {id: 'map'}}, function(){
-    //   var markers = handler.addMarkers([
-    //       <% @branches.each do |b| %>
-    //         { lat: <%= b.latitude %>, lng: <%= b.longitude %>},
-    //       <% end %>
-    //   ]);
-    //   handler.bounds.extendWith(markers);
-    //   handler.fitMapToBounds();
-    // });
-
-  handler = Gmaps.build(
+// TODO
+// ショップや都道府県が多く選択されるとラベルが増え、GoogleMapがはみ出てしまう(footerに侵食する)
+// 動的にサイズを調整しようとしたがどうにもできないので後回し
+// $(document).ready(function() {
+//   var header_height = 50, footer_height = 20;
+//   var max_main_height = $("body").height() - header_height - footer_height;
+//   
+//   var main_height = $("#labels").height() + $("#choices").height() + $("#map").height();
+//   
+//   console.log($("#map").height());
+//   if( main_height > max_main_height){
+//     exceeded_px = main_height - max_main_height;
+//     $("#map").height($("#map").height() - exceeded_px);
+//     console.log($("#map").height());
+//   }
+// });
+   handler = Gmaps.build(
       'Google'
-      //, {
-      //   markers: {
-      //     clusterer: {
-      //       gridSize: 20,
-      //       maxZoom: 10
-      //     }
-      //   }
-      // }
   );
   handler.buildMap({ internal: {id: 'map'}}, function(){
     markers = handler.addMarkers(<%=raw @branch_markers.to_json %>);
