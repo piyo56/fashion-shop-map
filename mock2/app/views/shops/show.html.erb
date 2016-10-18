@@ -20,7 +20,11 @@
 </div>
 
 <% if @error_msg %>
-  <span style="color: red; font-weight: bold;"> Error: <%= @error_msg %> </span>
+  <p class="error">
+  <a href="/shops">TOPページ</a>からやり直して下さい
+  <br>
+  ( Error: <%= @error_msg %> )
+  </p>
 <% elsif @branch_markers.length == 0 %>
   <p style="margin: 30px auto; text-align: center"><span style="font-size: 14px; font-weight: bold;">該当する店舗はありません。</span></p>
 <% else %>
