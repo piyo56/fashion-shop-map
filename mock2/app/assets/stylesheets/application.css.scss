@@ -26,15 +26,18 @@ header{
   height: 50px;
   width: 100%;
   background: #4a8ef4;
-}
-header > a > span{
-  display: inline-block;
-  float: left;
-  width: auto;
-  margin: 0 20px;
-  color: white;
-  font-size: 28px;
-  line-height: 50px;
+
+  a {
+    span{
+      display: inline-block;
+      float: left;
+      width: auto;
+      margin: 0 20px;
+      color: white;
+      font-size: 28px;
+      line-height: 50px;
+    }
+  }
 }
 #mail {
   float: right;
@@ -44,17 +47,20 @@ header > a > span{
 footer {
   height: 20px;
   width: 100%;
-  background: white;
-  //background: #f2f4f6;
+  //background: white;
+  background: #f2f4f6;
   //background: #4a8ef4;
+
+  p {
+    margin: 0 50px;
+    float: right;
+    //color: white;
+    color: black;
+
+    span {
+      color: white;
+      text-decoration: underline;
+    }
+  }
 }
-footer > p{
-  margin: 0 50px;
-  float: right;
-  //color: white;
-  color: black;
-}
-footer > p > span {
-  color: white;
-  text-decoration: underline;
-}
+

@@ -8,15 +8,15 @@
   height: auto;
   line-height: 30px;
   margin: 0 auto;
-}
 
-#choices .container {
-  width: 800px;
-}
+  .container {
+    width: 800px;
+  }
 
-.scrollable-menu {
-  height: auto;
-  max-height: 150px;
-  overflow-x: hidden;
+  .scrollable-menu {
+    height: auto;
+    max-height: 150px;
+    overflow-x: hidden;
+  }
 }
 
