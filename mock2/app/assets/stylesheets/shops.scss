@@ -3,8 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #map {
-  width: 95%;
+  width: 100%;
+  box-sizing: border-box;
   padding-bottom: 10px;
+  height: -webkit-calc(100% - 34px - 53px);
   margin: 0 auto;
 }
 
@@ -16,11 +18,7 @@
 }
 
 main {
-  width: 100%;
-  height: -webkit-calc(100% - 70px);
-  padding-top: 20px;
-  background: #f2f4f6;
-  overflow: visible;
+  padding: 20px;
 }
 
 // google map search input
