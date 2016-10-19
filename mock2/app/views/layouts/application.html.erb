@@ -15,11 +15,13 @@
 
 <body>
 <header>
-  <a href="/shops"><span>Select Shop Map</span></a>
-  <button id="mail" type="button" class="btn btn-default">
-    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-    <span><%= link_to("お問い合わせ", inquiry_path) %></span>
-  </button>
+  <a href="/shops"><span id="page_title">Select Shop Map</span></a>
+  <a href="/inquiry">
+    <button id="mail" type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+      <span>お問い合わせ</span>
+    </button>
+  </a>
 </header>
 <div class="clear"></div>
 
