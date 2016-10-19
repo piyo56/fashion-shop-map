@@ -47,6 +47,7 @@ header{
 main {
   width: 100%;
   box-sizing: border-box;
+  min-height: -webkit-calc(100% - 70px);
   height: -webkit-calc(100% - 70px);
   background: #f2f4f6;
 }

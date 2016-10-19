@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( index.scss )
 Rails.application.config.assets.precompile += %w( choices.scss )
 Rails.application.config.assets.precompile += %w( shops.scss )
+Rails.application.config.assets.precompile += %w( inquiry.scss )

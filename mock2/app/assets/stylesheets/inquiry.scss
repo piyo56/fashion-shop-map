@@ -1,0 +1,24 @@
+main {
+  height: auto;
+  padding: 30px;
+}
+
+.container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.table th {
+  width: 250px;
+}
+input:not([type='submit']) {
+  width: 350px;
+}
+textarea{
+  width: 350px;
+  height: 200px;
+}
+input[type='submit'] {
+  float: right;
+}
+

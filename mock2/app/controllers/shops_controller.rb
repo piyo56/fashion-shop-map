@@ -38,6 +38,9 @@ class ShopsController < ApplicationController
     end
   end
 
+  def conatct
+  end
+
   # GET /shops/new
   def new
     @shop = Shop.order("name")

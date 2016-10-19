@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   #resources :branches
   #resources :shops, only: [:index, :show]
-  get "shops" => "shops#index"
-  get "shops/show" => "shops#show"
+  get "shops"         => "shops#index"
+  get "shops/show"    => "shops#show"
+  get "shops/contact" => "shops#contact"
+
+  get  'inquiry'         => 'inquiry#index'     # 入力画面
+  post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
+  post 'inquiry/thanks'  => 'inquiry#thanks'    # 送信完了画面
 
 
   # The priority is based upon order of creation: first created -> highest priority.
