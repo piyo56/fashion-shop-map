@@ -1,6 +1,12 @@
 <%= stylesheet_link_tag "index", :media => "all" %>
 
 <div class="container">
+  <% if @error_msg %>
+    <div class="alert alert-danger" role="alert">
+      <strong><%= @error_msg %></strong>
+    </div>
+  <% end %>
+
   <img id="logo" width="500" src="/assets/mylogo2.png">
   <%= render 'choices'%>
 </div>
