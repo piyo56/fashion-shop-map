@@ -9,7 +9,7 @@ class ShopsController < ApplicationController
     if !params[:s_ids].nil?
       begin
         @selected_shop_ids       = params[:s_ids].map{|id| id.to_i} 
-        @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i} if params[:p_ids].nil?
+        @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i} if !params[:p_ids].nil?
         @branches = fetch_branches(@selected_shop_ids, @selected_prefecture_ids) 
       rescue => e
         @error_msg = "GET Parameter is not valid"
