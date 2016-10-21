@@ -1,9 +1,10 @@
 <%= stylesheet_link_tag "choices", :media => "all" %>
 <div id="choices">
+<div class="container">
   <%= form_tag(shops_show_path, {class: "ui form", method: :get}) do%>
 
-    <div class="container">
     <div class="row">
+      <!-- ショップの選択肢のドロップダウン -->
       <div class="col-sm-3 col-sm-offset-2">
         <div class="button-group">
           <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -13,10 +14,17 @@
             <span class="glyphicon glyphicon-menu-down"></span>
           </button>
           <ul class="dropdown-menu scrollable-menu">
+            <li>
+            <a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
+              <button type="button" id="select_all"><span style="font-weight: bold;">全選択/解除</span></button>
+            </a>
+            </li>
             <% @shops.each do |shop| %>
-              <li><a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
+              <li>
+              <a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
                 <input type="checkbox" name="s_ids[]" value=<%= shop.id %> <%= 'checked="checked"' if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>>&nbsp;<%= shop.name %>
-              </a></li>
+              </a>
+              </li>
             <% end %>
           </ul>
         </div>
@@ -41,8 +49,8 @@
       <div class="col-sm-2">
         <%= submit_tag('検索', {id:"search_btn", class: "btn btn-primary btn-md", disabled:"disabled"}) %>
       </div>
-    </div>
   <% end %>
+</div>
 </div>
 <script>
 enable_search = function(){
@@ -60,6 +68,16 @@ $('input[name="s_ids[]"]').on('click', function(e) {
   //イベントバブリングを防止してチェック属性が正常に切り替わるようにする
   e.stopPropagation();
 });
+$('#select_all').on('click', function(e){
+  //イベントバブリングを防止してチェック属性が正常に切り替わるようにする
+  e.stopPropagation();
+  
+  //とりあえず全選択だけ行う
+  $('input[name="s_ids[]"]').each(function(){
+    $(this).prop('checked', true);
+  });
+});
+
 $('.dropdown-menu a').on('click', function() {
   $(this).parent().toggleClass('open');
   var checkbox = $(this).find('input')
