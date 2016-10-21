@@ -16,7 +16,7 @@
           <ul class="dropdown-menu scrollable-menu">
             <li>
             <a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
-              <button type="button" id="select_all"><span style="font-weight: bold;">全選択/解除</span></button>
+              <button type="button" id="select_all"><span style="font-weight: bold;">全選択</span></button>
             </a>
             </li>
             <% @shops.each do |shop| %>
@@ -52,37 +52,5 @@
   <% end %>
 </div>
 </div>
-<script>
-enable_search = function(){
-  if ($('input[name="s_ids[]"]:checked').length === 0){
-    $("#search_btn").prop("disabled", true);
-  }else{
-    $("#search_btn").prop("disabled", false);
-  }
-  setTimeout(enable_search, 200)
-};
-$(document).ready(function(){
-  enable_search();
-});
-$('input[name="s_ids[]"]').on('click', function(e) {
-  //イベントバブリングを防止してチェック属性が正常に切り替わるようにする
-  e.stopPropagation();
-});
-$('#select_all').on('click', function(e){
-  //イベントバブリングを防止してチェック属性が正常に切り替わるようにする
-  e.stopPropagation();
-  
-  //とりあえず全選択だけ行う
-  $('input[name="s_ids[]"]').each(function(){
-    $(this).prop('checked', true);
-  });
-});
-
-$('.dropdown-menu a').on('click', function() {
-  $(this).parent().toggleClass('open');
-  var checkbox = $(this).find('input')
-  checkbox.prop("checked", !checkbox.prop("checked"));
-  return false;
-});
-</script>
+<%= javascript_include_tag 'choices' %>
 </div>
