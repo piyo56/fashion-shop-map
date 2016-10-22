@@ -17,10 +17,18 @@ $('#select_all').on('click', function(e){
   //イベントバブリングを防止してチェック属性が正常に切り替わるようにする
   e.stopPropagation();
   
-  //とりあえず全選択だけ行う
+  all_checked = true;
   $('input[name="s_ids[]"]').each(function(){
-    $(this).prop('checked', true);
+    if(!$(this).prop('checked')){
+      all_checked = false;
+      return false;
+    }
   });
+  
+  $('input[name="s_ids[]"]').each(function(){
+    $(this).prop('checked', !all_checked);
+  });
+
 });
 
 $('.dropdown-menu a').on('click', function() {
