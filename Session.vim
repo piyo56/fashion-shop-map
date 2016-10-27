@@ -135,7 +135,7 @@ nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
 nmap zuz <Plug>(FastFoldUpdate)
-nnoremap <SNR>79_: :=v:count ? v:count : ''
+nnoremap <SNR>74_: :=v:count ? v:count : ''
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 nnoremap <silent> <Plug>TComment_gc9c :call tcomment#ResetOption() | if v:count > 0 | call tcomment#SetOption("count", v:count) | endif | let w:tcommentPos = getpos(".") |set opfunc=TCommentOpFunc_gc9cg@
@@ -262,6 +262,8 @@ set autoindent
 set background=dark
 set backspace=indent,eol,start
 set clipboard=unnamed
+set comments=:#
+set commentstring=<%#%s%>
 set completeopt=preview,menuone
 set expandtab
 set fileencodings=utf-8
@@ -274,6 +276,7 @@ set incsearch
 set listchars=tab:>-,trail:-,extends:>,precedes:<,nbsp:%
 set matchpairs=(:),{:},[:],<:>
 set mouse=a
+set operatorfunc=TCommentOpFunc_gc
 set runtimepath=~/.vim/dein/.dein,~/.vim/dein/repos/github.com/Shougo/dein.vim,~/.vim,/usr/local/share/vim/vimfiles,/usr/local/share/vim/vim74,/usr/local/share/vim/vimfiles/after,~/.vim/after,~/.vim/dein/.dein/after
 set scrolloff=5
 set shiftwidth=2
@@ -283,24 +286,26 @@ set noswapfile
 set tabstop=2
 set undodir=~/.vim/undofiles
 set undofile
-set window=45
 set nowritebackup
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Desktop/github/select-shop-map
+cd ~/Desktop/github/select-shop-map/mock2
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 mock2/app/controllers/shops_controller.rb
-badd +0 mock2/app/views/shops/show.html.erb
-badd +0 mock2/app/views/shops/_form.html.erb
+badd +59 app/views/shops/_choices.html.erb
+badd +17 app/views/shops/show.html.erb
+badd +35 app/views/layouts/application.html.erb
+badd +10 app/assets/stylesheets/application.css.scss
+badd +53 app/assets/stylesheets/shops.scss
+badd +8 app/assets/stylesheets/choices.scss
+badd +2 app/assets/stylesheets/branches.scss
 argglobal
 silent! argdel *
-argadd mock2
 set stal=2
-edit mock2/app/controllers/shops_controller.rb
+edit app/views/shops/show.html.erb
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -309,16 +314,19 @@ wincmd w
 set nosplitbelow
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 31 + 106) / 212)
-exe 'vert 2resize ' . ((&columns * 180 + 106) / 212)
+exe 'vert 1resize ' . ((&columns * 31 + 75) / 150)
+exe 'vert 2resize ' . ((&columns * 118 + 75) / 150)
 argglobal
 enew
-file NERD_tree_2
+file NERD_tree_1
 let s:cpo_save=&cpo
 set cpo&vim
 nnoremap <buffer> <silent> <NL> :call nerdtree#ui_glue#invokeKeyMap("<C-j>")
 nnoremap <buffer> <silent>  :call nerdtree#ui_glue#invokeKeyMap("<C-k>")
 nnoremap <buffer> <silent>  :call nerdtree#ui_glue#invokeKeyMap(g:NERDTreeMapActivateNode)
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer>  <Plug>RailsSplitFind
+nmap <buffer> f <Plug>RailsSplitFind
 nnoremap <buffer> <silent> ? :call nerdtree#ui_glue#invokeKeyMap("?")
 nnoremap <buffer> <silent> A :call nerdtree#ui_glue#invokeKeyMap("A")
 nnoremap <buffer> <silent> B :call nerdtree#ui_glue#invokeKeyMap("B")
@@ -341,6 +349,7 @@ nnoremap <buffer> <silent> f :call nerdtree#ui_glue#invokeKeyMap("f")
 nnoremap <buffer> <silent> gi :call nerdtree#ui_glue#invokeKeyMap("gi")
 nnoremap <buffer> <silent> gs :call nerdtree#ui_glue#invokeKeyMap("gs")
 nnoremap <buffer> <silent> go :call nerdtree#ui_glue#invokeKeyMap("go")
+nmap <buffer> gf <Plug>RailsFind
 nnoremap <buffer> <silent> i :call nerdtree#ui_glue#invokeKeyMap("i")
 nnoremap <buffer> <silent> m :call nerdtree#ui_glue#invokeKeyMap("m")
 nnoremap <buffer> <silent> o :call nerdtree#ui_glue#invokeKeyMap("o")
@@ -354,6 +363,7 @@ nnoremap <buffer> <silent> x :call nerdtree#ui_glue#invokeKeyMap("x")
 nnoremap <buffer> <silent> <2-LeftMouse> :call nerdtree#ui_glue#invokeKeyMap("<2-LeftMouse>")
 nnoremap <buffer> <silent> <LeftRelease> <LeftRelease>:call nerdtree#ui_glue#invokeKeyMap("<LeftRelease>")
 nnoremap <buffer> <silent> <MiddleRelease> :call nerdtree#ui_glue#invokeKeyMap("<MiddleRelease>")
+cmap <buffer>  <Plug><cfile>
 let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
@@ -387,7 +397,7 @@ setlocal define=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
-setlocal errorformat=
+setlocal errorformat=%\\S%\\+\ \ %#%[cefi]%[rxod]%[eir]%[a-z]%#%\\x1b[0m\ %\\+%\\S%\\+%$%\\&%\\x1b%\\S%\\+\ \ %#%m%\\>%\\x1b[0m\ \ %#%f,%\\s\ %#%[cefi]%[rxod]%[eir]%[a-z]%#\ %\\+%\\S%\\+%$%\\&%\\s\ %#%m%\\>\ \ %#%f,Overwrite%.%#%\\S%\\+\ \ %#%m%\\x1b[0m\ \ %#%f,%-GOverwrite%.%#\"h\"%.%#,%.%#rails\ test\ %f:%l,%+GCurrent\ version:%.%#,%+G\ %#Status\ %#Migration\ ID%.%#,%+G\ The\ fixture\ ID\ for\ %.%#,%f:\ %s\ (%m)%$%\\&%.%#/fixtures/%.%#(%\\d%\\+),%+G\ %#Prefix\ %#Verb%.%#,%+G\ %#Code\ LOC:\ %.%#,%+GAbout\ your\ application's\ environment,%+Grun\ %\\S%#::Application.routes,%+Irails\ %\\S%\\+%\\s%\\+#\ %.%#,%+Eruby:%.%#(LoadError),%+EUsage:%.%#,%+ECould\ not\ find\ generator%.%#,%+EType\ 'rails'\ for\ help.,%D(in\ %f),%\\s%#from\ %f:%l:%m,%\\s%#from\ %f:%l:,%\\s%##\ %f:%l:%m,%\\s%##\ %f:%l,%\\s%#[%f:%l:\ %#%m,%\\s%#%f:%l:\ %#%m,%\\s%#%f:%l:,%m\ [%f:%l]:,chdir\ /Users/naka/Desktop/github/select-shop-map/mock2
 setlocal expandtab
 if &filetype != 'nerdtree'
 setlocal filetype=nerdtree
@@ -412,7 +422,7 @@ setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=0
 setlocal include=
-setlocal includeexpr=
+setlocal includeexpr=rails#includeexpr(v:fname)
 setlocal indentexpr=
 setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
@@ -423,7 +433,7 @@ setlocal nolisp
 setlocal lispwords=
 set list
 setlocal list
-setlocal makeprg=
+setlocal makeprg=bin/rake
 setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
 setlocal nomodifiable
@@ -432,7 +442,7 @@ set number
 setlocal nonumber
 setlocal numberwidth=4
 setlocal omnifunc=
-setlocal path=
+setlocal path=.,~/Desktop/github/select-shop-map/mock2/lib,~/Desktop/github/select-shop-map/mock2/vendor,~/Desktop/github/select-shop-map/mock2/app/models/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers,~/Desktop/github/select-shop-map/mock2/app/helpers,~/Desktop/github/select-shop-map/mock2/app/mailers,~/Desktop/github/select-shop-map/mock2/app/models,~/Desktop/github/select-shop-map/mock2/app/jobs,~/Desktop/github/select-shop-map/mock2/app/*,~/Desktop/github/select-shop-map/mock2/app/views,~/Desktop/github/select-shop-map/mock2/test,~/Desktop/github/select-shop-map/mock2/test/unit,~/Desktop/github/select-shop-map/mock2/test/functional,~/Desktop/github/select-shop-map/mock2/test/integration,~/Desktop/github/select-shop-map/mock2/test/controllers,~/Desktop/github/select-shop-map/mock2/test/helpers,~/Desktop/github/select-shop-map/mock2/test/mailers,~/Desktop/github/select-shop-map/mock2/test/models,~/Desktop/github/select-shop-map/mock2/test/j
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -450,7 +460,7 @@ setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
 setlocal statusline=%{exists('b:NERDTree')?b:NERDTree.root.path.str():''}
-setlocal suffixesadd=
+setlocal suffixesadd=.rb
 setlocal noswapfile
 setlocal synmaxcol=3000
 if &syntax != 'nerdtree'
@@ -458,7 +468,7 @@ setlocal syntax=nerdtree
 endif
 setlocal tabstop=2
 setlocal tagcase=
-setlocal tags=
+setlocal tags=~/Desktop/github/select-shop-map/mock2/tags,~/Desktop/github/select-shop-map/mock2/tmp/tags,./tags,tags
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal undofile
@@ -468,152 +478,6 @@ setlocal winfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
 wincmd w
-argglobal
-let s:cpo_save=&cpo
-set cpo&vim
-nmap <buffer> gf <Plug>RailsTabFind
-nmap <buffer>  <Plug>RailsSplitFind
-nmap <buffer> f <Plug>RailsSplitFind
-nnoremap <buffer> <silent> g} :exe        "ptjump =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> } :exe          "ptag =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> g] :exe      "stselect =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> g :exe        "stjump =RubyCursorIdentifier()"
-nnoremap <buffer> <silent>  :exe v:count1."stag =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> ] :exe v:count1."stag =RubyCursorIdentifier()"
-nnoremap <buffer> <silent>  :exe  v:count1."tag =RubyCursorIdentifier()"
-nmap <buffer> gf <Plug>RailsFind
-nnoremap <buffer> <silent> g] :exe       "tselect =RubyCursorIdentifier()"
-nnoremap <buffer> <silent> g :exe         "tjump =RubyCursorIdentifier()"
-cmap <buffer>  <Plug><cfile>
-let &cpo=s:cpo_save
-unlet s:cpo_save
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal backupcopy=
-setlocal nobinary
-set breakindent
-setlocal breakindent
-setlocal breakindentopt=
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-setlocal nocursorline
-setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=%\\S%\\+\ \ %#%[cefi]%[rxod]%[eir]%[a-z]%#%\\x1b[0m\ %\\+%\\S%\\+%$%\\&%\\x1b%\\S%\\+\ \ %#%m%\\>%\\x1b[0m\ \ %#%f,%\\s\ %#%[cefi]%[rxod]%[eir]%[a-z]%#\ %\\+%\\S%\\+%$%\\&%\\s\ %#%m%\\>\ \ %#%f,Overwrite%.%#%\\S%\\+\ \ %#%m%\\x1b[0m\ \ %#%f,%-GOverwrite%.%#\"h\"%.%#,%.%#rails\ test\ %f:%l,%+GCurrent\ version:%.%#,%+G\ %#Status\ %#Migration\ ID%.%#,%+G\ The\ fixture\ ID\ for\ %.%#,%f:\ %s\ (%m)%$%\\&%.%#/fixtures/%.%#(%\\d%\\+),%+G\ %#Prefix\ %#Verb%.%#,%+G\ %#Code\ LOC:\ %.%#,%+GAbout\ your\ application's\ environment,%+Grun\ %\\S%#::Application.routes,%+Irails\ %\\S%\\+%\\s%\\+#\ %.%#,%+Eruby:%.%#(LoadError),%+EUsage:%.%#,%+ECould\ not\ find\ generator%.%#,%+EType\ 'rails'\ for\ help.,%D(in\ %f),%\\s%#from\ %f:%l:%m,%\\s%#from\ %f:%l:,%\\s%##\ %f:%l:%m,%\\s%##\ %f:%l,%\\s%#[%f:%l:\ %#%m,%\\s%#%f:%l:\ %#%m,%\\s%#%f:%l:,%m\ [%f:%l]:,chdir\ /Users/naka/Desktop/github/select-shop-map/mock2
-setlocal expandtab
-if &filetype != 'ruby'
-setlocal filetype=ruby
-endif
-setlocal fixendofline
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=marker
-setlocal foldmethod=marker
-setlocal foldminlines=1
-setlocal foldnestmax=20
-set foldtext=CustomFoldText('\ ')
-setlocal foldtext=CustomFoldText('\ ')
-setlocal formatexpr=
-setlocal formatoptions=cql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=0
-setlocal include=^\\s*\\<\\(load\\>\\|require\\>\\|autoload\\s*:\\=[\"']\\=\\h\\w*[\"']\\=,\\)
-setlocal includeexpr=rails#includeexpr(v:fname)
-setlocal indentexpr=GetRubyIndent(v:lnum)
-setlocal indentkeys=0{,0},0),0],!^F,o,O,e,=end,=else,=elsif,=when,=ensure,=rescue,==begin,==end
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=ri
-setlocal nolinebreak
-setlocal nolisp
-setlocal lispwords=
-set list
-setlocal list
-setlocal makeprg=bin/rake
-setlocal matchpairs=(:),{:},[:],<:>
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=bin,octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=rubycomplete#Complete
-setlocal path=~/Desktop/github/select-shop-map/mock2/lib,~/Desktop/github/select-shop-map/mock2/vendor,~/Desktop/github/select-shop-map/mock2/app/models/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers,~/Desktop/github/select-shop-map/mock2/app/helpers,~/Desktop/github/select-shop-map/mock2/app/mailers,~/Desktop/github/select-shop-map/mock2/app/models,~/Desktop/github/select-shop-map/mock2/app/jobs,~/Desktop/github/select-shop-map/mock2/app/*,~/Desktop/github/select-shop-map/mock2/app/views,~/Desktop/github/select-shop-map/mock2/app/views/shops,~/Desktop/github/select-shop-map/mock2/app/views/application,~/Desktop/github/select-shop-map/mock2/public,~/Desktop/github/select-shop-map/mock2/test,~/Desktop/github/select-shop-map/mock2/test/unit,~/Desktop/github/select-shop-map/mock2/test/functional,~/Desktop/github/select-shop-map/mock2/test/integration,~/Desktop/github/select-shop-map/mock2/test/controllers,~/Desktop/github/select-shop-map/mock2/t
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=2
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=
-setlocal suffixesadd=.rb
-setlocal noswapfile
-setlocal synmaxcol=3000
-if &syntax != 'ruby'
-setlocal syntax=ruby
-endif
-setlocal tabstop=2
-setlocal tagcase=
-setlocal tags=~/Desktop/github/select-shop-map/mock2/tags,~/Desktop/github/select-shop-map/mock2/tmp/tags,./tags,tags,/usr/local/Cellar/rbenv/1.0.0/rbenv.d/exec/gem-rehash/tags,~/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/did_you_mean-1.0.0/lib/tags,~/.rbenv/versions/2.3.1/lib/ruby/site_ruby/2.3.0/tags,~/.rbenv/versions/2.3.1/lib/ruby/site_ruby/2.3.0/x86_64-darwin15/tags,~/.rbenv/versions/2.3.1/lib/ruby/site_ruby/tags,~/.rbenv/versions/2.3.1/lib/ruby/vendor_ruby/2.3.0/tags,~/.rbenv/versions/2.3.1/lib/ruby/vendor_ruby/2.3.0/x86_64-darwin15/tags,~/.rbenv/versions/2.3.1/lib/ruby/vendor_ruby/tags,~/.rbenv/versions/2.3.1/lib/ruby/2.3.0/tags,~/.rbenv/versions/2.3.1/lib/ruby/2.3.0/x86_64-darwin15/tags
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal undofile
-setlocal undolevels=-123456
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-let s:l = 14 - ((13 * winheight(0) + 21) / 43)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-14
-normal! 036|
-lcd ~/Desktop/github/select-shop-map
-wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 31 + 106) / 212)
-exe 'vert 2resize ' . ((&columns * 180 + 106) / 212)
-tabedit ~/Desktop/github/select-shop-map/mock2/app/views/shops/show.html.erb
-set splitbelow splitright
-set nosplitbelow
-wincmd t
-set winheight=1 winwidth=1
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
@@ -744,12 +608,453 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 25 - ((24 * winheight(0) + 22) / 44)
+let s:l = 32 - ((6 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-25
-normal! 031|
+32
+normal! 060|
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 31 + 75) / 150)
+exe 'vert 2resize ' . ((&columns * 118 + 75) / 150)
+tabedit app/assets/stylesheets/application.css.scss
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
+wincmd w
+set nosplitbelow
+wincmd t
+set winheight=1 winwidth=1
+exe 'vert 1resize ' . ((&columns * 31 + 75) / 150)
+exe 'vert 2resize ' . ((&columns * 58 + 75) / 150)
+exe 'vert 3resize ' . ((&columns * 59 + 75) / 150)
+argglobal
+enew
+file NERD_tree_2
+let s:cpo_save=&cpo
+set cpo&vim
+nnoremap <buffer> <silent> <NL> :call nerdtree#ui_glue#invokeKeyMap("<C-j>")
+nnoremap <buffer> <silent>  :call nerdtree#ui_glue#invokeKeyMap("<C-k>")
+nnoremap <buffer> <silent>  :call nerdtree#ui_glue#invokeKeyMap(g:NERDTreeMapActivateNode)
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer>  <Plug>RailsSplitFind
+nmap <buffer> f <Plug>RailsSplitFind
+nnoremap <buffer> <silent> ? :call nerdtree#ui_glue#invokeKeyMap("?")
+nnoremap <buffer> <silent> A :call nerdtree#ui_glue#invokeKeyMap("A")
+nnoremap <buffer> <silent> B :call nerdtree#ui_glue#invokeKeyMap("B")
+nnoremap <buffer> <silent> CD :call nerdtree#ui_glue#invokeKeyMap("CD")
+nnoremap <buffer> <silent> C :call nerdtree#ui_glue#invokeKeyMap("C")
+nnoremap <buffer> <silent> D :call nerdtree#ui_glue#invokeKeyMap("D")
+nnoremap <buffer> <silent> F :call nerdtree#ui_glue#invokeKeyMap("F")
+nnoremap <buffer> <silent> I :call nerdtree#ui_glue#invokeKeyMap("I")
+nnoremap <buffer> <silent> J :call nerdtree#ui_glue#invokeKeyMap("J")
+nnoremap <buffer> <silent> K :call nerdtree#ui_glue#invokeKeyMap("K")
+nnoremap <buffer> <silent> O :call nerdtree#ui_glue#invokeKeyMap("O")
+nnoremap <buffer> <silent> P :call nerdtree#ui_glue#invokeKeyMap("P")
+nnoremap <buffer> <silent> R :call nerdtree#ui_glue#invokeKeyMap("R")
+nnoremap <buffer> <silent> T :call nerdtree#ui_glue#invokeKeyMap("T")
+nnoremap <buffer> <silent> U :call nerdtree#ui_glue#invokeKeyMap("U")
+nnoremap <buffer> <silent> X :call nerdtree#ui_glue#invokeKeyMap("X")
+nnoremap <buffer> <silent> cd :call nerdtree#ui_glue#invokeKeyMap("cd")
+nnoremap <buffer> <silent> e :call nerdtree#ui_glue#invokeKeyMap("e")
+nnoremap <buffer> <silent> f :call nerdtree#ui_glue#invokeKeyMap("f")
+nnoremap <buffer> <silent> gi :call nerdtree#ui_glue#invokeKeyMap("gi")
+nnoremap <buffer> <silent> gs :call nerdtree#ui_glue#invokeKeyMap("gs")
+nnoremap <buffer> <silent> go :call nerdtree#ui_glue#invokeKeyMap("go")
+nmap <buffer> gf <Plug>RailsFind
+nnoremap <buffer> <silent> i :call nerdtree#ui_glue#invokeKeyMap("i")
+nnoremap <buffer> <silent> m :call nerdtree#ui_glue#invokeKeyMap("m")
+nnoremap <buffer> <silent> o :call nerdtree#ui_glue#invokeKeyMap("o")
+nnoremap <buffer> <silent> p :call nerdtree#ui_glue#invokeKeyMap("p")
+nnoremap <buffer> <silent> q :call nerdtree#ui_glue#invokeKeyMap("q")
+nnoremap <buffer> <silent> r :call nerdtree#ui_glue#invokeKeyMap("r")
+nnoremap <buffer> <silent> s :call nerdtree#ui_glue#invokeKeyMap("s")
+nnoremap <buffer> <silent> t :call nerdtree#ui_glue#invokeKeyMap("t")
+nnoremap <buffer> <silent> u :call nerdtree#ui_glue#invokeKeyMap("u")
+nnoremap <buffer> <silent> x :call nerdtree#ui_glue#invokeKeyMap("x")
+nnoremap <buffer> <silent> <2-LeftMouse> :call nerdtree#ui_glue#invokeKeyMap("<2-LeftMouse>")
+nnoremap <buffer> <silent> <LeftRelease> <LeftRelease>:call nerdtree#ui_glue#invokeKeyMap("<LeftRelease>")
+nnoremap <buffer> <silent> <MiddleRelease> :call nerdtree#ui_glue#invokeKeyMap("<MiddleRelease>")
+cmap <buffer>  <Plug><cfile>
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal nobinary
+set breakindent
+setlocal breakindent
+setlocal breakindentopt=
+setlocal bufhidden=hide
+setlocal nobuflisted
+setlocal buftype=nofile
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=<%#%s%>
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=%\\S%\\+\ \ %#%[cefi]%[rxod]%[eir]%[a-z]%#%\\x1b[0m\ %\\+%\\S%\\+%$%\\&%\\x1b%\\S%\\+\ \ %#%m%\\>%\\x1b[0m\ \ %#%f,%\\s\ %#%[cefi]%[rxod]%[eir]%[a-z]%#\ %\\+%\\S%\\+%$%\\&%\\s\ %#%m%\\>\ \ %#%f,Overwrite%.%#%\\S%\\+\ \ %#%m%\\x1b[0m\ \ %#%f,%-GOverwrite%.%#\"h\"%.%#,%.%#rails\ test\ %f:%l,%+GCurrent\ version:%.%#,%+G\ %#Status\ %#Migration\ ID%.%#,%+G\ The\ fixture\ ID\ for\ %.%#,%f:\ %s\ (%m)%$%\\&%.%#/fixtures/%.%#(%\\d%\\+),%+G\ %#Prefix\ %#Verb%.%#,%+G\ %#Code\ LOC:\ %.%#,%+GAbout\ your\ application's\ environment,%+Grun\ %\\S%#::Application.routes,%+Irails\ %\\S%\\+%\\s%\\+#\ %.%#,%+Eruby:%.%#(LoadError),%+EUsage:%.%#,%+ECould\ not\ find\ generator%.%#,%+EType\ 'rails'\ for\ help.,%D(in\ %f),%\\s%#from\ %f:%l:%m,%\\s%#from\ %f:%l:,%\\s%##\ %f:%l:%m,%\\s%##\ %f:%l,%\\s%#[%f:%l:\ %#%m,%\\s%#%f:%l:\ %#%m,%\\s%#%f:%l:,%m\ [%f:%l]:,chdir\ /Users/naka/Desktop/github/select-shop-map/mock2
+setlocal expandtab
+if &filetype != 'nerdtree'
+setlocal filetype=nerdtree
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal nofoldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=marker
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+set foldtext=CustomFoldText('\ ')
+setlocal foldtext=CustomFoldText('\ ')
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=
+setlocal includeexpr=rails#includeexpr(v:fname)
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+set list
+setlocal list
+setlocal makeprg=bin/rake
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal modeline
+setlocal nomodifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=.,~/Desktop/github/select-shop-map/mock2/lib,~/Desktop/github/select-shop-map/mock2/vendor,~/Desktop/github/select-shop-map/mock2/app/models/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers,~/Desktop/github/select-shop-map/mock2/app/helpers,~/Desktop/github/select-shop-map/mock2/app/mailers,~/Desktop/github/select-shop-map/mock2/app/models,~/Desktop/github/select-shop-map/mock2/app/jobs,~/Desktop/github/select-shop-map/mock2/app/*,~/Desktop/github/select-shop-map/mock2/app/views,~/Desktop/github/select-shop-map/mock2/test,~/Desktop/github/select-shop-map/mock2/test/unit,~/Desktop/github/select-shop-map/mock2/test/functional,~/Desktop/github/select-shop-map/mock2/test/integration,~/Desktop/github/select-shop-map/mock2/test/controllers,~/Desktop/github/select-shop-map/mock2/test/helpers,~/Desktop/github/select-shop-map/mock2/test/mailers,~/Desktop/github/select-shop-map/mock2/test/models,~/Desktop/github/select-shop-map/mock2/test/j
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%{exists('b:NERDTree')?b:NERDTree.root.path.str():''}
+setlocal suffixesadd=.rb
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'nerdtree'
+setlocal syntax=nerdtree
+endif
+setlocal tabstop=2
+setlocal tagcase=
+setlocal tags=~/Desktop/github/select-shop-map/mock2/tags,~/Desktop/github/select-shop-map/mock2/tmp/tags,./tags,tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal nowinfixheight
+setlocal winfixwidth
+setlocal nowrap
+setlocal wrapmargin=0
+wincmd w
+argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer>  <Plug>RailsSplitFind
+nmap <buffer> f <Plug>RailsSplitFind
+nmap <buffer> gf <Plug>RailsFind
+cmap <buffer>  <Plug><cfile>
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal nobinary
+set breakindent
+setlocal breakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=//\ %s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=^\\s*\\%(@mixin\\|=\\)
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=%\\S%\\+\ \ %#%[cefi]%[rxod]%[eir]%[a-z]%#%\\x1b[0m\ %\\+%\\S%\\+%$%\\&%\\x1b%\\S%\\+\ \ %#%m%\\>%\\x1b[0m\ \ %#%f,%\\s\ %#%[cefi]%[rxod]%[eir]%[a-z]%#\ %\\+%\\S%\\+%$%\\&%\\s\ %#%m%\\>\ \ %#%f,Overwrite%.%#%\\S%\\+\ \ %#%m%\\x1b[0m\ \ %#%f,%-GOverwrite%.%#\"h\"%.%#,%.%#rails\ test\ %f:%l,%+GCurrent\ version:%.%#,%+G\ %#Status\ %#Migration\ ID%.%#,%+G\ The\ fixture\ ID\ for\ %.%#,%f:\ %s\ (%m)%$%\\&%.%#/fixtures/%.%#(%\\d%\\+),%+G\ %#Prefix\ %#Verb%.%#,%+G\ %#Code\ LOC:\ %.%#,%+GAbout\ your\ application's\ environment,%+Grun\ %\\S%#::Application.routes,%+Irails\ %\\S%\\+%\\s%\\+#\ %.%#,%+Eruby:%.%#(LoadError),%+EUsage:%.%#,%+ECould\ not\ find\ generator%.%#,%+EType\ 'rails'\ for\ help.,%D(in\ %f),%\\s%#from\ %f:%l:%m,%\\s%#from\ %f:%l:,%\\s%##\ %f:%l:%m,%\\s%##\ %f:%l,%\\s%#[%f:%l:\ %#%m,%\\s%#%f:%l:\ %#%m,%\\s%#%f:%l:,%m\ [%f:%l]:,chdir\ /Users/naka/Desktop/github/select-shop-map/mock2
+setlocal expandtab
+if &filetype != 'scss'
+setlocal filetype=scss
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=marker
+setlocal foldmethod=marker
+setlocal foldminlines=1
+setlocal foldnestmax=20
+set foldtext=CustomFoldText('\ ')
+setlocal foldtext=CustomFoldText('\ ')
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=^\\s*@import\\s\\+\\%(url(\\)\\=[\"']\\=
+setlocal includeexpr=rails#includeexpr(v:fname)
+setlocal indentexpr=GetCSSIndent()
+setlocal indentkeys=0{,0},!^F,o,O
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+set list
+setlocal list
+setlocal makeprg=bin/rake
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=csscomplete#CompleteCSS
+setlocal path=.,~/Desktop/github/select-shop-map/mock2/lib,~/Desktop/github/select-shop-map/mock2/vendor,~/Desktop/github/select-shop-map/mock2/app/models/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers,~/Desktop/github/select-shop-map/mock2/app/helpers,~/Desktop/github/select-shop-map/mock2/app/mailers,~/Desktop/github/select-shop-map/mock2/app/models,~/Desktop/github/select-shop-map/mock2/app/jobs,~/Desktop/github/select-shop-map/mock2/app/*,~/Desktop/github/select-shop-map/mock2/app/views,~/Desktop/github/select-shop-map/mock2/app/views/application,~/Desktop/github/select-shop-map/mock2/public,~/Desktop/github/select-shop-map/mock2/test,~/Desktop/github/select-shop-map/mock2/test/unit,~/Desktop/github/select-shop-map/mock2/test/functional,~/Desktop/github/select-shop-map/mock2/test/integration,~/Desktop/github/select-shop-map/mock2/test/controllers,~/Desktop/github/select-shop-map/mock2/test/helpers,~/Desktop/github/select-shop-map/mock2/te
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.sass,.scss,.css
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'scss'
+setlocal syntax=scss
+endif
+setlocal tabstop=2
+setlocal tagcase=
+setlocal tags=~/Desktop/github/select-shop-map/mock2/tags,~/Desktop/github/select-shop-map/mock2/tmp/tags,./tags,tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 20 - ((9 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+20
+normal! 08|
+wincmd w
+argglobal
+edit app/assets/stylesheets/shops.scss
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer>  <Plug>RailsSplitFind
+nmap <buffer> f <Plug>RailsSplitFind
+nmap <buffer> gf <Plug>RailsFind
+cmap <buffer>  <Plug><cfile>
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal nobinary
+set breakindent
+setlocal breakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=//\ %s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=^\\s*\\%(@mixin\\|=\\)
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=%\\S%\\+\ \ %#%[cefi]%[rxod]%[eir]%[a-z]%#%\\x1b[0m\ %\\+%\\S%\\+%$%\\&%\\x1b%\\S%\\+\ \ %#%m%\\>%\\x1b[0m\ \ %#%f,%\\s\ %#%[cefi]%[rxod]%[eir]%[a-z]%#\ %\\+%\\S%\\+%$%\\&%\\s\ %#%m%\\>\ \ %#%f,Overwrite%.%#%\\S%\\+\ \ %#%m%\\x1b[0m\ \ %#%f,%-GOverwrite%.%#\"h\"%.%#,%.%#rails\ test\ %f:%l,%+GCurrent\ version:%.%#,%+G\ %#Status\ %#Migration\ ID%.%#,%+G\ The\ fixture\ ID\ for\ %.%#,%f:\ %s\ (%m)%$%\\&%.%#/fixtures/%.%#(%\\d%\\+),%+G\ %#Prefix\ %#Verb%.%#,%+G\ %#Code\ LOC:\ %.%#,%+GAbout\ your\ application's\ environment,%+Grun\ %\\S%#::Application.routes,%+Irails\ %\\S%\\+%\\s%\\+#\ %.%#,%+Eruby:%.%#(LoadError),%+EUsage:%.%#,%+ECould\ not\ find\ generator%.%#,%+EType\ 'rails'\ for\ help.,%D(in\ %f),%\\s%#from\ %f:%l:%m,%\\s%#from\ %f:%l:,%\\s%##\ %f:%l:%m,%\\s%##\ %f:%l,%\\s%#[%f:%l:\ %#%m,%\\s%#%f:%l:\ %#%m,%\\s%#%f:%l:,%m\ [%f:%l]:,chdir\ /Users/naka/Desktop/github/select-shop-map/mock2
+setlocal expandtab
+if &filetype != 'scss'
+setlocal filetype=scss
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=marker
+setlocal foldmethod=marker
+setlocal foldminlines=1
+setlocal foldnestmax=20
+set foldtext=CustomFoldText('\ ')
+setlocal foldtext=CustomFoldText('\ ')
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=^\\s*@import\\s\\+\\%(url(\\)\\=[\"']\\=
+setlocal includeexpr=rails#includeexpr(v:fname)
+setlocal indentexpr=GetCSSIndent()
+setlocal indentkeys=0{,0},!^F,o,O
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+set list
+setlocal list
+setlocal makeprg=bin/rake
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=csscomplete#CompleteCSS
+setlocal path=.,~/Desktop/github/select-shop-map/mock2/lib,~/Desktop/github/select-shop-map/mock2/vendor,~/Desktop/github/select-shop-map/mock2/app/models/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers/concerns,~/Desktop/github/select-shop-map/mock2/app/controllers,~/Desktop/github/select-shop-map/mock2/app/helpers,~/Desktop/github/select-shop-map/mock2/app/mailers,~/Desktop/github/select-shop-map/mock2/app/models,~/Desktop/github/select-shop-map/mock2/app/jobs,~/Desktop/github/select-shop-map/mock2/app/*,~/Desktop/github/select-shop-map/mock2/app/views,~/Desktop/github/select-shop-map/mock2/test,~/Desktop/github/select-shop-map/mock2/test/unit,~/Desktop/github/select-shop-map/mock2/test/functional,~/Desktop/github/select-shop-map/mock2/test/integration,~/Desktop/github/select-shop-map/mock2/test/controllers,~/Desktop/github/select-shop-map/mock2/test/helpers,~/Desktop/github/select-shop-map/mock2/test/mailers,~/Desktop/github/select-shop-map/mock2/test/models,~/Desktop/github/select-shop-map/mock2/test/j
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.sass,.scss,.css
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'scss'
+setlocal syntax=scss
+endif
+setlocal tabstop=2
+setlocal tagcase=
+setlocal tags=~/Desktop/github/select-shop-map/mock2/tags,~/Desktop/github/select-shop-map/mock2/tmp/tags,./tags,tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 15 - ((8 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+15
+normal! 017|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 31 + 75) / 150)
+exe 'vert 2resize ' . ((&columns * 58 + 75) / 150)
+exe 'vert 3resize ' . ((&columns * 59 + 75) / 150)
 tabnext 1
 set stal=1
 if exists('s:wipebuf')
