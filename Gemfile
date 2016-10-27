@@ -62,4 +62,10 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem "gmaps4rails"
+  gem "geocoder"
+  gem 'bootstrap-sass'
+  
+  gem 'hirb'
+  gem 'hirb-unicode'
 end
