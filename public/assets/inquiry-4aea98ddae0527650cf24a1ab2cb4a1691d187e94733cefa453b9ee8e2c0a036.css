@@ -1,0 +1,32 @@
+/* line 1, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/inquiry.scss */
+main {
+  height: auto;
+  padding: 30px;
+}
+
+/* line 6, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/inquiry.scss */
+.container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+/* line 11, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/inquiry.scss */
+.table th {
+  width: 250px;
+}
+
+/* line 14, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/inquiry.scss */
+input:not([type='submit']) {
+  width: 350px;
+}
+
+/* line 17, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/inquiry.scss */
+textarea {
+  width: 350px;
+  height: 200px;
+}
+
+/* line 21, /Users/naka/Desktop/github/select-shop-map/mock2/app/assets/stylesheets/inquiry.scss */
+input[type='submit'] {
+  float: right;
+}

@@ -1,1 +1,1 @@
-web: bundle rails server -p $PORT
+web: rails server -p $PORT

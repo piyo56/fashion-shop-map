@@ -21,6 +21,13 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Added for deploying
+gem 'pg'
+gem "gmaps4rails"
+gem "geocoder"
+gem 'hirb'
+gem 'hirb-unicode'
+gem 'bootstrap-sass'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
@@ -47,25 +54,11 @@ group :development do
   # personally added
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'hirb'
-  gem 'hirb-unicode'
-  gem "gmaps4rails"
-  gem "geocoder"
-
-  # view
-  gem 'bootstrap-sass'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
-  gem "gmaps4rails"
-  gem "geocoder"
-  gem 'bootstrap-sass'
-  
-  gem 'hirb'
-  gem 'hirb-unicode'
 end
