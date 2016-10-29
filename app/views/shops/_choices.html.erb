@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "choices", :media => "all" %>
 <div id="choices">
 <div class="container">
-  <%= form_tag(shops_show_path, {class: "ui form", method: :get}) do%>
+  <%= form_tag(show_path, {class: "ui form", method: :post}) do%>
 
     <div class="row">
       <!-- ショップの選択肢のドロップダウン -->

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   #resources :shops, only: [:index, :show]
   # get "shops"         => "shops#index"
   root :to           => "shops#index"
-  get  'shops/show'      => "shops#show"
+  post  'show'      => "shops#show"
 
   get  'inquiry'         => 'inquiry#index'     # 入力画面
   post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
