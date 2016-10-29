@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   #resources :branches
   #resources :shops, only: [:index, :show]
-  get "shops"         => "shops#index"
-  get "shops/show"    => "shops#show"
-  get "shops/contact" => "shops#contact"
+  # get "shops"         => "shops#index"
+  root :to           => "shops#index"
+  get  'shops/show'      => "shops#show"
 
   get  'inquiry'         => 'inquiry#index'     # 入力画面
   post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
