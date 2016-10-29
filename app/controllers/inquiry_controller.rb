@@ -20,7 +20,7 @@ class InquiryController < ApplicationController
   def thanks
     # メール送信
     @inquiry = Inquiry.new(params[:inquiry])
-    InquiryMailer.received_email(@inquiry).deliver
+    InquiryMailer.received_email(@inquiry).deliver_now
  
     # 完了画面を表示
     render :action => 'thanks'
