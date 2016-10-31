@@ -1,3 +1,7 @@
+// 検索ボタンの有効／無効化
+$(document).ready(function(){
+  enable_search();
+});
 enable_search = function(){
   if ($('input[name="s_ids[]"]:checked').length === 0){
     $("#search_btn").prop("disabled", true);
@@ -6,13 +10,14 @@ enable_search = function(){
   }
   setTimeout(enable_search, 200)
 };
-$(document).ready(function(){
-  enable_search();
-});
+
+// チェックボックスの選択処理
 $('input[name="s_ids[]"]').on('click', function(e) {
   //イベントバブリングを防止してチェック属性が正常に切り替わるようにする
   e.stopPropagation();
 });
+
+//    全選択／全解除処理
 $('#select_all').on('click', function(e){
   //イベントバブリングを防止してチェック属性が正常に切り替わるようにする
   e.stopPropagation();
@@ -30,7 +35,6 @@ $('#select_all').on('click', function(e){
   });
 
 });
-
 $('.dropdown-menu a').on('click', function() {
   $(this).parent().toggleClass('open');
   var checkbox = $(this).find('input')
