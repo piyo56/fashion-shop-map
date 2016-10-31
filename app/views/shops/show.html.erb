@@ -9,9 +9,10 @@
   </span>
   <% @shops.each do |shop| %>
     <% if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>
-      <div class="bootstrap_btn_wrapper" ><button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= shop.branches_count %></span></button></div>
+      <div class="bootstrap_btn_wrapper" ><button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= @hit_branches_count[shop.id.to_s] %>件</span></button></div>
     <% end %>
   <% end %>
+  <br>
   <% @prefectures.each do |prefecture| %>
     <% if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>
       <button type="button" class="btn btn-sm btn-danger"><%= prefecture.name %></button>
