@@ -22,17 +22,18 @@ class Shop < ActiveRecord::Base
     else
       hit_branch_ids = branches_of_shops
     end 
-
+      
+    # 検索にヒットした店舗の情報を作成してreturn
     hit_branches = []
     hit_branch_count = {}
+    shop_ids.each{|shop_id| hit_branch_count[shop_id.to_s] = 0}
+
     hit_branch_ids.each do |branch_id|
       b = Branch.find(branch_id)
-
       # ヒットした店舗を追加
       hit_branches.push(b)
 
       # ヒットした店舗数をカウント
-      hit_branch_count[b.shop_id.to_s] ||= 0
       hit_branch_count[b.shop_id.to_s] += 1
     end
 
