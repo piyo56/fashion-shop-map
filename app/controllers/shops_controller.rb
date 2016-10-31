@@ -10,12 +10,13 @@ class ShopsController < ApplicationController
       begin
         @selected_shop_ids       = params[:s_ids].map{|id| id.to_i} 
         @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i} if !params[:p_ids].nil?
-        @branches = fetch_branches(@selected_shop_ids, @selected_prefecture_ids) 
+        @hit_branches_count, @branches = fetch_branches(@selected_shop_ids, @selected_prefecture_ids) 
       rescue => e
         @error_msg = "GET Parameter is not valid"
         ErrorUtility.log_and_notify e
       end
-
+      
+      # Gmapのmarkerオブジェクトの配列
       @branch_markers = Gmaps4rails.build_markers(@branches) do |branch, marker|
         marker.lat branch.latitude
         marker.lng branch.longitude
@@ -67,11 +68,31 @@ class ShopsController < ApplicationController
 
       # 上記両方を満たす店舗の配列
       if branches_in_prefectures
-        selected_branches = branches_of_shops & branches_in_prefectures
+        hit_branch_ids = branches_of_shops & branches_in_prefectures
       else
-        selected_branches = branches_of_shops
+        hit_branch_ids = branches_of_shops
       end 
-      return selected_branches.map{|id| Branch.find(id)}
+      
+      p "selected_branch_ids"
+      p hit_branch_ids
+
+      hit_branches = []
+      hit_branch_count = {}
+      hit_branch_ids.each do |branch_id|
+        b = Branch.find(branch_id)
+
+        # ヒットした店舗を追加
+        hit_branches.push(b)
+
+        # ヒットした店舗数をカウント
+        hit_branch_count[b.shop_id.to_s] ||= 0
+        hit_branch_count[b.shop_id.to_s] += 1
+      end
+
+      p "hit_branches"
+      p hit_branches
+
+      return hit_branch_count, hit_branches
     end
 end
 
