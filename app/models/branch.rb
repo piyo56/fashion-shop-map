@@ -32,7 +32,7 @@ class Branch < ActiveRecord::Base
     branches.each_with_index do |a, i|
       # frequency["#{a.latitude}, #{a.longitude}"] = [a.address]
       branches[i..-1].each do |b|
-        if b.shop_id == a.shop.id
+        if b.shop_id == a.shop_id
           next
         end
         if equal_latlng(a, b)
@@ -49,6 +49,9 @@ class Branch < ActiveRecord::Base
   private
     # latitude, longitudeが同じかどうかを判断する
     def self.equal_latlng(a, b)
+      if a.latitude.nil? || b.latitude.nil? || a.longitude.nil? || b.longitude.nil?
+        return false
+      end
       return a.latitude == b.latitude && a.longitude == b.longitude
     end
 
