@@ -9,13 +9,13 @@
   </span>
   <% @shops.each do |shop| %>
     <% if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>
-      <div class="bootstrap_btn_wrapper" ><button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= @hit_branches_count[shop.id.to_s] %>件</span></button></div>
+      <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= @hit_branches_count[shop.id.to_s] %>件</span></button></div>
     <% end %>
   <% end %>
   <br>
   <% @prefectures.each do |prefecture| %>
     <% if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>
-      <button type="button" class="btn btn-sm btn-danger"><%= prefecture.name %></button>
+      <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-danger"><%= prefecture.name %></button></div>
     <% end %>
   <% end %>
 </div>
@@ -32,23 +32,8 @@
   <input id="pac-input" class="controls" type="text" placeholder="Search Box">
   <div id="map"></div>
 <% end %>
+
 <script>
-// TODO
-// ショップや都道府県が多く選択されるとラベルが増え、GoogleMapがはみ出てしまう(footerに侵食する)
-// 動的にサイズを調整しようとしたがどうにもできないので後回し
-// $(document).ready(function() {
-//   var header_height = 50, footer_height = 20;
-//   var max_main_height = $("body").height() - header_height - footer_height;
-//   
-//   var main_height = $("#labels").height() + $("#choices").height() + $("#map").height();
-//   
-//   console.log($("#map").height());
-//   if( main_height > max_main_height){
-//     exceeded_px = main_height - max_main_height;
-//     $("#map").height($("#map").height() - exceeded_px);
-//     console.log($("#map").height());
-//   }
-// });
 handler = Gmaps.build('Google');
 handler.buildMap({ internal: {id: 'map'}}, function(){
   markers = handler.addMarkers(<%=raw @branch_markers.to_json %>);

@@ -13,7 +13,7 @@ class ShopsController < ApplicationController
     end
 
     begin
-      @selected_shop_ids       = params[:s_ids].map{|id| id.to_i} 
+      @selected_shop_ids       = params[:s_ids].map{|id| id.to_i} if !params[:p_ids].nil?
       @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i} if !params[:p_ids].nil?
       @hit_branches_count, @branches = Shop.fetch_branches(@selected_shop_ids, @selected_prefecture_ids) 
       puts "before: #{@branches.length}"

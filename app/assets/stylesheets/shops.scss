@@ -6,15 +6,16 @@
   width: 100%;
   box-sizing: border-box;
   padding-bottom: 10px;
-  height: -webkit-calc(100% - 34px - 53px);
+  //height: -webkit-calc(100% - 34px - 53px);
+  height: -webkit-calc(80%);
   margin: 0 auto;
 }
 
 #labels {
   width: 90%;
-  height: 43px;
+  height: auto;
   margin: 10px auto;
-  overflow: auto;
+  //overflow: auto;
 }
 
 main {

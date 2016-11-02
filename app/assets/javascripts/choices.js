@@ -3,7 +3,8 @@ $(document).ready(function(){
   enable_search();
 });
 enable_search = function(){
-  if ($('input[name="s_ids[]"]:checked').length === 0){
+  if ($('input[name="s_ids[]"]:checked').length === 0 ||
+      $('input[name="p_ids[]"]:checked').length === 0){
     $("#search_btn").prop("disabled", true);
   }else{
     $("#search_btn").prop("disabled", false);
@@ -17,7 +18,7 @@ $('input[name="s_ids[]"]').on('click', function(e) {
   e.stopPropagation();
 });
 
-//    全選択／全解除処理
+// 全選択／全解除処理
 $('#select_all').on('click', function(e){
   //イベントバブリングを防止してチェック属性が正常に切り替わるようにする
   e.stopPropagation();
