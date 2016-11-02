@@ -1,3 +1,65 @@
+prefecture_id = Prefecture.find_by(name: "北海道").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオン札幌藻岩", address:"北海道札幌市南区川沿二条2-1-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "北海道").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール札幌苗穂", address:"北海道札幌市東区東苗穂2条3-1-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "北海道").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール苫小牧", address:"北海道苫小牧市柳町3-1-20", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "北海道").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK エスタ", address:"北海道札幌市中央区北5条西2-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "北海道").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール札幌発寒", address:"北海道札幌市西区発寒8条12-1-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "北海道").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール旭川西", address:"北海道旭川市緑町23-2161-3", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "北海道").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオン釧路", address:"北海道釧路郡釧路町桂木1-1-7", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "青森県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK 五所川原エルム", address:"青森県五所川原市唐笠柳字藤巻517-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "青森県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール下田", address:"青森県上北郡おいらせ町中野平40-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "岩手県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール盛岡", address:"岩手県盛岡市前潟4-7-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "宮城県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK 仙台パルコ２", address:"宮城県仙台市青葉区中央3-7-5", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "宮城県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール名取", address:"宮城県名取市杜せきのした5-3-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "宮城県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK 泉中央セルバ", address:"宮城県仙台市泉区泉中央1-4-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "宮城県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK ララガーデン長町", address:"宮城県仙台市太白区長町7-20-5", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "宮城県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール石巻", address:"宮城県石巻市茜平4-104", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "秋田県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール秋田", address:"秋田県秋田市御所野地蔵田1-1-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "秋田県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール大曲", address:"秋田県大仙市和合字坪立177", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "山形県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール天童", address:"山形県天童市芳賀土地区画整理事業地内34", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "福島県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK エスパル福島", address:"福島県福島市栄町1-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "福島県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンタウン郡山", address:"福島県郡山市松木町2-28", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "茨城県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモールつくば", address:"茨城県つくば市稲岡66-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "茨城県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イーアスつくば", address:"茨城県つくば市研究学園5-19", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "茨城県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール水戸内原", address:"茨城県水戸市内原2-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "栃木県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK FKDインターパーク", address:"栃木県宇都宮市インターパーク6-1-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "栃木県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK FKD宇都宮", address:"栃木県宇都宮市今泉町237", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "群馬県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール高崎", address:"群馬県高崎市棟高町1400", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "群馬県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK けやきウォーク前橋", address:"群馬県前橋市文京町2-1-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "群馬県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK イオンモール太田", address:"群馬県太田市石原町81", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "群馬県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK スマーク伊勢崎", address:"群馬県伊勢崎市西小保方町368", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "埼玉県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK 浦和パルコ", address:"埼玉県さいたま市浦和区東高砂町11-1", prefecture_id: prefecture_id)
+prefecture_id = Prefecture.find_by(name: "埼玉県").id
+Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK さいたま新都心", address:"埼玉県さいたま市大宮区吉敷町4-263-1", prefecture_id: prefecture_id)
 prefecture_id = Prefecture.find_by(name: "埼玉県").id
 Shop.find_by(name: "GLOBAL WORK").branches.create(name: "GLOBAL WORK 大宮ステラタウン", address:"埼玉県さいたま市北区宮原町1-854-1", prefecture_id: prefecture_id)
 prefecture_id = Prefecture.find_by(name: "埼玉県").id

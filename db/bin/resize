@@ -1,3 +1,4 @@
+#!/bin/bash
 mogrify -resize 32x32 -unsharp 2x1.4+0.5+0 -quality 100 -verbose $1
 filename=${1##*/}
 basename=${filename%.*}
