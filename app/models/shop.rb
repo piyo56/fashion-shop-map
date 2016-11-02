@@ -31,7 +31,11 @@ class Shop < ActiveRecord::Base
     hit_branch_ids.each do |branch_id|
       b = Branch.find(branch_id)
       # ヒットした店舗を追加
-      hit_branches.push(b)
+      if !b.latitude.nil? && !b.longitude.nil?
+        hit_branches.push(b) 
+      else
+        next
+      end
 
       # ヒットした店舗数をカウント
       hit_branch_count[b.shop_id.to_s] += 1
