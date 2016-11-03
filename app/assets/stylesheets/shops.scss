@@ -11,7 +11,7 @@ main {
   margin: 20px auto;
 
   p {
-    width: 150px;
+    width: 130px;
     font-size: 14px;
     line-height: 32px;
     float: left;
@@ -24,12 +24,13 @@ main {
 }
 
 #map {
-  width: 100%;
+  width: 95%;
   box-sizing: border-box;
   padding-bottom: 10px;
   //height: -webkit-calc(100% - 34px - 53px);
-  height: 500px;
+  height: 550px;
   margin: 0 auto;
+  border: 1px solid rgba(0,0,0,0.3);
 }
 
 
