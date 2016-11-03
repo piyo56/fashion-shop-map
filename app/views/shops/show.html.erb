@@ -2,22 +2,24 @@
 
 <%= render 'choices'%>
 
-<div id="labels">
-  <span style="font-size: 14px;line-height: 32px;">選択された条件
-    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-    &nbsp;&nbsp;
-  </span>
-  <% @shops.each do |shop| %>
-    <% if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>
-      <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= @hit_branches_count[shop.id.to_s] %>件</span></button></div>
+<div id="condition">
+  <p>選択された条件
+  <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+  &nbsp;&nbsp;
+  </p>
+  <div id="labels">
+    <% @shops.each do |shop| %>
+      <% if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>
+        <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= @hit_branches_count[shop.id.to_s] %>件</span></button></div>
+      <% end %>
     <% end %>
-  <% end %>
-  <br>
-  <% @prefectures.each do |prefecture| %>
-    <% if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>
-      <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-danger"><%= prefecture.name %></button></div>
+    <% @prefectures.each do |prefecture| %>
+      <% if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>
+        <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-danger"><%= prefecture.name %></button></div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
+  <div class="clear"></div>
 </div>
 
 <% if @error_msg %>
@@ -75,5 +77,16 @@ searchBox.addListener('places_changed', function() {
     map.setZoom(15)
   }
 });
+
+// ブラウザ判定してdivサイズを可変に
+var useragent = navigator.userAgent;
+var mapdiv = $("#map");
+if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
+  mapdiv.style.width = '100%';
+  mapdiv.style.height = '100%';
+} else {
+  mapdiv.style.width = '600px';
+  mapdiv.style.height = '800px';
+}
 </script>
 

@@ -2,25 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+main {
+  padding: 20px;
+}
+
+#condition {
+  width: 100%;
+  margin: 20px auto;
+
+  p {
+    width: 150px;
+    font-size: 14px;
+    line-height: 32px;
+    float: left;
+  }
+
+  #labels {
+    width: -webkit-calc(100% - 150px);
+    float: left;
+  }
+}
+
 #map {
   width: 100%;
   box-sizing: border-box;
   padding-bottom: 10px;
   //height: -webkit-calc(100% - 34px - 53px);
-  height: -webkit-calc(80%);
+  height: 500px;
   margin: 0 auto;
 }
 
-#labels {
-  width: 90%;
-  height: auto;
-  margin: 10px auto;
-  //overflow: auto;
-}
-
-main {
-  padding: 20px;
-}
 
 // google map search input
 #pac-input {
