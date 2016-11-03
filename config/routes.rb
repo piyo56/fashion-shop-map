@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   #resources :branches
   #resources :shops, only: [:index, :show]
   # get "shops"         => "shops#index"
-  root :to           => "shops#index"
-  post  'show'      => "shops#show"
+  root :to    => "shops#index"
+  get  'show' => "shops#index"
+  post 'show' => "shops#show"
 
   get  'inquiry'         => 'inquiry#index'     # 入力画面
   post 'inquiry/confirm' => 'inquiry#confirm'   # 確認画面
