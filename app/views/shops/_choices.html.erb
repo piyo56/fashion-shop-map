@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag "choices", :media => "all" %>
 <div id="choices">
-<div class="container">
   <%= form_tag(show_path, {class: "ui form", method: :post}) do%>
 
     <div class="row">
@@ -43,7 +42,7 @@
             <% @prefectures.each do |prefecture| %>
               <li><a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
                   <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %> <%= 'checked="checked"' if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>>&nbsp;<%= prefecture.name %>
-              </a> </li>
+              </a></li>
             <% end %>
           </ul>
         </div>
@@ -51,8 +50,7 @@
       <div class="col-sm-2">
         <%= submit_tag('検索', {id:"search_btn", class: "btn btn-primary btn-md", disabled:"disabled"}) %>
       </div>
+    </div>
   <% end %>
 </div>
-</div>
 <%= javascript_include_tag 'choices' %>
-</div>
