@@ -2,6 +2,13 @@
 <html>
 <head>
   <title>Fashion Shop Map</title>
+  <meta name="description" content="セレクトショップを中心としたファッションショップの店舗検索システム" />
+  <meta name="author" content"@piyo56" />
+  <meta property="og:title" content="Fashion Shop Map" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://assets/mylogo2.png" />
+  <meta property="twitter:site" content="@piyo56_net" />
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -30,6 +37,20 @@
       <span>お問い合わせ</span>
     </button>
   </a>
+  <div id="share_buttons">
+    <ul>
+      <li>
+        <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="https://placeholdit.imgix.net/~text?txtsize=5&txt=30%C3%9730&w=30&h=30" alt="facebook"></a></div>
+      <li>
+        <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="https://placeholdit.imgix.net/~text?txtsize=5&txt=30%C3%9730&w=30&h=30" alt="twitter"></a></div>
+      <li>
+        <div class="sns_icon  google_back"><a href="" target="_blank" title="Google+で共有"><img src="https://placeholdit.imgix.net/~text?txtsize=5&txt=30%C3%9730&w=30&h=30" alt="googleplus"></a></div>
+      <li>
+        <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="https://placeholdit.imgix.net/~text?txtsize=5&txt=30%C3%9730&w=30&h=30" alt="はてなブックマーク"></a></div>
+      <li>
+        <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="https://placeholdit.imgix.net/~text?txtsize=5&txt=30%C3%9730&w=30&h=30" alt="LINE"></a></div>
+    </ul>
+  </div>
 </header>
 <div class="clear"></div>
 
