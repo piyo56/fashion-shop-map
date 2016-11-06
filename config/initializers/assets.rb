@@ -18,3 +18,4 @@ Rails.application.config.assets.precompile += %w( inquiry.scss )
 
 # precomiling js
 Rails.application.config.assets.precompile += %w( choices.js )
+Rails.application.config.assets.precompile += %w( share_buttons.js )
