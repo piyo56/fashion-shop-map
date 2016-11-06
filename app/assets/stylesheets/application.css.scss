@@ -45,7 +45,7 @@ header{
 
 #share_buttons {
   box-sizing: border-box;
-  width: 190px;
+  width: calc( 5 * 40px );
   height: 30px;
   float: right;
   margin: 10px 20px;
@@ -56,15 +56,18 @@ header{
   li {
     list-style-type: none
   }
-
   *{
     display: inline-block;
   }
-
   .sns_icon {
     float: left;
+    width: 40px;
+    height: 30px;
+  }
+  img {
     width: 30px;
     height: 30px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.4);
   }
 }
 

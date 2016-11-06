@@ -4,7 +4,8 @@
  * SNSシェアボタンを指定された要素の下に埋め込む
  * @param shareUrl シェアするUrl。og:shareUrlの値と一緒にすることをオススメ
  * @param description ツイート本文などに埋め込む文言
- */ 
+ */
+ 
 
 setSnsShare("http://select-shop-map.herokuapp.com/", "セレクトショップを中心としたファッションショップの店舗検索システム");
 
@@ -70,3 +71,4 @@ function setShareEvent(selector, snsName, shareUrl) {
     e.preventDefault();
   }); 
 }
+;
