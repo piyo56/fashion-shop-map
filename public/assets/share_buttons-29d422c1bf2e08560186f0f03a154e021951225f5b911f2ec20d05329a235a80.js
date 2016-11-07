@@ -29,3 +29,4 @@ function setShareEvent(selector, snsName, shareUrl) {
     return false;
   }); 
 }
+;

@@ -26,7 +26,7 @@
     ga('send', 'pageview');
   </script>
   <%= javascript_include_tag 'share_buttons' %>
-  <%= favicon_link_tag() %>
+  <%= favicon_link_tag %>
 </head>
 
 <body>
@@ -38,20 +38,25 @@
       <span>お問い合わせ</span>
     </button>
   </a>
+
+  <% share_url   = "http://select-shop-map.herokuapp.com/" %>
+  <% description = "[Fashion] セレクトショップを中心としたショップの店舗検索システム" %>
   <div id="share_buttons">
     <ul>
-      <!-- <li> -->
-      <!--   <div class="sns_icon facebook_back"><a href="" target="_blank" title="SNSで共有"><img src="assets/share/message.png" alt="SNS共有ボタン"></a></div> -->
       <li>
-        <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="assets/share/facebook.png" alt="facebook"></a></div>
+        <% facebook_url = "https://www.facebook.com/sharer/sharer.php?u=" + share_url + "&t=" + URI.encode(description) %>
+        <div class="sns_icon facebook"><a href='<%= facebook_url %>' target="_blank" title="Facebookでシェア"><img src="assets/share/facebook.png" alt="facebook"></a></div>
       <li>
-        <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="assets/share/twitter.png" alt="twitter"></a></div>
+        <% twitter_url = "https://twitter.com/share?shareUrl=" + share_url + "&text=" + URI.encode(description+"💡") %>
+        <div class="sns_icon twitter"><a href='<%= twitter_url %>' title="twitterでシェア"><img src="assets/share/twitter.png" alt="twitter"></a></div>
       <li>
-        <div class="sns_icon  google_back"><a href="" target="_blank" title="Google+で共有"><img src="assets/share/google.png" alt="googleplus"></a></div>
+        <% google_url = "https://plus.google.com/share?url=" + share_url %>
+        <div class="sns_icon google"><a href='<%= google_url %> ' target="_blank" title="Google+で共有"><img src="assets/share/google.png" alt="googleplus"></a></div>
       <li>
-        <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="assets/share/hatena.png" alt="はてなブックマーク"></a></div>
+        <% hatena_url = "https://b.hatena.ne.jp/add?mode=confirm&url=" + share_url + "&title=" + URI.encode(description)%>
+        <div class="sns_icon hatena"><a href='<%= hatena_url %>' target="_blank" title="はてなブックマークに登録"><img src="assets/share/hatena.png" alt="はてなブックマーク"></a></div>
       <li>
-        <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="assets/share/line.png" alt="LINE"></a></div>
+        <div class="sns_icon line"><a href='<%= "http://line.me/R/msg/text/?" + URI.encode(description + " " + share_url) %>' target="_blank" title="LINEに送る"><img src="assets/share/line.png" alt="LINE"></a></div>
     </ul>
   </div>
 </header>
