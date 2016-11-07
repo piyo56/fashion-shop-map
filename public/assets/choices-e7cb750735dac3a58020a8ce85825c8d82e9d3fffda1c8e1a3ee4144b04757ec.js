@@ -2,7 +2,7 @@
 $(document).ready(function(){
   enable_search();
 });
-enable_search = function(){
+var enable_search = function(){
   if ($('input[name="s_ids[]"]:checked').length === 0 ||
       $('input[name="p_ids[]"]:checked').length === 0){
     $("#search_btn").prop("disabled", true);
