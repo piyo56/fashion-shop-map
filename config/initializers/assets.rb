@@ -19,3 +19,5 @@ Rails.application.config.assets.precompile += %w( inquiry.scss )
 # precomiling js
 Rails.application.config.assets.precompile += %w( choices.js )
 Rails.application.config.assets.precompile += %w( share_buttons.js )
+Rails.application.config.assets.precompile += %w( infobox_packed.js )
+Rails.application.config.assets.precompile += %w( markerclusterer.min.js )
