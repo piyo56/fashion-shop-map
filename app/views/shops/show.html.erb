@@ -72,6 +72,30 @@ var searchBox = new google.maps.places.SearchBox(input);
 var map = handler.getMap();
 // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+// 店舗リスト
+var previous_clicked_div;
+$(".store").on("click", function(){
+  // 背景色変更
+  $(this).css('background', '#cacce2');
+
+  // 地図の中心をその店舗に合わせる
+  var lat = parseFloat($(this).children(".lat").text());
+  var lng = parseFloat($(this).children(".lng").text());
+  console.info(lat, lng);
+  map.panTo(new google.maps.LatLng(lat, lng));
+  map.setZoom(14);
+  //var bounds = new google.maps.LatLngBounds(lat, lng);
+  // map.fitBounds(bounds);
+  // map.setZoom(15);
+  
+  // 前にクリックされた要素の背景色はもとに戻しておく
+  console.info(previous_clicked_div);
+  if(previous_clicked_div !== undefined){
+    previous_clicked_div.css('background', '#f2f4f6');
+  }
+  previous_clicked_div = $(this);
+});
+
 // 検索時の処理
 var old_marker;
 searchBox.addListener('places_changed', function() {
