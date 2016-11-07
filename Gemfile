@@ -28,6 +28,7 @@ gem "geocoder"
 gem 'hirb'
 gem 'hirb-unicode'
 gem 'bootstrap-sass'
+gem 'jquery-turbolinks'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
