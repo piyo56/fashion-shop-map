@@ -8,12 +8,14 @@ main {
 }
 
 #logo {
+  width: 500px;
   margin: 30px auto;
+  max-width: 90%;
   border: 1px rgba(0,0,0,0.4) solid;
 }
 
 /* スマホだけに適用するCSS */
-@media screen and ( max-width:479px )
+@media screen and ( max-width:820 )
 {
   #logo {
     width: 80%;

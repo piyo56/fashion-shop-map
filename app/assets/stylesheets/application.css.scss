@@ -104,17 +104,15 @@ footer {
 }
 
 /* スマホだけに適用するCSS */
-@media screen and ( max-width:479px ) {
+@media screen and ( max-width:820px ) {
   /* ボディ */
   body {
     font-size: 13px ;	/* 文字サイズ */
   }
   #page_title {
     font-size: 24px;
-    float:left;
   }
   #mail {
-    float:right;
     margin-right: 10px;
   }
   #inquiry_text {
@@ -129,5 +127,10 @@ footer {
     #share_buttons {
       float: none;
     }
+  }
+}
+@media screen and ( max-width:320px ) {
+  #page_title {
+    font-size: 20px;
   }
 }

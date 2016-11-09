@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag "choices", :media => "all" %>
-<%= javascript_include_tag 'choices' %>
 <div id="choices">
   <%= form_tag(show_path, {class: "ui form", method: :post}) do%>
 
@@ -61,3 +60,4 @@
     </div>
   <% end %>
 </div>
+<%= javascript_include_tag 'choices' %>
