@@ -79,28 +79,18 @@ header{
 
 main {
   width: 100%;
-  min-height: -webkit-calc(100% - 70px);
+  min-height: -webkit-calc(100% - 50px - 50px);
   background: #f2f4f6;
 }
+
 footer {
   box-sizing: border-box;
-  border-top: 1px solid rgba(100,100,100,0.4);
-  height: 20px;
+  border-top: 3px solid #888 ;
+  height: 50px;
   width: 100%;
-  margin: 0 auto;
+  padding-top: 10px;
+  text-align: center;
   //background: white;
-  background: #f2f4f6;
-  //background: #4a8ef4;
-
-  p {
-    margin: 0 50px;
-    float: right;
-    //color: white;
-    color: black;
-
-    span {
-      color: white;
-      text-decoration: underline;
-    }
-  }
+  // background: #f2f4f6;
+  background: #e8e8e8 ;
 }
