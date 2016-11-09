@@ -2,6 +2,7 @@
 <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAKSmtc7T8T72MMS0G&#45;MEflbNk_p8TmrtQ&#38;libraries=places"></script> -->
 <%= javascript_include_tag 'infobox_packed' %>
 <%= javascript_include_tag 'markerclusterer.min' %>
+<%= javascript_include_tag 'infobubble-compiled.js' %>
 <!-- <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script> -->
 <!-- <script src='//cdn.rawgit.com/printercu/google&#45;maps&#45;utility&#45;library&#45;v3&#45;read&#45;only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> -->
 
@@ -43,10 +44,10 @@
       <p>場所を指定してジャンプ</p>
       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     </div>
-    <ul class="store_list">
-      <% @branches.each do |b| %>
+    <ul class="branch_list">
+      <% @branches.each.with_index do |b, i| %>
       <li>
-        <div class="store">
+        <div id="<%= i %>" class="branch">
           <div class="title"><%= b.name %></div>
           <div class="address"><%= b.address %></div>
           <span class="lat"><%= b.latitude %></span>
@@ -74,26 +75,25 @@ var map = handler.getMap();
 
 // 店舗リスト
 var previous_clicked_div;
-$(".store").on("click", function(){
+$(".branch").on("click", function(){
   // 背景色変更
   $(this).css('background', '#cacce2');
+  if(previous_clicked_div !== undefined){
+    previous_clicked_div.css('background', '#f2f4f6');
+  }
+  previous_clicked_div = $(this);
 
   // 地図の中心をその店舗に合わせる
   var lat = parseFloat($(this).children(".lat").text());
   var lng = parseFloat($(this).children(".lng").text());
-  console.info(lat, lng);
+  var id  = parseInt($(this).attr("id"));
   map.panTo(new google.maps.LatLng(lat, lng));
+  google.maps.event.trigger(markers[id].serviceObject, "click");
   map.setZoom(14);
   //var bounds = new google.maps.LatLngBounds(lat, lng);
   // map.fitBounds(bounds);
   // map.setZoom(15);
   
-  // 前にクリックされた要素の背景色はもとに戻しておく
-  console.info(previous_clicked_div);
-  if(previous_clicked_div !== undefined){
-    previous_clicked_div.css('background', '#f2f4f6');
-  }
-  previous_clicked_div = $(this);
 });
 
 // 検索時の処理
