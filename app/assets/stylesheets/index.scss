@@ -11,3 +11,12 @@ main {
   margin: 30px auto;
   border: 1px rgba(0,0,0,0.4) solid;
 }
+
+/* スマホだけに適用するCSS */
+@media screen and ( max-width:479px )
+{
+  #logo {
+    width: 80%;
+    margin: 20px auto;
+  }
+}

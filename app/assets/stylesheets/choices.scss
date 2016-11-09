@@ -6,8 +6,12 @@
 #choices {
   width: 600px;
   height: auto;
-  line-height: 30px;
+  line-height: 40px;
   margin: 0 auto;
+
+  button {
+    margin: 5px 0;
+  }
 
   .scrollable-menu {
     height: auto;
@@ -21,4 +25,12 @@
   height: 20px;
   font-size: 12px;
   margin: 0 15px;
+}
+
+/* スマホだけに適用するCSS */
+@media screen and ( max-width:479px ) {
+  #choices {
+    width: 100%;
+    height: auto;
+  }
 }
