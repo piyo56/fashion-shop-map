@@ -28,7 +28,7 @@ class ShopsController < ApplicationController
     @branch_markers = Gmaps4rails.build_markers(@branches) do |branch, marker|
       marker.lat branch.latitude
       marker.lng branch.longitude
-      marker.infowindow branch.name
+      marker.infowindow "<span style='font-size: medium;'><b>#{branch.name}</b></span><br>#{branch.address}"
       marker.picture({
         url: "/assets/#{branch.shop_id}.png",
         width:   32,

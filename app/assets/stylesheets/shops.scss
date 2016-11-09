@@ -30,15 +30,17 @@ main {
   overflow: scroll;
   box-sizing: border-box;
   border: 1px solid rgba(0,0,0,0.3);
-  padding: 0 10px;
 
   .location_search {
-    width: 280px;
-    height: 80px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 10px 0 20px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
 
     p {
       width: 250px;
+      padding: 0;
+      margin: 0;
+      font-style: italic;
     }
 
     // google map search input
@@ -50,7 +52,6 @@ main {
       padding: 0 11px 0 13px;
       text-overflow: ellipsis;
       width: 200px;
-      margin: 0 auto;
 
       &:focus {
         border-color: #4d90fe;
@@ -59,19 +60,17 @@ main {
   }
 
   .branch_list {
-    padding: 1px;
+    padding: 0;
 
     li {
       list-style-type: none;
 
       .branch {
-        width: 280px;
-        min-height: 70px;
+        width: 100%;
+        min-height: 50px;
         height: auto;
-        margin: 0 auto;
-        padding-top:    5px;
-        padding-bottom: 5px;
-        padding-left:   10px;
+        padding: 10px 15px;
+        cursor: pointer;
 
         &:hover {
           background: #dee0e2;
@@ -79,7 +78,7 @@ main {
         
         .title{
           font-weight: bold;
-          font-size: 16px;
+          font-size: 14px;
         }
         .address{
 
@@ -89,10 +88,7 @@ main {
         }
       }
     }
-
   }
-
-
 }
 
 #map {
@@ -101,7 +97,7 @@ main {
   padding-bottom: 10px;
   //height: -webkit-calc(100% - 34px - 53px);
   height: 550px;
-  margin: 0 auto;
+  margin-left: 10px;
   border: 1px solid rgba(0,0,0,0.3);
   float:left;
 }
