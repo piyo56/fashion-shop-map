@@ -9,17 +9,12 @@ main {
 #condition {
   width: 100%;
   margin: 20px auto;
-
   p {
-    width: 130px;
+    width: 90px;
+    padding: 0;
+    margin: auto;
     font-size: 14px;
     line-height: 32px;
-    float: left;
-  }
-
-  #labels {
-    width: -webkit-calc(100% - 150px);
-    float: left;
   }
 }
 
@@ -80,9 +75,6 @@ main {
           font-weight: bold;
           font-size: 14px;
         }
-        .address{
-
-        }
         .lat, .lng{
           display: none;
         }
@@ -100,6 +92,52 @@ main {
   margin-left: 10px;
   border: 1px solid rgba(0,0,0,0.3);
   float:left;
+}
+
+@media screen and ( max-width:768px ) {
+  #condition {
+    max-height: 80px;
+    overflow: scroll;
+    padding: 10px 0;
+    border: 1px solid rgba(0,0,0,0.4);
+
+    p {
+      font-size: 12px;
+      line-height: 12px;
+      height: 20px;
+    }
+  }
+
+  #labels{
+    .btn-sm{
+      height: 25px;
+    }
+    .btn, .badge {
+      font-size: 11px;
+      line-height: 11px;
+    }
+  }
+
+  #panel {
+    width: 100%;
+    height: 100px;
+    overflow: scroll;
+    font-size: 12px;
+
+    .title {
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .address {
+      font-size: 11px;
+    }
+  }
+
+  #map {
+    width: calc(100%);
+    height: 250px;
+    margin: 10px 0;
+  }
 }
 
 .pac-container {

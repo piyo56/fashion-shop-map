@@ -15,7 +15,7 @@ main {
 }
 
 /* スマホだけに適用するCSS */
-@media screen and ( max-width:820 )
+@media screen and ( max-width:768px )
 {
   #logo {
     width: 80%;

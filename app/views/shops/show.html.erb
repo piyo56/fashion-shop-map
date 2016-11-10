@@ -7,24 +7,30 @@
 
 <%= render 'choices'%>
 
-<div id="condition">
-  <p>選択された条件
-  <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-  &nbsp;&nbsp;
-  </p>
-  <div id="labels">
-    <% @shops.each do |shop| %>
-      <% if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>
-        <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= @hit_branches_count[shop.id.to_s] %>件</span></button></div>
+<div id="condition" class="row">
+
+    <div class="col-md-1 no-padding col-xs-1">
+      <p>検索条件
+      <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+      &nbsp;&nbsp;
+      </p>
+    </div>
+
+    <div id="labels" class="col-md-11 no-padding col-xs-12">
+      <% @shops.each do |shop| %>
+        <% if @selected_shop_ids && @selected_shop_ids.include?(shop.id) %>
+          <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-success"><%= shop.name %> <span class="badge"><%= @hit_branches_count[shop.id.to_s] %>件</span></button></div>
+        <% end %>
       <% end %>
-    <% end %>
-    <% @prefectures.each do |prefecture| %>
-      <% if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>
-        <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-danger"><%= prefecture.name %></button></div>
+      <% @prefectures.each do |prefecture| %>
+        <% if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>
+          <div class="bootstrap_btn_wrapper"><button type="button" class="btn btn-sm btn-danger"><%= prefecture.name %></button></div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <div class="clear"></div>
   </div>
-  <div class="clear"></div>
+
 </div>
 
 <% if @error_msg %>
@@ -69,7 +75,6 @@ handler.buildMap({ internal: {id: 'map'}}, function(){
 var input = document.getElementById('pac-input');
 var searchBox = new google.maps.places.SearchBox(input);
 var map = handler.getMap();
-// map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
 // 店舗リスト
 var previous_clicked_div;
@@ -87,11 +92,7 @@ $(".branch").on("click", function(){
   var id  = parseInt($(this).attr("id"));
   map.panTo(new google.maps.LatLng(lat, lng));
   google.maps.event.trigger(markers[id].serviceObject, "click");
-  map.setZoom(14);
-  //var bounds = new google.maps.LatLngBounds(lat, lng);
-  // map.fitBounds(bounds);
-  // map.setZoom(15);
-  
+  map.setZoom(16);
 });
 
 // 検索時の処理

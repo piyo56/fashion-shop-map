@@ -104,7 +104,7 @@ footer {
 }
 
 /* スマホだけに適用するCSS */
-@media screen and ( max-width:820px ) {
+@media screen and ( max-width: 768px ) {
   /* ボディ */
   body {
     font-size: 13px ;	/* 文字サイズ */
@@ -129,6 +129,7 @@ footer {
     }
   }
 }
+
 @media screen and ( max-width:320px ) {
   #page_title {
     font-size: 20px;
