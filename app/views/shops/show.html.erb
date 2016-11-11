@@ -69,7 +69,9 @@
 <% end %>
 
 <script>
-handler = Gmaps.build('Google');
+var handler = Gmaps.build('Google');
+var markers;
+
 handler.buildMap({ internal: {id: 'map'}}, function(){
   markers = handler.addMarkers(<%=raw @branch_markers.to_json %>);
   handler.bounds.extendWith(markers);
@@ -83,10 +85,20 @@ var map = handler.getMap();
 // 店舗リスト
 var previous_clicked_div;
 $(".branch").on("click", function(){
-  // 背景色変更
+  // クリックされたdivは背景色変更を変更してhover属性をunbind
   $(this).css('background', '#cacce2');
-  if(previous_clicked_div !== undefined){
+  $(this).unbind("mouseenter").unbind("mouseleave");
+
+  // 最初のクリックでなく、かつクリックされたdivが前回クリックされたものと異なる場合
+  if(previous_clicked_div !== undefined && previous_clicked_div.attr("id") != $(this).attr("id")){
+    // backgroundとhover属性をもとに戻してあげる
     previous_clicked_div.css('background', '#f2f4f6');
+    previous_clicked_div.bind("mouseenter",function(){
+      $(this).css('background', '#dee0e2');
+    });
+    previous_clicked_div.bind("mouseleave",function(){
+      $(this).css('background', '#f2f4f6');
+    });
   }
   previous_clicked_div = $(this);
 
