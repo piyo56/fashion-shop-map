@@ -44,10 +44,16 @@ header{
   line-height: 50px;
 }
 
-#mail {
+#inquiry {
   float: right;
   display: inline-block;
-  margin: 8px 30px;
+  margin: 8px 10px;
+}
+
+#about {
+  float: right;
+  display: inline-block;
+  margin: 8px 10px;
 }
 
 main {
@@ -112,14 +118,17 @@ footer {
   body {
     font-size: 13px ;	/* 文字サイズ */
   }
-  #page_title {
-    font-size: 24px;
-  }
-  #mail {
-    margin-right: 10px;
-  }
-  #inquiry_text {
-    display: none;
+  header{
+    #page_title {
+      font-size: 24px;
+      margin-left: 10px;
+    }
+    #inquiry_text, #about_text {
+      display: none;
+    }
+    #inquiry, #about {
+      margin: 8px 5px;
+    }
   }
   footer {
     text-align: center;
@@ -134,8 +143,10 @@ footer {
 }
 
 @media screen and ( max-width:320px ) {
-  #page_title {
-    font-size: 20px;
+  header{
+    #page_title {
+      font-size: 20px;
+    }
   }
   main {
     min-height: -webkit-calc(100% - 50px - 100px);
