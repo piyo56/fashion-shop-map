@@ -51,10 +51,14 @@
       <% @branches.each.with_index do |b, i| %>
       <li>
         <div id="<%= i %>" class="branch">
-          <div class="title"><%= b.name %></div>
-          <div class="address"><%= b.address %></div>
-          <span class="lat"><%= b.latitude %></span>
-          <span class="lng"><%= b.longitude %></span>
+          <div class="image"><img src="/assets/<%= b.shop_id %>.png" alt="brand logo"></div>
+          <div class="description">
+            <div class="title"><%= b.name %></div>
+            <div class="address"><%= b.address %></div>
+            <span class="lat"><%= b.latitude %></span>
+            <span class="lng"><%= b.longitude %></span>
+          </div>
+          <div class="clear"></div>
         </div>
       </li>
     <% end %>
@@ -87,8 +91,8 @@ $(".branch").on("click", function(){
   previous_clicked_div = $(this);
 
   // 地図の中心をその店舗に合わせる
-  var lat = parseFloat($(this).children(".lat").text());
-  var lng = parseFloat($(this).children(".lng").text());
+  var lat = parseFloat($(this).find(".lat").text());
+  var lng = parseFloat($(this).find(".lng").text());
   var id  = parseInt($(this).attr("id"));
   map.panTo(new google.maps.LatLng(lat, lng));
   google.maps.event.trigger(markers[id].serviceObject, "click");
@@ -124,16 +128,5 @@ searchBox.addListener('places_changed', function() {
     map.setZoom(15)
   }
 });
-
-// ブラウザ判定してdivサイズを可変に
-// var useragent = navigator.userAgent;
-// var mapdiv = $("#map");
-// if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
-//   mapdiv.style.width = '100%';
-//   mapdiv.style.height = '100%';
-// } else {
-//   mapdiv.style.width = '600px';
-//   mapdiv.style.height = '800px';
-// }
 </script>
 
