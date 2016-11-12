@@ -39,6 +39,10 @@ class ShopsController < ApplicationController
     end
   end
 
+  def about
+    
+  end
+
   private
     class ErrorUtility
       def self.log_and_notify(e)

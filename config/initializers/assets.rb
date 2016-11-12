@@ -15,6 +15,7 @@ Rails.application.config.assets.precompile += %w( index.scss )
 Rails.application.config.assets.precompile += %w( choices.scss )
 Rails.application.config.assets.precompile += %w( shops.scss )
 Rails.application.config.assets.precompile += %w( inquiry.scss )
+Rails.application.config.assets.precompile += %w( about.scss )
 
 # precomiling js
 Rails.application.config.assets.precompile += %w( choices.js )

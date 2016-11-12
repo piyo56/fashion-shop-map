@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   #resources :shops, only: [:index, :show]
   # get "shops"         => "shops#index"
   root :to    => "shops#index"
+  get 'about' => 'shops#about' # サイト概要ページ
   get  'show' => "shops#index"
   post 'show' => "shops#show"
 
