@@ -1,0 +1,89 @@
+/* line 1, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+main {
+  height: auto;
+  padding: 30px 100px;
+}
+
+/* line 6, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* line 11, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+.table th {
+  width: 30%;
+}
+
+/* line 15, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+input:not([type='submit']) {
+  width: 100%;
+}
+
+/* line 19, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+textarea {
+  width: 100%;
+  height: 200px;
+}
+
+/* line 24, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+input[type='submit'] {
+  float: right;
+}
+
+@media screen and (max-width: 1000px) {
+  /* line 29, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  .container {
+    width: 90%;
+  }
+
+  /* line 33, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  .table th {
+    width: 130px;
+  }
+
+  /* line 37, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  input:not([type='submit']) {
+    width: 100%;
+  }
+
+  /* line 41, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  textarea {
+    width: 100%;
+    height: 200px;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* line 48, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  main {
+    height: auto;
+    padding: 10px 10px;
+  }
+
+  /* line 53, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  h1 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* line 58, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  .container {
+    width: 100%;
+  }
+
+  /* line 62, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  .table th {
+    display: none;
+  }
+
+  /* line 66, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  input:not([type='submit']) {
+    width: 100%;
+  }
+
+  /* line 70, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/inquiry.scss */
+  textarea {
+    width: 100%;
+    height: 200px;
+  }
+}

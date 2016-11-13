@@ -1,24 +1,75 @@
 main {
   height: auto;
-  padding: 30px;
+  padding: 30px 100px;
 }
 
 .container {
-  width: 600px;
+  width: 80%;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .table th {
-  width: 250px;
+  width: 30%;
 }
+
 input:not([type='submit']) {
-  width: 350px;
+  width: 100%;
 }
+
 textarea{
-  width: 350px;
+  width: 100%;
   height: 200px;
 }
+
 input[type='submit'] {
   float: right;
 }
 
+@media screen and ( max-width: 1000px ) {
+  .container {
+    width: 90%;
+  }
+
+  .table th {
+    width: 130px;
+  }
+
+  input:not([type='submit']) {
+    width: 100%;
+  }
+
+  textarea{
+    width: 100%;
+    height: 200px;
+  }
+}
+
+@media screen and ( max-width: 768px ) {
+  main {
+    height: auto;
+    padding: 10px 10px;
+  }
+
+  h1 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .table th {
+    display: none;
+  }
+
+  input:not([type='submit']) {
+    width: 100%;
+  }
+
+  textarea{
+    width: 100%;
+    height: 200px;
+  }
+}
