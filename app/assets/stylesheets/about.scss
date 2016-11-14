@@ -1,65 +1,67 @@
 .container {
-  width: 100%;
-  padding: 20px 20px;
+  width: 70%;
+  padding: 20px 0px;
   font-weight: bold;
+}
+
+.title_icon {
+  font-size: 16px;
+  color: #4a8ef4;
+  &:after {
+    content: "\00a0";
+  }
 }
 
 .title {
+  display: inline-block;
   font-size: 24px;
   font-weight: bold;
   padding: 0;
-  margin: 0;
+  margin: 20px 0 0;
 }
 
-$scene_width: 300px; 
+.description {
+  width: 100%;
+  height: auto;
+  background: #eeeeee;
+  margin: 10px 0;
+  padding: 10px 10px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  font-size: 14px;
+}
 
 #scenario {
   .scene {
-    float:left;
-    box-sizing: border-box;
-    // border: 1px solid black;
-    margin-top: 30px;
+    margin-top: 20px;
+    background: #eeeeee;
+    padding: 10px 15px;
 
-    // &:after{
-    //   content:"";
-    //   clear: both;
-    //   display: block;
-    // }
+    &:first-child {
+      margin-left: 15px;
+    }
 
     .scene_image {
-      width: 100%;
-      height: 300px;
-      margin: 0 auto;
+      text-align: center;
 
       img {
-        max-width: 100%;
+        width:  100%;
+        height: 100%;
+        max-width:  300px;
         max-height: 300px;
-        margin: 0 auto;
+        border: 1px solid rgba(0,0,0,0.2);
+        border-radius: 150px;
       }
     }
 
-    #scene1 {
-      padding-top: 40px;
-    }
-    #scene2 {
-      width: 80%;
-    }
-    #scene3 {
-      padding-top: 50px;
-    }
-    // .scene_image:nth-child(1) {
-    //   padding-top: 10px;
-    // }
-    // .scene_image:nth-child(2) {
-    //   padding-left: 40px;
-    // }
-    // .scene_image:nth-child(3) {
-    //   padding-top: 50px;
-    // }
-
     .scene_description {
       width: 100%;
-      margin: 10px auto;
+      height: auto;
+      background: #eeeeee;
+      margin-top: 20px;
+      padding: 5px 10px;
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 3px;
       font-size: 14px;
     }
   }
@@ -68,14 +70,24 @@ $scene_width: 300px;
     padding-top: 150px;
     text-align: center;
     img {
-      width: 70%;
+      width: 90%;
       margin: 0 auto;
     }
   }
+  
 }
 
 @media screen and ( max-width: 1000px ) {
   .arrow {
     display: none;
+  }
+
+  #scenario {
+    .scene {
+      width: 100%;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
   }
 }
