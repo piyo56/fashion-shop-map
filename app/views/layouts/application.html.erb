@@ -72,8 +72,9 @@
 
 <div class="clear"></div>
 <footer>
-  <% share_url   = "http://select-shop-map.herokuapp.com/" %>
-  <% description = "[Fashion] セレクトショップを中心としたショップの店舗検索システム" %>
+  <% share_url   = "http://fashion-shop-map.herokuapp.com/" %>
+  <% description = "[Fashion] セレクトショップを中心としたショップの位置情報検索システム🗺" %>
+  <% # 🌏 %>
   <div id="share_buttons">
   <% #{{{ %>
     <ul>
@@ -81,7 +82,7 @@
         <% facebook_url = "https://www.facebook.com/sharer/sharer.php?u=" + share_url + "&t=" + URI.encode(description) %>
         <div class="sns_icon facebook"><a href='<%= facebook_url %>' target="_blank" title="Facebookでシェア"><img src="/assets/share/facebook.png" alt="facebook"></a></div>
       <li>
-        <% twitter_url = "https://twitter.com/share?shareUrl=" + share_url + "&text=" + URI.encode(description+"💡") %>
+        <% twitter_url = "https://twitter.com/share?shareUrl=" + share_url + "&text=" + URI.encode(description) %>
         <div class="sns_icon twitter"><a href='<%= twitter_url %>' title="twitterでシェア"><img src="/assets/share/twitter.png" alt="twitter"></a></div>
       <li>
         <% google_url = "https://plus.google.com/share?url=" + share_url %>
