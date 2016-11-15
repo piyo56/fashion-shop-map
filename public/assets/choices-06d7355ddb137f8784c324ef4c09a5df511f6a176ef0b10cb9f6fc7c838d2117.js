@@ -1,7 +1,3 @@
-// 検索ボタンの有効／無効化
-$(document).ready(function(){
-  enable_search();
-});
 var enable_search = function(){
   if ($('input[name="s_ids[]"]:checked').length === 0 ||
       $('input[name="p_ids[]"]:checked').length === 0){
@@ -11,6 +7,11 @@ var enable_search = function(){
   }
   setTimeout(enable_search, 200)
 };
+
+// 検索ボタンの有効／無効化
+$(document).ready(function(){
+  enable_search();
+});
 
 // チェックボックスの選択処理
 $('input[name="s_ids[]"]').on('click', function(e) {
