@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 main {
-  padding: 20px;
+  padding: 20px 40px;
 }
 
 #condition {
@@ -106,7 +106,7 @@ main {
 }
 
 #map {
-  width: calc( 95% - 300px );
+  width: calc( 100% - 330px );
   box-sizing: border-box;
   padding-bottom: 10px;
   //height: -webkit-calc(100% - 34px - 53px);
@@ -117,6 +117,9 @@ main {
 }
 
 @media screen and ( max-width:768px ) {
+  main {
+    padding: 20px;
+  }
   #condition {
     max-height: 80px;
     overflow: scroll;
