@@ -10,6 +10,7 @@ var enable_search = function(){
 
 // 検索ボタンの有効／無効化
 $(document).ready(function(){
+  console.log("document ready!");
   enable_search();
 });
 

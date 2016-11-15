@@ -13,16 +13,16 @@
   <%= favicon_link_tag %>
     
   <!-- stylesheet files -->
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
   <% case params[:controller] %>
   <% when "shops" %>
 
     <% case params[:action] %>
     <% when "index" %>
       <%= stylesheet_link_tag "index", :media => "all" %>
+      <%= stylesheet_link_tag "choices", :media => "all" %>
     <% when "show" %>
       <%= stylesheet_link_tag "show", :media => "all" %>
-    <% when "index", "show" %>
       <%= stylesheet_link_tag "choices", :media => "all" %>
     <% when "about" %>
       <%= stylesheet_link_tag "about", media: "all" %>
@@ -33,7 +33,7 @@
   <% end %>
 
   <!-- javascript files -->
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
   <!--[if lt IE 9]>
     <%= javascript_include_tag 'html5shiv' %>
   <![endif]-->
@@ -103,11 +103,13 @@
 <% when "shops" %>
 
   <% case params[:action] %>
+  <% when "index" %>
+    <%= javascript_include_tag 'choices' %>
   <% when "show" %>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCgc17y7bu5UP0-jeDqY4zwbPh0sySSsMs&libraries=places"></script>
     <% #<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAKSmtc7T8T72MMS0G&#45;MEflbNk_p8TmrtQ&#38;libraries=places" defer></script> %>
-    <%= javascript_include_tag 'infobox_packed', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'markerclusterer.min', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'infobox_packed' %>
+    <%= javascript_include_tag 'markerclusterer.min' %>
     <script>
     <% #{{{ %>
       var handler = Gmaps.build('Google');
@@ -183,7 +185,6 @@
       });
     <% #}}} %>
     </script>
-  <% when "index", "show" %>
     <%= javascript_include_tag 'choices' %>
   <% end %>
 
