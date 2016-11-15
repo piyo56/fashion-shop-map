@@ -13,13 +13,13 @@ Rails.application.config.assets.version = '1.0'
 # precomiling css
 Rails.application.config.assets.precompile += %w( index.scss )
 Rails.application.config.assets.precompile += %w( choices.scss )
-Rails.application.config.assets.precompile += %w( shops.scss )
-Rails.application.config.assets.precompile += %w( inquiry.scss )
+Rails.application.config.assets.precompile += %w( show.scss )
 Rails.application.config.assets.precompile += %w( about.scss )
+Rails.application.config.assets.precompile += %w( inquiry.scss )
 
 # precomiling js
+Rails.application.config.assets.precompile += %w( html5shiv.js )
 Rails.application.config.assets.precompile += %w( choices.js )
-Rails.application.config.assets.precompile += %w( share_buttons.js )
 Rails.application.config.assets.precompile += %w( infobox_packed.js )
 Rails.application.config.assets.precompile += %w( markerclusterer.min.js )
-Rails.application.config.assets.precompile += %w( html5shiv.js )
+Rails.application.config.assets.precompile += %w( share_buttons.js )

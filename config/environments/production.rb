@@ -22,12 +22,6 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  # From production
-  # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
-  config.assets.css_compressor = :sass
-
-
   #config.serve_static_files = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
@@ -77,8 +71,8 @@ Rails.application.configure do
   config.assets.precompile += %w( application.css choices.scss index.scss inquiry.scss shops.scss)
 
   # prodcution
-  config.assets.css_compressor = :sass
   config.assets.enabled = true
+  config.assets.css_compressor = :sass
   # Settings specified here will take precedence over those in config/application.rb.
   config.cache_classes = true
   # Compress JavaScripts and CSS.

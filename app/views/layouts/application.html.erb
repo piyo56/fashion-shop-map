@@ -8,19 +8,35 @@
   <meta property="og:type" content="article" />
   <meta property="og:image" content="http://assets/mylogo2.png" />
   <meta property="twitter:site" content="@piyo56_net" />
-
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
-  <%= favicon_link_tag %>
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag %>
+    
+  <!-- stylesheet files -->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <% case params[:controller] %>
+  <% when "shops" %>
 
+    <% case params[:action] %>
+    <% when "index" %>
+      <%= stylesheet_link_tag "index", :media => "all" %>
+    <% when "show" %>
+      <%= stylesheet_link_tag "show", :media => "all" %>
+    <% when "index", "show" %>
+      <%= stylesheet_link_tag "choices", :media => "all" %>
+    <% when "about" %>
+      <%= stylesheet_link_tag "about", media: "all" %>
+    <% end %>
+
+  <% when "inquiry" %>
+    <%= stylesheet_link_tag "inquiry", :media => "all" %>
+  <% end %>
+
+  <!-- javascript files -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <!--[if lt IE 9]>
     <%= javascript_include_tag 'html5shiv' %>
   <![endif]-->
-
   <script async>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -63,16 +79,16 @@
     <ul>
       <li>
         <% facebook_url = "https://www.facebook.com/sharer/sharer.php?u=" + share_url + "&t=" + URI.encode(description) %>
-        <div class="sns_icon facebook"><a href='<%= facebook_url %>' target="_blank" title="Facebookでシェア"><img src="assets/share/facebook.png" alt="facebook"></a></div>
+        <div class="sns_icon facebook"><a href='<%= facebook_url %>' target="_blank" title="Facebookでシェア"><img src="/assets/share/facebook.png" alt="facebook"></a></div>
       <li>
         <% twitter_url = "https://twitter.com/share?shareUrl=" + share_url + "&text=" + URI.encode(description+"💡") %>
-        <div class="sns_icon twitter"><a href='<%= twitter_url %>' title="twitterでシェア"><img src="assets/share/twitter.png" alt="twitter"></a></div>
+        <div class="sns_icon twitter"><a href='<%= twitter_url %>' title="twitterでシェア"><img src="/assets/share/twitter.png" alt="twitter"></a></div>
       <li>
         <% google_url = "https://plus.google.com/share?url=" + share_url %>
-        <div class="sns_icon google"><a href='<%= google_url %> ' target="_blank" title="Google+で共有"><img src="assets/share/google.png" alt="googleplus"></a></div>
+        <div class="sns_icon google"><a href='<%= google_url %> ' target="_blank" title="Google+で共有"><img src="/assets/share/google.png" alt="googleplus"></a></div>
       <li>
         <% hatena_url = "https://b.hatena.ne.jp/add?mode=confirm&url=" + share_url + "&title=" + URI.encode(description)%>
-        <div class="sns_icon hatena"><a href='<%= hatena_url %>' target="_blank" title="はてなブックマークに登録"><img src="assets/share/hatena.png" alt="はてなブックマーク"></a></div>
+        <div class="sns_icon hatena"><a href='<%= hatena_url %>' target="_blank" title="はてなブックマークに登録"><img src="/assets/share/hatena.png" alt="はてなブックマーク"></a></div>
       <li>
         <div class="sns_icon line"><a href='<%= "http://line.me/R/msg/text/?" + URI.encode(description + " " + share_url) %>' target="_blank" title="LINEに送る"><img src="assets/share/line.png" alt="LINE"></a></div>
     </ul>
@@ -82,11 +98,12 @@
 </footer>
 <div class="clear"></div>
 
-<!-- scripts -->
-<% if params[:controller] == "shops" %>
-  <%= javascript_include_tag 'choices' %>
+<!-- javascript files -->
+<% case params[:controller] %>
+<% when "shops" %>
 
-  <% if params[:action] == "show" %>
+  <% case params[:action] %>
+  <% when "show" %>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCgc17y7bu5UP0-jeDqY4zwbPh0sySSsMs&libraries=places"></script>
     <% #<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAKSmtc7T8T72MMS0G&#45;MEflbNk_p8TmrtQ&#38;libraries=places" defer></script> %>
     <%= javascript_include_tag 'infobox_packed', 'data-turbolinks-track' => true %>
@@ -166,7 +183,10 @@
       });
     <% #}}} %>
     </script>
+  <% when "index", "show" %>
+    <%= javascript_include_tag 'choices' %>
   <% end %>
+
 <% end %>
 <%= javascript_include_tag 'share_buttons'%>
 </body>

@@ -15,7 +15,5 @@
 //= require underscore
 //= require gmaps/google
 //= require bootstrap-sprockets
-
 //= require jquery.turbolinks
-
 //= require turbolinks
