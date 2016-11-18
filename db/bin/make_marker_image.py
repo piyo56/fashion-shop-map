@@ -12,6 +12,8 @@ if not len(sys.argv) == 2:
 
 # 既存ファイルを readモードで読み込み
 logo_img = Image.open(sys.argv[1], 'r')
+if logo_img.mode != "RGBA":
+    logo_img = logo_img.convert("RGBA") # RGBモードに変換する
 basename = sys.argv[1].split("/")[-1].split(".")[0]
 
 width  = logo_img.size[0]
@@ -19,7 +21,7 @@ height = logo_img.size[1]
 
 # 画素値をロードしてロゴの代表色をピック
 data = logo_img.load()
-logo_color = data[2,2]
+logo_color = data[3,3]
 
 # もし画像が正方形でない場合は長辺に合わせて正方形にする
 if width != height:
@@ -44,19 +46,17 @@ if width != 32:
 # ピン用の下三角画像を読み込み
 pin_img_path = os.environ.get("PROJECT_HOME") + "/app/assets/images/pin.png"
 pin_img = Image.open(pin_img_path)
+data = pin_img.load()
+for x in range(0, pin_img.size[0]):
+    for y in range(0, pin_img.size[1]):
+        if data[x, y] != (0,0,0,0):
+            pixel = list(data[x,y])
+            pixel[:3] = logo_color[:3]
+            data[x, y] = tuple(pixel)
 
 # ロゴとピン画像をバーティカルジョインする
-if marker_img.mode != "RGBA":
-    marker_img = marker_img.convert("RGBA") # RGBモードに変換する
-marker_pin_img = Image.new("RGBA", (32, 46), (0, 0, 0, 0))
+marker_pin_img = Image.new("RGBA", (32, 44), (0, 0, 0, 0))
 marker_pin_img.paste(marker_img, (0, 0))
 marker_pin_img.paste(pin_img, (8, 32))
-
-# ピン部分の黒をロゴの色に置き換える
-data = marker_pin_img.load()
-for x in range(0, 32):
-    for y in range(31, 44):
-        if data[x, y] != (0, 0, 0, 0):
-            data[x, y] = logo_color
 
 marker_pin_img.save("{}/app/assets/images/{}.png".format(os.environ["PROJECT_HOME"], basename), 'PNG', quality=100, optimize=True)
