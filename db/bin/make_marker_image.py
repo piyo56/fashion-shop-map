@@ -41,7 +41,7 @@ for x in range(0, pin_img.size[0]):
 
 # ロゴとピン画像をバーティカルジョインする
 marker_pin_img = Image.new("RGBA", (32, 44), (0, 0, 0, 0))
-marker_pin_img.paste(marker_img, (0, 0))
+marker_pin_img.paste(logo_img, (0, 0))
 marker_pin_img.paste(pin_img, (8, 32))
 
 # 保存

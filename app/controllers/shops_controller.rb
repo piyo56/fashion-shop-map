@@ -32,7 +32,7 @@ class ShopsController < ApplicationController
       marker.picture({
         url: "/assets/#{branch.shop_id}.png",
         width:   32,
-        height:  32,
+        height:  44,
         clickable: false
       })
       marker.json({title: branch.name})

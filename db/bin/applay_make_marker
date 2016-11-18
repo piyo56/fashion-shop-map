@@ -1,0 +1,9 @@
+#!/bin/bash
+for fname in $PROJECT_HOME/db/bin/images/{1..19}.png
+do
+  if [ -e $fname ]
+
+  then
+    python make_marker_image.py $fname
+  fi
+done
