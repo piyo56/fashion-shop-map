@@ -26,7 +26,7 @@ class Branch < ActiveRecord::Base
   after_validation :geocode
 
   def self.make_latlng_uniq(branches)
-    increment_num = 0.0005
+    increment_num = 0.0001
     
     # frequency = {}
     branches.each_with_index do |a, i|
