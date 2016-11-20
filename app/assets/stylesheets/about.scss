@@ -1,5 +1,5 @@
 .container {
-  width: 70%;
+  width: 60%;
   padding: 20px 0px;
   font-weight: bold;
 }
@@ -84,20 +84,22 @@
       margin: 0 auto;
     }
   }
-  
 }
 
 @media screen and ( max-width: 1000px ) {
+  .container {
+    width: 90%;
+  }
   .arrow {
     display: none;
   }
-
+  .title {
+    font-size: 18px;
+  }
   #scenario {
     .scene {
-      width: 100%;
-      &:first-child {
-        margin-left: 0;
-      }
+      width: 80%;
+      margin: 10px auto !important;
     }
   }
 }
