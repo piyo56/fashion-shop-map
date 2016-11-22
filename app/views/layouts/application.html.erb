@@ -3,10 +3,13 @@
 <head>
   <title>Fashion Shop Map</title>
   <meta name="description" content="セレクトショップを中心としたファッションショップの店舗検索システム" />
-  <meta name="author" content"@piyo56" />
+  <meta name="author" content"piyo56" />
   <meta property="og:title" content="Fashion Shop Map" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="http://www.fashion-shop-map.com" />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="http://assets/site_icon.png" />
+  <meta property="og:image" content="http://www.fashion-shop-map.com/assets/back.png" />
+  <meta property="og:description" content="セレクトショップを中心としたファッションショップの店舗検索システム" />
   <meta property="twitter:site" content="@piyo56_net" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
@@ -51,6 +54,7 @@
 <body>
 <header>
   <a href="/"><span id="page_title">Fashion Shop Map</span></a>
+  <img style="display: none;" src="/assets/site_icon.png">
   <a href="/inquiry">
     <button id="inquiry" type="button" class="btn btn-default">
       <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -72,7 +76,7 @@
 
 <div class="clear"></div>
 <footer>
-  <% share_url   = "http://fashion-shop-map.herokuapp.com/" %>
+  <% share_url   = "http://www.fashion-shop-map.com/" %>
   <% description = "[Fashion] セレクトショップを中心としたショップの位置情報検索システム🗺" %>
   <% # 🌏 %>
   <div id="share_buttons">

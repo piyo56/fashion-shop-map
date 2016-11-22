@@ -1,5 +1,6 @@
 .container {
   width: 60%;
+  min-width: 740px;
   padding: 20px 0px;
   font-weight: bold;
 }
@@ -64,15 +65,6 @@
       border: 1px solid rgba(0,0,0,0.2);
       border-radius: 3px;
       font-size: 14px;
-
-      // width: 100%;
-      // height: auto;
-      // background: #eeeeee;
-      // margin-top: 20px;
-      // padding: 5px 10px;
-      // border: 1px solid rgba(0,0,0,0.2);
-      // border-radius: 3px;
-      // font-size: 14px;
     }
   }
 
@@ -86,9 +78,10 @@
   }
 }
 
-@media screen and ( max-width: 1000px ) {
+@media screen and ( max-width: 768px ) {
   .container {
     width: 90%;
+    min-width: 90%;
   }
   .arrow {
     display: none;
