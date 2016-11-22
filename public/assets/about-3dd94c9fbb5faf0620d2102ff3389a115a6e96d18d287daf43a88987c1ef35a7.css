@@ -1,0 +1,106 @@
+/* line 1, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+.container {
+  width: 60%;
+  padding: 20px 0px;
+  font-weight: bold;
+}
+
+/* line 7, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+.title_icon {
+  font-size: 16px;
+  color: #4a8ef4;
+}
+/* line 10, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+.title_icon:after {
+  content: "\00a0";
+}
+
+/* line 15, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+.title {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+/* line 23, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+.description {
+  width: 100%;
+  height: auto;
+  background: #eeeeee;
+  margin: 10px 0;
+  padding: 10px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+/* line 35, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+#scenario .scene {
+  margin-top: 20px;
+  background: #eeeeee;
+  padding: 10px 15px;
+}
+/* line 40, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+#scenario .scene:first-child {
+  margin-left: 15px;
+}
+/* line 44, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+#scenario .scene .scene_image {
+  text-align: center;
+}
+/* line 47, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+#scenario .scene .scene_image img {
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  max-height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 150px;
+}
+/* line 57, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+#scenario .scene .scene_description {
+  width: 100%;
+  min-height: 130px;
+  height: auto;
+  background: #eeeeee;
+  margin: 10px 0;
+  padding: 10px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  font-size: 14px;
+}
+/* line 79, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+#scenario .arrow {
+  padding-top: 150px;
+  text-align: center;
+}
+/* line 82, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+#scenario .arrow img {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1000px) {
+  /* line 90, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+  .container {
+    width: 90%;
+  }
+
+  /* line 93, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+  .arrow {
+    display: none;
+  }
+
+  /* line 96, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+  .title {
+    font-size: 18px;
+  }
+
+  /* line 100, /Users/naka/Desktop/github/select-shop-map/app/assets/stylesheets/about.scss */
+  #scenario .scene {
+    width: 80%;
+    margin: 10px auto !important;
+  }
+}

@@ -9,8 +9,10 @@ main {
 
 #logo {
   width: 500px;
-  margin: 30px auto;
+  margin: 40px auto 30px;
   max-width: 90%;
+  background-image: url("/assets/back.png");
+  background-size: cover;
   border: 1px rgba(0,0,0,0.4) solid;
 }
 
