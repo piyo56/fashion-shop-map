@@ -195,23 +195,6 @@
           map.setZoom(15);
         }
       });
-      
-      // Overlapping Marker Spiderfier for Google Maps API v3
-      var oms = new OverlappingMarkerSpiderfier(map);
-      console.log(oms);
-      var iw = new google.maps.InfoWindow();
-      oms.addListener('click', function(marker, event) {
-        //iw.setContent(marker.desc);
-        iw.open(map, marker);
-      });
-      oms.addListener('spiderfy', function(markers) {
-        iw.close();
-      });
-    
-      markers.forEach(function(marker){
-        oms.addMarker(marker);
-      });
-      console.log(oms);
     <% #}}} %>
     </script>
     <%= javascript_include_tag 'choices' %>
