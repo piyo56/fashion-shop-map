@@ -14,8 +14,11 @@ $(document).ready(function(){
 });
 
 // チェックボックスの選択処理
+// イベントバブリングを防止してチェック属性が正常に切り替わるようにする
 $('input[name="s_ids[]"]').on('click', function(e) {
-  //イベントバブリングを防止してチェック属性が正常に切り替わるようにする
+  e.stopPropagation();
+});
+$('input[name="p_ids[]"]').on('click', function(e) {
   e.stopPropagation();
 });
 
