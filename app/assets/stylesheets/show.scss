@@ -109,7 +109,6 @@ main {
   width: calc( 100% - 330px );
   box-sizing: border-box;
   padding-bottom: 10px;
-  //height: -webkit-calc(100% - 34px - 53px);
   height: 550px;
   margin-left: 10px;
   border: 1px solid rgba(0,0,0,0.3);
@@ -118,9 +117,10 @@ main {
 
 @media screen and ( max-width:768px ) {
   main {
-    padding: 20px;
+    padding: 20px 0 0;
   }
   #condition {
+    display: none;
     max-height: 80px;
     overflow: scroll;
     padding: 10px 0;
@@ -144,6 +144,7 @@ main {
   }
 
   #panel {
+    display: none;
     width: 100%;
     height: 150px;
     font-size: 12px;
@@ -166,9 +167,10 @@ main {
   }
 
   #map {
-    width: calc(100%);
-    height: 250px;
+    width: 100%;
+    height: 400px;
     margin: 10px 0;
+    border: none;
   }
 }
 

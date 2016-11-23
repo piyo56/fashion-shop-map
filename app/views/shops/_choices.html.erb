@@ -4,13 +4,12 @@
 
     <div class="row">
       <!-- ショップの選択肢のドロップダウン -->
-      <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-1">
+      <div class="col-xs-3 col-xs-offset-2 col-sm-4 col-sm-offset-1">
         <% #{{{ %>
         <div class="button-group">
           <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-shopping-cart"></span>
-            &nbsp;
-            <span>ショップ</span>
+            <span class="choice_name">&nbsp;ショップ</span>
             &nbsp;&nbsp;
             <span class="glyphicon glyphicon-menu-down"></span>
           </button>
@@ -34,13 +33,12 @@
         <% #}}} %>
       </div>
       <!-- 都道府県の選択肢のドロップダウン -->
-      <div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-0">
+      <div class="col-xs-3 col-xs-offset-0 col-sm-4 col-sm-offset-0">
         <% #{{{ %>
         <div class="button-group">
           <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-map-marker"></span>
-            &nbsp;
-            <span>都道府県</span>
+            <span class="choice_name">&nbsp;都道府県</span>
             &nbsp;&nbsp;
             <span class="glyphicon glyphicon-menu-down"></span>
           </button>
@@ -54,7 +52,7 @@
         </div>
         <% #}}} %>
       </div>
-      <div class="col-xs-2 col-xs-offset-5 col-sm-2 col-sm-offset-0">
+      <div class="col-xs-2 col-xs-offset-0 col-sm-2 col-sm-offset-0">
         <%= submit_tag('検索', {id:"search_btn", class: "btn btn-primary btn-md", disabled:"disabled"}) %>
       </div>
     </div>
