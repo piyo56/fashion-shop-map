@@ -9,7 +9,7 @@
   <meta property="og:url" content="http://www.fashion-shop-map.com" />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="http://www.fashion-shop-map.com/assets/back.png" />
-  <meta property="og:description" content="セレクトショップを中心としたファッションショップの店舗検索システム" />
+  <meta property="og:description" content="Fashion Shop Map ─ セレクトショップを中心としたショップの位置情報検索サービス🗺 " />
   <meta property="twitter:site" content="@piyo56_net" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
@@ -77,7 +77,7 @@
 <div class="clear"></div>
 <footer>
   <% share_url   = "http://www.fashion-shop-map.com/" %>
-  <% description = "[Fashion] セレクトショップを中心としたショップの位置情報検索システム🗺" %>
+  <% description = "Fashion Shop Map ─ セレクトショップを中心としたショップの位置情報検索サービス🗺 " %>
   <% # 🌏 %>
   <div id="share_buttons">
   <% #{{{ %>
@@ -95,7 +95,7 @@
         <% hatena_url = "https://b.hatena.ne.jp/add?mode=confirm&url=" + share_url + "&title=" + URI.encode(description)%>
         <div class="sns_icon hatena"><a href='<%= hatena_url %>' target="_blank" title="はてなブックマークに登録"><img src="/assets/share/hatena.svg" alt="はてなブックマーク"></a></div>
       <li>
-        <div class="sns_icon line"><a href='<%= "http://line.me/R/msg/text/?" + URI.encode(description + " " + share_url) %>' target="_blank" title="LINEに送る"><img src="assets/share/line.png" alt="LINE"></a></div>
+        <div class="sns_icon line"><a href='<%= "http://line.me/R/msg/text/?" + URI.encode(description) + " " + share_url %>' target="_blank" title="LINEに送る"><img src="assets/share/line.png" alt="LINE"></a></div>
     </ul>
     <% #}}} %>
   </div>
