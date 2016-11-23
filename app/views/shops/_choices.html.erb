@@ -14,7 +14,7 @@
             &nbsp;&nbsp;
             <span class="glyphicon glyphicon-menu-down"></span>
           </button>
-          <ul class="dropdown-menu scrollable-menu">
+          <ul class="dropdown-menu dropdown-menu-left scrollable-menu">
             <li>
             <a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
               <button type="button" id="select_all" class="btn btn-primary btn-xs">
@@ -44,7 +44,7 @@
             &nbsp;&nbsp;
             <span class="glyphicon glyphicon-menu-down"></span>
           </button>
-          <ul class="dropdown-menu scrollable-menu">
+          <ul class="dropdown-menu dropdown-menu-left scrollable-menu">
             <% @prefectures.each do |prefecture| %>
               <li><a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
                   <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %> <%= 'checked="checked"' if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>>&nbsp;<%= prefecture.name %>

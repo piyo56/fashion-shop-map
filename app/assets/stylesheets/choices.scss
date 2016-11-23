@@ -14,11 +14,16 @@
     margin: 5px 0;
 
   }
-
+  
   .scrollable-menu {
     height: auto;
+    max-width: 100%;
     max-height: 180px;
     overflow-x: hidden;
+  }
+
+  input[type="checkbox"] {
+    word-wrap: break-word;
   }
 }
 
