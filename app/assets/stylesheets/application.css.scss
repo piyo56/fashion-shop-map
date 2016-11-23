@@ -119,6 +119,9 @@ footer {
   body {
     font-size: 13px ;	/* 文字サイズ */
   }
+  main {
+    min-height: -webkit-calc(100% - 50px - 100px);
+  }
   header{
     #page_title {
       font-size: 24px;
@@ -133,6 +136,7 @@ footer {
   }
   footer {
     text-align: center;
+    height: 100px;
     p {
       margin: 0;
       width: 100%;
