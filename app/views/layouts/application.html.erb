@@ -93,7 +93,7 @@
         <div class="sns_icon google"><a href='<%= google_url %> ' target="_blank" title="Google+で共有"><img src="/assets/share/google.png" alt="googleplus"></a></div>
       <li>
         <% hatena_url = "https://b.hatena.ne.jp/add?mode=confirm&url=" + share_url + "&title=" + URI.encode(description)%>
-        <div class="sns_icon hatena"><a href='<%= hatena_url %>' target="_blank" title="はてなブックマークに登録"><img src="/assets/share/hatena.png" alt="はてなブックマーク"></a></div>
+        <div class="sns_icon hatena"><a href='<%= hatena_url %>' target="_blank" title="はてなブックマークに登録"><img src="/assets/share/hatena.svg" alt="はてなブックマーク"></a></div>
       <li>
         <div class="sns_icon line"><a href='<%= "http://line.me/R/msg/text/?" + URI.encode(description + " " + share_url) %>' target="_blank" title="LINEに送る"><img src="assets/share/line.png" alt="LINE"></a></div>
     </ul>
