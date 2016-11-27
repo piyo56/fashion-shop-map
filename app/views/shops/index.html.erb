@@ -1,6 +1,11 @@
 <%= stylesheet_link_tag "index", :media => "all" %>
+<% breadcrumb :root%>
 
 <div class="container">
+  <div class="bread_crumbs">
+    <span><%= breadcrumbs  %></span>
+    <% # , :style: :bootstrap, display_single_fragment: true %>
+  </div>
   <% if @error_msg %>
     <div class="alert alert-danger" role="alert">
       <strong><%= @error_msg %></strong>

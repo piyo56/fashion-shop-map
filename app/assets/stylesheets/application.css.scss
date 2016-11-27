@@ -61,6 +61,18 @@ main {
   width: 100%;
   min-height: -webkit-calc(100% - 50px - 50px);
   background: #f2f4f6;
+
+  .breadcrumbs_wrapper {
+    width: 100%;
+    padding: 20px 30px 10px;
+    height: 30px;
+    line-height: 10px;
+    text-align: left !important;
+
+    .breadcrumbs {
+      display: inline-block !important;
+    }
+  }
 }
 
 footer {
@@ -122,6 +134,10 @@ footer {
   }
   main {
     min-height: -webkit-calc(100% - 50px - 100px);
+
+    .breadcrumbs_wrapper {
+      padding: 15px 20px 10px;
+    }
   }
   header{
     #page_title {
@@ -155,8 +171,12 @@ footer {
     }
   }
   main {
-    padding: 20px 0 0;
+    padding: 10px 0 0;
     min-height: -webkit-calc(100% - 50px - 100px);
+
+    .breadcrumbs_wrapper {
+      padding-top: 10px;
+    }
   }
   footer {
     padding: 10px 0 0;

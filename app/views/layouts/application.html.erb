@@ -17,24 +17,36 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag %>
     
-  <!-- stylesheet files -->
+  <!-- コントローラ・アクションに応じたスタイルシート、パンくず -->
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <% case params[:controller] %>
   <% when "shops" %>
 
     <% case params[:action] %>
     <% when "index" %>
+      <% breadcrumb :root%>
       <%= stylesheet_link_tag "index", :media => "all" %>
       <%= stylesheet_link_tag "choices", :media => "all" %>
     <% when "show" %>
+      <% breadcrumb :show%>
       <%= stylesheet_link_tag "show", :media => "all" %>
       <%= stylesheet_link_tag "choices", :media => "all" %>
     <% when "about" %>
+      <% breadcrumb :about%>
       <%= stylesheet_link_tag "about", media: "all" %>
     <% end %>
 
   <% when "inquiry" %>
     <%= stylesheet_link_tag "inquiry", :media => "all" %>
+
+    <% case params[:action] %>
+    <% when "index" %>
+      <% breadcrumb :inquiry%>
+    <% when "confirm" %>
+      <% breadcrumb :inquiry_confirm%>
+    <% when "thanks" %>
+      <% breadcrumb :inquiry_thanks %>
+    <% end %>
   <% end %>
 
   <!-- javascript files -->
@@ -66,13 +78,18 @@
   <a href="/about">
     <button id="about" type="button" class="btn btn-default">
       <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-      <span id="about_text">当サイトについて</span>
+      <span id="about_text">本サービスについて</span>
     </button>
   </a>
 </header>
 <div class="clear"></div>
 
 <main>
+  <div class="breadcrumbs_wrapper">
+    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+    <% separator = %q(&nbsp;<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>&nbsp;) %>
+    <%= breadcrumbs display_single_fragment: true, separator: separator %>
+  </div>
   <%= yield %>
 </main>
 

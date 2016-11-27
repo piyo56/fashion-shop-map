@@ -17,14 +17,14 @@ end
 
 # sending a inquiry page
 crumb :inquiry do
-  link "ご意見・ご要望", inquiry_path
+  link "お問い合わせ", inquiry_path
   parent :root
 end
 crumb :inquiry_confirm do
-  link "送信内容の確認", inquiry_confirm_path
+  link "内容確認", inquiry_confirm_path
   parent :inquiry
 end
-crumb :inquiry do
+crumb :inquiry_thanks do
   link "送信完了", inquiry_thanks_path
   parent :inquiry
 end
