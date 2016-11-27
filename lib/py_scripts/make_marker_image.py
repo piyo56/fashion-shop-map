@@ -7,7 +7,7 @@ from PIL import Image
 与えられた画像をgmapのmarker用に整形する
 読み込み画像は正方形であると仮定
 """
-if not len(sys.argv) == 2:
+if not len(sys.argv) == 3:
     print("invalid argument!")
     sys.exit()
 
@@ -15,7 +15,8 @@ if not len(sys.argv) == 2:
 logo_img = Image.open(sys.argv[1], 'r')
 if logo_img.mode != "RGBA":
     logo_img = logo_img.convert("RGBA") # RGBモードに変換する
-basename = sys.argv[1].split("/")[-1].split(".")[0]
+shop_id = sys.argv[2]
+#basename = sys.argv[1].split("/")[-1].split(".")[0]
 
 width  = logo_img.size[0]
 height = logo_img.size[1]
@@ -29,7 +30,8 @@ data = logo_img.load()
 logo_color = data[3,3]
 
 # ピン用の下三角画像を読み込み
-pin_img_path = os.environ.get("PROJECT_HOME") + "/app/assets/images/pin.png"
+root_dir = os.environ["PROJECT_HOME"]
+pin_img_path = root_dir + "/lib/assets/pin.png"
 pin_img = Image.open(pin_img_path)
 data = pin_img.load()
 for x in range(0, pin_img.size[0]):
@@ -45,4 +47,4 @@ marker_pin_img.paste(logo_img, (0, 0))
 marker_pin_img.paste(pin_img, (8, 32))
 
 # 保存
-marker_pin_img.save("{}/app/assets/images/{}.png".format(os.environ["PROJECT_HOME"], basename), 'PNG', quality=100, optimize=True)
+marker_pin_img.save("{}/app/assets/images/{}.png".format(root_dir, shop_id), 'PNG', quality=100, optimize=True)

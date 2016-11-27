@@ -39,4 +39,4 @@ else:
     marker_img = logo_img.copy()
 
 # 保存
-marker_img.save("/Users/naka/Desktop/square.png", 'PNG', quality=100, optimize=True)
+marker_img.save(os.environ["PROJECT_HOME"]+"/lib/tmp/tmp.png", 'PNG', quality=100, optimize=True)
