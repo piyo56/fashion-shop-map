@@ -29,6 +29,7 @@ gem 'hirb'
 gem 'hirb-unicode'
 gem 'bootstrap-sass'
 #gem 'jquery-turbolinks'
+gem 'gretel' # パンくずリスト
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
