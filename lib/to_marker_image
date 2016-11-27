@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#-----------------------------------------
+# params: ロゴ画像のパス
+# params: データベースにおけるショップid
+#-----------------------------------------
+
+python py_scripts/make_image_square.py $1
+python py_Scripts/make_marker_image.py $PROJECT_HOME/lib/tmp/tmp.png $2
+
