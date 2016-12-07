@@ -43,13 +43,16 @@
             <span class="glyphicon glyphicon-menu-down"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-left scrollable-menu">
-            <% @prefectures.each do |prefecture| %>
-              <li><a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
+            <% @all_regions = @prefectures.pluck(:region).flatten.uniq %>
+            <% @all_regions.each do |region| %>
+              <p class="region_name"><%= region %></p>
+              <% @prefectures.where(region: region).each do |prefecture| %>
+                <li><a href="javascript:void(0)" class="small" data-value="option1" tabIndex="-1">
                   <input type="checkbox" name="p_ids[]" value=<%= prefecture.id %> <%= 'checked="checked"' if @selected_prefecture_ids && @selected_prefecture_ids.include?(prefecture.id) %>>&nbsp;<%= prefecture.name %>
-              </a></li>
+                </a></li>
+              <% end %>
             <% end %>
           </ul>
-        </div>
         <% #}}} %>
       </div>
       <div class="col-xs-2 col-xs-offset-0 col-sm-2 col-sm-offset-0">
