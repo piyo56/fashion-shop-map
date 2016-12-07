@@ -8,11 +8,20 @@
   height: auto;
   line-height: 40px;
   margin: 0 auto;
-
+  
   button {
     width: 100%;
     margin: 5px 0;
+  }
 
+  p.region_name {
+    width: 50%;
+    height: 100%;
+    line-height: 100%;
+    color: gray;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 5px 0px 0 10px;
   }
   
   .scrollable-menu {
