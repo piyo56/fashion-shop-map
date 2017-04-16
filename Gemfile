@@ -40,6 +40,7 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'spring'
+  gem 'annotate'   # modelのソースの先頭にテーブルのスキーマ情報を付加してくれる
 end
 
 group :production do

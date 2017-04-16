@@ -1,8 +1,16 @@
-# class LatLngValidator < ActiveModel::Validator
-#   def validate(record)
-#     lat = record.latitude
-#     lng = record.longitude
-#     delta = 30 / 1000000
+# == Schema Information
+#
+# Table name: branches
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  address       :string
+#  shop_id       :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  latitude      :float
+#  longitude     :float
+#  prefecture_id :integer
 #
 #     branches = Branch.all.select(:latitude, :longitude)
 #     branches.each do |b|
