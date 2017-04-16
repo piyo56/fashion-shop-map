@@ -6,17 +6,23 @@ class ShopsController < ApplicationController
   end
 
   def map
-    # ショップIDがなければエラー
-    if params[:s_ids].nil?
-      @error_msg = "invalid get parameters"
-      return
-    end
-
+    params[:s_ids] ||= []
+    params[:p_ids] ||= []
     begin
-      @selected_shop_ids       = params[:s_ids].map{|id| id.to_i} if !params[:p_ids].nil?
-      @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i} if !params[:p_ids].nil?
-      @hit_branches_count, @branches = Shop.fetch_branches(@selected_shop_ids, @selected_prefecture_ids) 
-      @branches = Branch.make_latlng_uniq(@branches)
+      if params[:p_ids].present? && params[:s_ids].present?
+        @selected_shop_ids       = params[:s_ids].map{|id| id.to_i} if !params[:p_ids].nil?
+        @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i} if !params[:p_ids].nil?
+
+        @branches = Branch.of_shops(@selected_shop_ids)
+                          .in_prefecutres(@selected_prefecture_ids)
+        @branches = Branch.make_latlng_uniq(@branches)
+        @hit_shops = @selected_shop_ids.map do |shop_id|
+          {
+            name: @shops.find(shop_id).name,
+            branches_count: @branches.where(shop_id: shop_id).count
+          }
+        end
+      end
     rescue => e
       @error_msg = "GET Parameter is not valid"
       ErrorUtility.log_and_notify e

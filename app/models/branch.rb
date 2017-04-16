@@ -12,26 +12,23 @@
 #  longitude     :float
 #  prefecture_id :integer
 #
-#     branches = Branch.all.select(:latitude, :longitude)
-#     branches.each do |b|
-#       if lat == b[:latitude] && lng == b[:longitude]
-#         record.latitude += delta
-#       end
-#     end
-#   end
-# end
 
 class Branch < ActiveRecord::Base
   belongs_to :shop, counter_cache: true
   belongs_to :prefecture
 
   validates :name, presence: true, uniqueness: true
-
-  # include ActiveModel::Validations
-  # validates_with LatLngValidator
-  
   geocoded_by :address
   after_validation :geocode
+
+  scope :with_shop, -> { includes(:shop) }
+  scope :with_prefecture, -> { includes(:prefecture) }
+  scope :of_shops, -> ids { where("shop_id IN (?)", ids) }
+  scope :in_prefecutres, -> ids { where("prefecture_id IN (?)", ids) }
+
+  def self.search(sid, pid)
+    Branch.where(shop_id: sid, prefecture_id: pid)
+  end
 
   def self.make_latlng_uniq(branches)
     increment_num = 0.0001
