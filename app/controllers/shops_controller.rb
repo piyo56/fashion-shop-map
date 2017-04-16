@@ -5,7 +5,7 @@ class ShopsController < ApplicationController
   def index
   end
 
-  def show
+  def map
     # ショップIDがなければエラー
     if params[:s_ids].nil?
       @error_msg = "invalid get parameters"
@@ -35,9 +35,6 @@ class ShopsController < ApplicationController
       })
       marker.json({title: branch.name})
     end
-  end
-
-  def about
   end
 
   private
