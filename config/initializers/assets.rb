@@ -11,11 +11,14 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 # precomiling css
-Rails.application.config.assets.precompile += %w( index.scss )
-Rails.application.config.assets.precompile += %w( choices.scss )
-Rails.application.config.assets.precompile += %w( show.scss )
-Rails.application.config.assets.precompile += %w( about.scss )
-Rails.application.config.assets.precompile += %w( inquiry.scss )
+css_files = [
+  "inquiry/inquiry.scss",
+  "shops/map.scss",
+  "static_pages/about.scss",
+  "static_pages/home.scss",
+  "choices.scss",
+]
+Rails.application.config.assets.precompile += css_files
 
 # precomiling js
 Rails.application.config.assets.precompile += %w( html5shiv.js )

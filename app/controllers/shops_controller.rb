@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
-  before_action :set_shops, only: [:index, :show]
-  before_action :set_prefectures, only: [:index, :show]
+  before_action :set_shops, only: [:map]
+  before_action :set_prefectures, only: [:map]
 
   def index
   end

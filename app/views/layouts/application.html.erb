@@ -17,27 +17,12 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag %>
     
-  <!-- コントローラ・アクションに応じたスタイルシート、パンくず -->
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <% case params[:controller] %>
-  <% when "shops" %>
+  <!-- コントローラ・アクションに応じたスタイルシート -->
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag 'choices', media: 'all' %>
 
-    <% case params[:action] %>
-    <% when "index" %>
-      <% breadcrumb :root%>
-      <%= stylesheet_link_tag "index", :media => "all" %>
-      <%= stylesheet_link_tag "choices", :media => "all" %>
-    <% when "show" %>
-      <% breadcrumb :show%>
-      <%= stylesheet_link_tag "show", :media => "all" %>
-      <%= stylesheet_link_tag "choices", :media => "all" %>
-    <% when "about" %>
-      <% breadcrumb :about%>
-      <%= stylesheet_link_tag "about", media: "all" %>
-    <% end %>
-
-  <% when "inquiry" %>
-    <%= stylesheet_link_tag "inquiry", :media => "all" %>
+  <% if params[:controller] == "inquiry" %>
+    <%= stylesheet_link_tag "inquiry/inquiry", :media => "all" %>
 
     <% case params[:action] %>
     <% when "index" %>
@@ -47,12 +32,13 @@
     <% when "thanks" %>
       <% breadcrumb :inquiry_thanks %>
     <% end %>
+  <% else %>
+    <%= stylesheet_link_tag "#{params[:controller]}/#{params[:action]}", :media => "all" %>
   <% end %>
 
-  <!-- javascript files -->
   <%= javascript_include_tag 'application' %>
   <!--[if lt IE 9]>
-    <%= javascript_include_tag 'html5shiv' %>
+  <%= javascript_include_tag 'html5shiv' %>
   <![endif]-->
   <script async>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -123,13 +109,11 @@
 <div class="clear"></div>
 
 <!-- javascript files -->
+<%= javascript_include_tag 'choices' %>
 <% case params[:controller] %>
 <% when "shops" %>
-
   <% case params[:action] %>
-  <% when "index" %>
-    <%= javascript_include_tag 'choices' %>
-  <% when "show" %>
+  <% when "map" %>
     <script src="http://maps.googleapis.com/maps/api/js?key=<%= ENV["GMAPS_API_KEY"] %>&libraries=places"></script>
     <%= javascript_include_tag 'oms.min' %>
     <%= javascript_include_tag 'infobox_packed' %>
@@ -219,9 +203,7 @@
       });
     <% #}}} %>
     </script>
-    <%= javascript_include_tag 'choices' %>
   <% end %>
-
 <% end %>
 <%= javascript_include_tag 'share_buttons'%>
 </body>
