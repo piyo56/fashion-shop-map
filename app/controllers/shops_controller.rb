@@ -2,26 +2,23 @@ class ShopsController < ApplicationController
   before_action :set_shops, only: [:map]
   before_action :set_prefectures, only: [:map]
 
-  def index
-  end
-
   def map
-    params[:s_ids] ||= []
-    params[:p_ids] ||= []
-    begin
-      if params[:p_ids].present? && params[:s_ids].present?
-        @selected_shop_ids       = params[:s_ids].map{|id| id.to_i} if !params[:p_ids].nil?
-        @selected_prefecture_ids = params[:p_ids].map{|id| id.to_i} if !params[:p_ids].nil?
+    if params['p_ids'].blank? || params['s_ids'].blank?
+      render 'static_pages/home' and return
+    end
 
-        @branches = Branch.of_shops(@selected_shop_ids)
-                          .in_prefecutres(@selected_prefecture_ids)
-        @branches = Branch.make_latlng_uniq(@branches)
-        @hit_shops = @selected_shop_ids.map do |shop_id|
-          {
-            name: @shops.find(shop_id).name,
-            branches_count: @branches.where(shop_id: shop_id).count
-          }
-        end
+    begin
+      @selected_shop_ids       = params['s_ids'].map{|id| id.to_i}
+      @selected_prefecture_ids = params['p_ids'].map{|id| id.to_i}
+
+      @branches = Branch.of_shops(@selected_shop_ids)
+                        .in_prefecutres(@selected_prefecture_ids)
+      @branches = Branch.make_latlng_uniq(@branches)
+      @hit_shops = @selected_shop_ids.map do |shop_id|
+        {
+          name: @shops.find(shop_id).name,
+          branches_count: @branches.where(shop_id: shop_id).count
+        }
       end
     rescue => e
       @error_msg = "GET Parameter is not valid"

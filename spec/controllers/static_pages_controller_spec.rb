@@ -23,4 +23,18 @@ RSpec.describe StaticPagesController, type: :controller do
       expect(response).to render_template :home
     end
   end
+
+  describe 'Get #about' do
+    before do
+      get :about
+    end
+
+    it 'リクエストは200 OKとなること' do
+      expect(response).to be_success
+    end
+
+    it ':aboutのテンプレートを表示すること' do
+      expect(response).to render_template :about
+    end
+  end
 end

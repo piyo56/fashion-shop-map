@@ -15,7 +15,8 @@ FactoryGirl.define do
     address "XX県YY市ZZ町1-1-1"
     latitude 43.067934
     longitude 141.352615
-    prefecture_id (1..47).to_a.sample
+    sequence(:shop_id) {|n| n}
+    sequence(:prefecture_id) {|n| n}
   end
   
   # 都道府県

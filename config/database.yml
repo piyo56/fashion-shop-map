@@ -30,7 +30,7 @@ test:
   adapter:  postgresql
   host:     localhost
   encoding: utf8
-  database: ssm_app
+  database: ssm_app_test
   username: <%= ENV["DB_USERNAME"] %>
   password: <%= ENV["DB_PASSWORD"] %>
   pool:     5
@@ -42,7 +42,7 @@ production:
   adapter:  postgresql
   host:     localhost
   encoding: utf8
-  database: ssm_app
+  database: ssm_app_production
   username: <%= ENV["DB_USERNAME"] %>
   password: <%= ENV["DB_PASSWORD"] %>
   pool:     5
