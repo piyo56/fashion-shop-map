@@ -1,6 +1,13 @@
 class ShopsController < ApplicationController
-  before_action :set_shops, only: [:map]
+  before_action :set_shop, only: [:show]
+  before_action :set_shops, only: [:index, :map]
   before_action :set_prefectures, only: [:map]
+
+  def index
+  end
+
+  def show
+  end
 
   def map
     if params['p_ids'].blank? || params['s_ids'].blank?
@@ -50,12 +57,16 @@ class ShopsController < ApplicationController
       end
     end
 
+    def set_shop
+      @shop = Shop.find(params[:id])
+    end
+
     def set_shops
-      @shops = Shop.order("name").select(:id, :name, :branches_count)
+      @shops = Shop.all.order("name")
     end
     
     def set_prefectures
-      @prefectures = Prefecture.select(:id, :name)
+      @prefectures = Prefecture.all
     end
 end
 

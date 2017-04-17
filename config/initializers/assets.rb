@@ -11,19 +11,13 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 # precomiling css
-css_files = [
-  "inquiry/inquiry.scss",
-  "shops/map.scss",
-  "static_pages/about.scss",
-  "static_pages/home.scss",
-  "choices.scss",
-]
+prefix = "./app/assets/stylesheets/"
+css_files = Dir.glob("#{prefix}**/*.scss")
+               .map { |file| file.split(prefix).last }
 Rails.application.config.assets.precompile += css_files
 
 # precomiling js
-Rails.application.config.assets.precompile += %w( html5shiv.js )
-Rails.application.config.assets.precompile += %w( choices.js )
-Rails.application.config.assets.precompile += %w( infobox_packed.js )
-Rails.application.config.assets.precompile += %w( markerclusterer.min.js )
-Rails.application.config.assets.precompile += %w( share_buttons.js )
-Rails.application.config.assets.precompile += %w( oms.min.js )
+prefix = "./app/assets/javascripts/"
+js_files = Dir.glob("#{prefix}**/*.js")
+              .map { |file| file.split(prefix).last }
+Rails.application.config.assets.precompile += js_files

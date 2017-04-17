@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.shop {
+  $header_height: 130px;
+  $content_height: 100px;
+  
+  cursor: pointer;
+  width: 220px;
+  height: $header_height + $content_height;
+  position: relative;
+  background: white;
+  margin: 10px;
+  border-bottom: 2px solid #e7e4e2;
+  border-radius: 2px;
+  background-color: #fff;
+
+
+  .shop_header {
+    position: absolute;
+    background-color: #efedeb;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: $header_height;
+    padding: 20px 0;
+
+    .shop_logo {
+      width: 100%;
+      text-align: center;
+    }
+
+    .shop_name {
+      width: 100%;
+      margin-top:5px;
+      text-align: center;
+    }
+  }
+
+  .shop_content {
+    position: absolute;
+    top: $header_height;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+
+    .stat {
+      width: 49%;
+      padding: 20px 10px;
+      text-align: center;
+      display: inline-block;
+
+      & + .stat {
+        border-left: 1px solid #eee;
+      }
+    }
+  }
+}

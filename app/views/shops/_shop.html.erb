@@ -1,0 +1,24 @@
+<div class="shop">
+  <div class="shop_header">
+    <div class="shop_logo">
+      <%= image_tag "#{shop.id}.png", class: 'logo_img' %>
+    </div>
+    <%= link_to shop_path(shop) do %>
+      <div class='shop_name'><%= shop.name %></div>
+    <% end %>
+  </div>
+  <div class="shop_content">
+    <div id="branches_count" class="stat">
+      <strong><%= shop.branches_count %></strong>
+      <br />
+      店舗数
+    </div>
+    </a>
+    <div class="stat">
+      <strong><%= shop.branches_count %></strong>
+      <br />
+      店舗数
+    </div>
+    </a>
+  </div>
+</div>
