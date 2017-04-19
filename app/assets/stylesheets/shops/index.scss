@@ -8,7 +8,6 @@
   $header_height: 130px;
   $content_height: 100px;
   
-  cursor: pointer;
   width: 220px;
   height: $header_height + $content_height;
   position: relative;
@@ -31,12 +30,13 @@
 
     .shop_logo {
       width: 100%;
+      margin-top: 5px;
       text-align: center;
     }
 
     .shop_name {
       width: 100%;
-      margin-top:5px;
+      margin-top: 10px;
       text-align: center;
     }
   }
@@ -46,7 +46,7 @@
     top: $header_height;
     left: 0;
     width: 100%;
-    padding: 10px 0;
+    padding: 10px 0px;
 
     .stat {
       width: 49%;
