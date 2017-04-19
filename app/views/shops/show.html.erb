@@ -1,12 +1,57 @@
-<div class="title">
-  <%= @shop.name %>
-</div>
+<div class="container">
+  <div class="title">
+    <%= image_tag("#{@shop.id}.png", class: 'logo') %>
 
-<div class="branches_count">
-  <%= @shop.branches_count %>
+    <h1 class="name">
+      <%= @shop.name %>
+    </h1>
+  </div>
+
+  <div class="info">
+    <div class="branches_count">
+      登録数: <%= @shop.branches_count %> 店舗
+    </div>
+    <span id="prefectures_json"><%= @prefectures%></span>
+    <span id="branches_json"><%= @branches%></span>
+  </div>
+
+  <div id="japan_map">
+  </div>
 </div>
+<script>
+var pref = JSON.parse($("#prefectures_json").text());
+var branches = JSON.parse($("#branches_json").text());
+var width = 900,
+  height = 960;
+var color = d3.scale.category20();
+
+var svg = d3.select("#japan_map").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var projection = d3.geo.mercator()
+    .center([136, 35.5])
+    .scale(2000)
+    .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+  .projection(projection);
 
 
-<div class="logo">
-  <%= image_tag("#{@shop.id}.png") %>
-</div>
+d3.json("/assets/japan.json", function(error, japan) {
+  console.info(japan);
+  var topo = topojson.feature(japan, japan.objects.pref).features;
+  svg.selectAll(".pref")
+     .data(topo)
+     .enter()
+     .append("path")
+     .style("fill", function(d) {
+      var color = branches[d.properties.name_local];
+      return "#"+color+color+color;
+     })
+     .attr("class", function(d) {
+        return "pref pref" + pref[d.properties.name_local];
+      })
+     .attr("d", path)
+});
+</script>

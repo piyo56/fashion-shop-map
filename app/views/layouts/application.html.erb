@@ -36,6 +36,11 @@
     <%= stylesheet_link_tag "#{params[:controller]}/#{params[:action]}", :media => "all" %>
   <% end %>
 
+  <% if params[:controller] == "shops" && params[:action] == "show" %>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <% end %>
+
   <%= javascript_include_tag 'application' %>
   <!--[if lt IE 9]>
   <%= javascript_include_tag 'html5shiv' %>

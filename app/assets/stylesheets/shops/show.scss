@@ -1,0 +1,103 @@
+.container {
+}
+
+$h1_size: 32px;
+
+.title {
+  margin-top: 20px;
+  height: 50px;
+  position: relative;
+  .logo {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .name {
+    font-size: $h1_size;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 34px - $h1_size;
+    left: 55px;
+  }
+}
+.info {
+  height: 30px;
+  position: relative;
+
+  .branches_count {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 55px;
+  }
+}
+#prefectures_json, #branches_json {
+  display: none;
+}
+
+#japan_map {
+  // background-color: #7daec3;
+  .pref {
+    fill: #fff;
+    stroke: #aaa;
+  }
+}
+
+
+//   $header_height: 130px;
+//   $content_height: 100px;
+//   
+//   width: 220px;
+//   height: $header_height + $content_height;
+//   position: relative;
+//   background: white;
+//   margin: 10px;
+//   border-bottom: 2px solid #e7e4e2;
+//   border-radius: 2px;
+//   background-color: #fff;
+//
+//
+//   .shop_header {
+//     position: absolute;
+//     background-color: #efedeb;
+//     top: 0;
+//     left: 0;
+//     box-sizing: border-box;
+//     width: 100%;
+//     height: $header_height;
+//     padding: 20px 0;
+//
+//     .shop_logo {
+//       width: 100%;
+//       margin-top: 5px;
+//       text-align: center;
+//     }
+//
+//     .shop_name {
+//       width: 100%;
+//       margin-top: 10px;
+//       text-align: center;
+//     }
+//   }
+//
+//   .shop_content {
+//     position: absolute;
+//     top: $header_height;
+//     left: 0;
+//     width: 100%;
+//     padding: 10px 0px;
+//
+//     .stat {
+//       width: 49%;
+//       padding: 20px 10px;
+//       text-align: center;
+//       display: inline-block;
+//
+//       & + .stat {
+//         border-left: 1px solid #eee;
+//       }
+//     }
+//   }
+// }

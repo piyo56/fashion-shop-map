@@ -1,4 +1,5 @@
 class ShopsController < ApplicationController
+  require 'json'
   before_action :set_shop, only: [:show]
   before_action :set_shops, only: [:index, :map]
   before_action :set_prefectures, only: [:map]
@@ -7,6 +8,21 @@ class ShopsController < ApplicationController
   end
 
   def show
+    # D3.jsで描画するのに必要な
+    ## 都道府県情報
+    all_prefectures = Prefecture.pluck(:name)
+    json_data = (1..47).to_a.zip(all_prefectures).to_h
+    @prefectures = JSON.generate(json_data)
+
+    ## 各県の店舗数
+    json_data = {}
+    Prefecture.all.collect do |p|
+      branches_num = Branch.where(prefecture_id: p.id, shop_id: @shop).count
+      json_data[p.name] = num2color(branches_num * 20)
+    end
+    @branches = JSON.generate(json_data)
+                      
+    #@branches = Branch.find_by_sql("select prefectures.name as name, count(*) as branches_num from branches join prefectures on prefecture_id = prefectures.id group by prefecuture_id")
   end
 
   def map
@@ -67,6 +83,13 @@ class ShopsController < ApplicationController
     
     def set_prefectures
       @prefectures = Prefecture.all
+    end
+
+    def num2color(num)
+      return "00" if num > 255
+      num = 255 - num
+      color_codes = (0..15).to_a.zip(("0".."9").to_a.concat(("A".."F").to_a)).to_h
+      color_codes[num/16] + color_codes[num%16]
     end
 end
 
