@@ -20,14 +20,9 @@ class ShopsController < ApplicationController
     branches = @shop.branches.includes(:prefecture)
     all_prefectures.each do |p|
       branches_count = branches.where(prefecture_id: p.id).count
-      json_data[p.name] = branches_count
+      json_data[p.name] = to_colorcode(branches_count)
     end
-    _max = json_data.values.max
-    _min = json_data.values.min
 
-    json_data.each do |_name, _count|
-      json_data[_name] = to_colorcode(_count, _max, _min)
-    end
     @branches = JSON.generate(json_data)
                       
     #@branches = Branch.find_by_sql("select prefectures.name as name, count(*) as branches_num from branches join prefectures on prefecture_id = prefectures.id group by prefecuture_id")
@@ -93,43 +88,17 @@ class ShopsController < ApplicationController
       @prefectures = Prefecture.all
     end
 
-    def to_colorcode(num, max=0, min=255)
-      val_per_num = 256.0 / (max - min)
-      color_value = val_per_num * (num - min)
-      
-      rgb = to_heatmap_rgb(color_value)
-      # color_codes = (0..15).to_a.zip(("0".."9").to_a << ("A".."F").to_a).to_h
-      # rgb.map{|v| color_codes[v/16] + color_codes[v%16]}
-    end
-
-    def to_heatmap_rgb(value)
-      # Red
-      if value < 128
-        red = 0;
-      elsif value > 127 && value < 191
-        red = (value-127)*4;
-      elsif value > 190
-        red = 255;
+    def to_colorcode(num)
+      if num == 0
+        return "#ebedf0"
+      elsif num < 3
+        return "#c6e48b"
+      elsif num < 8
+        return "#7bc96f"
+      elsif num < 20
+        return "#239a3b"
+      else
+        return "#196127"
       end
-
-      # Green
-      if value <= 64
-        green = 255
-      elsif value > 64 && value < 127
-        green = 255 - (value - 64) * 4
-      elsif value >= 127
-        green = 0
-      end
-
-      # Blue
-      if value >= 64 && value <= 191
-        blue = 255;
-      elsif value < 64
-        blue = value * 4;
-      elsif
-        blue = 255 - ( value - 191 ) * 4;
-      end
-
-      return [red, green, blue]
     end
 end

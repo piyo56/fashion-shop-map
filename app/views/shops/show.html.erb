@@ -44,8 +44,7 @@ d3.json("/assets/japan.json", function(error, japan) {
      .enter()
      .append("path")
      .style("fill", function(d) {
-      var rgb = branches[d.properties.name_local];
-      return "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] +")";
+      return branches[d.properties.name_local];
      })
      .attr("class", function(d) {
         return "pref pref" + pref[d.properties.name_local];
