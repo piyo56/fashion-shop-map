@@ -21,13 +21,12 @@
 <script>
 var pref = JSON.parse($("#prefectures_json").text());
 var branches = JSON.parse($("#branches_json").text());
-var width = 900,
-  height = 960;
-var color = d3.scale.category20();
+var width = 900, height = 960;
 
-var svg = d3.select("#japan_map").append("svg")
-    .attr("width", width)
-    .attr("height", height);
+var svg = d3.select("#japan_map")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
 
 var projection = d3.geo.mercator()
     .center([136, 35.5])
@@ -37,7 +36,6 @@ var projection = d3.geo.mercator()
 var path = d3.geo.path()
   .projection(projection);
 
-
 d3.json("/assets/japan.json", function(error, japan) {
   console.info(japan);
   var topo = topojson.feature(japan, japan.objects.pref).features;
@@ -46,8 +44,8 @@ d3.json("/assets/japan.json", function(error, japan) {
      .enter()
      .append("path")
      .style("fill", function(d) {
-      var color = branches[d.properties.name_local];
-      return "#"+color+color+color;
+      var rgb = branches[d.properties.name_local];
+      return "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] +")";
      })
      .attr("class", function(d) {
         return "pref pref" + pref[d.properties.name_local];

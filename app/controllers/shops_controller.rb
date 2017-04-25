@@ -8,17 +8,25 @@ class ShopsController < ApplicationController
   end
 
   def show
+    all_prefectures = Prefecture.all
+
     # D3.jsで描画するのに必要な
-    ## 都道府県情報
-    all_prefectures = Prefecture.pluck(:name)
-    json_data = (1..47).to_a.zip(all_prefectures).to_h
+    ## 都道府県の情報
+    json_data = (1..47).to_a.zip(all_prefectures.pluck(:name)).to_h
     @prefectures = JSON.generate(json_data)
 
     ## 各県の店舗数
     json_data = {}
-    Prefecture.all.collect do |p|
-      branches_num = Branch.where(prefecture_id: p.id, shop_id: @shop).count
-      json_data[p.name] = num2color(branches_num * 20)
+    branches = @shop.branches.includes(:prefecture)
+    all_prefectures.each do |p|
+      branches_count = branches.where(prefecture_id: p.id).count
+      json_data[p.name] = branches_count
+    end
+    _max = json_data.values.max
+    _min = json_data.values.min
+
+    json_data.each do |_name, _count|
+      json_data[_name] = to_colorcode(_count, _max, _min)
     end
     @branches = JSON.generate(json_data)
                       
@@ -85,11 +93,43 @@ class ShopsController < ApplicationController
       @prefectures = Prefecture.all
     end
 
-    def num2color(num)
-      return "00" if num > 255
-      num = 255 - num
-      color_codes = (0..15).to_a.zip(("0".."9").to_a.concat(("A".."F").to_a)).to_h
-      color_codes[num/16] + color_codes[num%16]
+    def to_colorcode(num, max=0, min=255)
+      val_per_num = 256.0 / (max - min)
+      color_value = val_per_num * (num - min)
+      
+      rgb = to_heatmap_rgb(color_value)
+      # color_codes = (0..15).to_a.zip(("0".."9").to_a << ("A".."F").to_a).to_h
+      # rgb.map{|v| color_codes[v/16] + color_codes[v%16]}
+    end
+
+    def to_heatmap_rgb(value)
+      # Red
+      if value < 128
+        red = 0;
+      elsif value > 127 && value < 191
+        red = (value-127)*4;
+      elsif value > 190
+        red = 255;
+      end
+
+      # Green
+      if value <= 64
+        green = 255
+      elsif value > 64 && value < 127
+        green = 255 - (value - 64) * 4
+      elsif value >= 127
+        green = 0
+      end
+
+      # Blue
+      if value >= 64 && value <= 191
+        blue = 255;
+      elsif value < 64
+        blue = value * 4;
+      elsif
+        blue = 255 - ( value - 191 ) * 4;
+      end
+
+      return [red, green, blue]
     end
 end
-
