@@ -36,11 +36,6 @@
     <%= stylesheet_link_tag "#{params[:controller]}/#{params[:action]}", :media => "all" %>
   <% end %>
 
-  <% if params[:controller] == "shops" && params[:action] == "show" %>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
-  <% end %>
-
   <%= javascript_include_tag 'application' %>
   <!--[if lt IE 9]>
   <%= javascript_include_tag 'html5shiv' %>
@@ -218,8 +213,16 @@
       });
     <% #}}} %>
     </script>
+  <% when "show" %>
+    <script>console.info("ok");</script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <%= javascript_include_tag 'jquery.tipsy' %>
+    <%= javascript_include_tag 'japan_map' %>
+    <%= stylesheet_link_tag 'tipsy' %>
   <% end %>
 <% end %>
+
 <%= javascript_include_tag 'share_buttons'%>
 </body>
 </html>
