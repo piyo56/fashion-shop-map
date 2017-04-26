@@ -1,4 +1,4 @@
-var pref = JSON.parse($("#prefectures_json").text());
+var pref     = JSON.parse($("#prefectures_json").text());
 var branches = JSON.parse($("#branches_json").text());
 var width = 900, height = 960;
 
@@ -22,24 +22,21 @@ d3.json("/assets/japan.json", function(error, japan) {
      .enter()
      .append("path")
      .style("fill", function(d) {
-      return branches[d.properties.name_local];
+      return branches[d.properties.name_local+"_color"];
      })
      .attr("class", function(d) {
-      console.log(d);
       return "pref pref_" + d.properties.name;
      })
      .attr("d", path)
-    //  .append("title")
-    // .text(function(d){ return d.properties.name_local; })
-     .on("mouseover", function() {
-         d3.select(this).attr("fill", "rgb(39, 250, 102)")
-      })
-     .on("mouseout", function(d) { 
-       d3.select(this).attr("fill", "yellow")
-     });
+     .append("title")
+    .text(function(d){
+      return d.properties.name_local + ": "+branches[d.properties.name_local]+"店舗"; 
+    });
+
+  $(".pref").tipsy({
+    gravity: 'w',
+    fade: true,
+    delayOut: 500
+  })
 });
 
-$("svg .pref").tipsy({
-  gravity: 'w',
-  fade: true
-})

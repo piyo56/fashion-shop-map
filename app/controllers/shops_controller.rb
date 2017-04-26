@@ -20,11 +20,11 @@ class ShopsController < ApplicationController
     branches = @shop.branches.includes(:prefecture)
     all_prefectures.each do |p|
       branches_count = branches.where(prefecture_id: p.id).count
-      json_data[p.name] = to_colorcode(branches_count)
+      json_data[p.name+"_color"] = to_colorcode(branches_count)
+      json_data[p.name] = branches_count
     end
 
     @branches = JSON.generate(json_data)
-                      
     #@branches = Branch.find_by_sql("select prefectures.name as name, count(*) as branches_num from branches join prefectures on prefecture_id = prefectures.id group by prefecuture_id")
   end
 
