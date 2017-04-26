@@ -42,6 +42,12 @@ $h1_size: 32px;
   .pref {
     fill: #fff;
     stroke: #aaa;
+    pointer-events: all;
+
+    &:hover {
+      stroke: #aaa;
+      stroke-width: 3px;
+    }
   }
 }
 

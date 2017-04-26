@@ -29,8 +29,14 @@ d3.json("/assets/japan.json", function(error, japan) {
       return "pref pref_" + d.properties.name;
      })
      .attr("d", path)
-     .append("title")
-     .text(function(d){ return d.properties.name_local; });
+    //  .append("title")
+    // .text(function(d){ return d.properties.name_local; })
+     .on("mouseover", function() {
+         d3.select(this).attr("fill", "rgb(39, 250, 102)")
+      })
+     .on("mouseout", function(d) { 
+       d3.select(this).attr("fill", "yellow")
+     });
 });
 
 $("svg .pref").tipsy({
