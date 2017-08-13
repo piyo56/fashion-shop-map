@@ -19,6 +19,9 @@ gem 'hirb-unicode'
 gem 'bootstrap-sass'
 gem 'gretel' # パンくずリスト
 
+# use unicorn as app server
+gem 'unicorn'
+
 group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
