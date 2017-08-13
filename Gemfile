@@ -32,6 +32,12 @@ group :development, :test do
   gem 'poltergeist'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+
+  # deployment with capistrano3
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
 end
 
 group :development do

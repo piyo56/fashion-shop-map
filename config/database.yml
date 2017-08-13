@@ -24,16 +24,16 @@ development:
   database: fsm_development
   username: root
 
-staging:
-  <<: *default
-  host:     localhost
-  database: fsm_staging
-  username: root
-
 test:
   <<: *default
   host:     localhost
   database: fsm_test
+  username: root
+
+staging:
+  <<: *default
+  host:     localhost
+  database: fsm_staging
   username: root
 
 production:
