@@ -7,8 +7,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'hirb'       # モデルの出力結果を表形式で表示するGem
-gem 'hirb-unicode'
 
 # Added for deploying
 gem 'mysql2'
@@ -41,6 +39,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
