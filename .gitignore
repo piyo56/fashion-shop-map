@@ -21,3 +21,5 @@ vendor/bundle
 tags
 db/bin/.python-version
 .byebug_history
+
+db/*.sql
