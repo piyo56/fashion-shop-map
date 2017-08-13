@@ -11,7 +11,7 @@ gem 'hirb'       # モデルの出力結果を表形式で表示するGem
 gem 'hirb-unicode'
 
 # Added for deploying
-gem 'pg'
+gem 'mysql2'
 gem "gmaps4rails"
 gem "geocoder"
 gem 'hirb'
