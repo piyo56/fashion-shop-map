@@ -34,7 +34,7 @@ group :development, :test do
   gem 'shoulda-matchers'
 
   # deployment with capistrano3
-  gem 'capistrano'
+  gem 'capistrano', '~> 3.4.0'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'

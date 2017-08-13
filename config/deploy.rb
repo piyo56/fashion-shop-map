@@ -1,15 +1,13 @@
-# config valid only for Capistrano 3.1
-lock '3.1.0'
-
 set :application, 'fashion-shop-map'
 set :repo_url, 'https://github.com/piyo56/fashion-shop-map.git'
 set :branch, 'master' # デフォルトがmasterなのでこの場合書かなくてもいいです。
 set :deploy_to, "/home/ubuntu/fsm"
-set :scm, :git # capistrano3からgitオンリーになった気がするのでいらないかも?
+set :rails_env, 'staging'
 
 set :format, :pretty
 set :log_level, :debug # :info or :debug
-set :keep_releases, 3 # 何世代前までリリースを残しておくか
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets bundle public/system public/assets}
+set :keep_releases, 5 
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.3.1'
