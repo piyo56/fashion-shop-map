@@ -3,8 +3,8 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true  # 更新時ダウンタイム無し
 
-listen "#{ENV['RAILS_ROOT']}/tmp/sockets/unicorn.sock"
-pid "#{ENV['RAILS_ROOT']}/tmp/pids/unicorn.pid"
+listen File.expand_path('../shared/tmp/sockets/unicorn.sock', ENV['RAILS_ROOT'])
+pid File.expand_path('../shared/tmp/pids/unicorn.pids', ENV['RAILS_ROOT'])
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do
@@ -26,7 +26,7 @@ after_fork do |server, worker|
 end
 
 # ログの出力
-stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
+stderr_path File.expand_path('../shared/log/unicorn_err.log', ENV['RAILS_ROOT'])
+stdout_path File.expand_path('../shared/log/unicorn.log', ENV['RAILS_ROOT'])
 
 preload_app true
