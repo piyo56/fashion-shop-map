@@ -10,6 +10,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Added for deploying
 gem 'mysql2'
+gem 'pg'
 gem "gmaps4rails"
 gem "geocoder"
 gem 'hirb'
