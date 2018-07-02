@@ -12,7 +12,7 @@ This is my first web app. I like clothes. :grin:
 |---|---|
 |url|http://www.fashion-shop-map.com/|
 |publication date|2016/11/25|
-|author|[@piyo56](http://hoodie.tokyo)|
+|author|[raahii](https://raahii.github.io/about)|
 |advertisement|[blog](http://ganbaro.hateblo.jp/entry/2016/11/26/013603)|
 
 ### registered stores
