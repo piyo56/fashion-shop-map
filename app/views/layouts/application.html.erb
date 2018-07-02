@@ -124,7 +124,7 @@
 <% when "shops" %>
   <% case params[:action] %>
   <% when "map" %>
-    <script src="http://maps.googleapis.com/maps/api/js?key=<%= ENV["GMAPS_API_KEY"] %>&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GMAPS_API_KEY"] %>&libraries=places"></script>
     <%= javascript_include_tag 'oms.min' %>
     <%= javascript_include_tag 'infobox_packed' %>
     <%= javascript_include_tag 'markerclusterer.min' %>
