@@ -91,7 +91,7 @@
 
 <div class="clear"></div>
 <footer>
-  <% share_url   = "http://www.fashion-shop-map.com/" %>
+  <% share_url   = "https://fashion-shop-map.herokuapp.com/" %>
   <% description = "Fashion Shop Map ─ セレクトショップを中心としたショップの位置情報検索サービス🗺 " %>
   <% # 🌏 %>
   <div id="share_buttons">
@@ -110,11 +110,11 @@
         <% hatena_url = "https://b.hatena.ne.jp/add?mode=confirm&url=" + share_url + "&title=" + URI.encode(description)%>
         <div class="sns_icon hatena"><a href='<%= hatena_url %>' target="_blank" title="はてなブックマークに登録"><img src="/assets/share/hatena.svg" alt="はてなブックマーク"></a></div>
       <li>
-        <div class="sns_icon line"><a href='<%= "http://line.me/R/msg/text/?" + URI.encode(description) + " " + share_url %>' target="_blank" title="LINEに送る"><img src="/assets/share/line.png" alt="LINE"></a></div>
+        <div class="sns_icon line"><a href='<%= "https://line.me/R/msg/text/?" + URI.encode(description) + " " + share_url %>' target="_blank" title="LINEに送る"><img src="/assets/share/line.png" alt="LINE"></a></div>
     </ul>
     <% #}}} %>
   </div>
-  <p>Copyright © 2016 &nbsp; <a href="http://hoodie.tokyo" target="_blank" style="text-decoration: underline; font-weight: bold;">@piyo56</a> All Rights Reserved.</p>
+  <p>Copyright © <%= Time.current.year %> <a href="https://raahii.github.io/about" target="_blank" style="text-decoration: underline; font-weight: bold;">raahii</a> All Rights Reserved.</p>
 </footer>
 <div class="clear"></div>
 
@@ -215,8 +215,8 @@
     </script>
   <% when "show" %>
     <script>console.info("ok");</script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
     <%= javascript_include_tag 'jquery.tipsy' %>
     <%= javascript_include_tag 'japan_map' %>
     <%= stylesheet_link_tag 'tipsy' %>

@@ -42,6 +42,7 @@ class ShopsController < ApplicationController
       @branches = Branch.make_latlng_uniq(@branches)
       @hit_shops = @selected_shop_ids.map do |shop_id|
         {
+          id: shop_id,
           name: @shops.find(shop_id).name,
           branches_count: @branches.where(shop_id: shop_id).count
         }

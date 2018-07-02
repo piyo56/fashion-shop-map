@@ -30,7 +30,12 @@ d3.json("/assets/japan.json", function(error, japan) {
      .attr("d", path)
      .append("title")
     .text(function(d){
-      return d.properties.name_local + ": "+branches[d.properties.name_local]+"店舗"; 
+      if (d.properties.name_local in branches) {
+        var num_branches = branches[d.properties.name_local]
+      } else {
+        var num_branches = 0
+      }
+      return d.properties.name_local + ": "+num_branches+"店舗"; 
     });
 
   $(".pref").tipsy({
